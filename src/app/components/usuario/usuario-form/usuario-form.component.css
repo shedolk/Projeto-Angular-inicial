@@ -20,3 +20,40 @@
 .submit-button {
   margin-top: 20px;
 }
+
+/* Estilos para a toolbar */
+.mat-toolbar {
+  background-color: #1976d2; /* Cor de fundo da toolbar */
+  color: white; /* Cor do texto */
+  padding: 10px; /* Espaçamento interno */
+  border-bottom: 2px solid #1565c0; /* Bordas inferiores */
+}
+
+/* Estilos para os botões dentro da toolbar */
+.mat-icon-button {
+  color: white; /* Cor dos ícones */
+}
+
+/* Espaçamento entre os botões */
+.toolbar-buttons {
+  margin-left: 10px; /* Margem à esquerda */
+}
+
+/* Espaçamento automático entre os itens da toolbar */
+.align-toolbar {
+  justify-content: space-between;
+}
+
+/* Estilos para o botão 'Entrar' */
+button[color="primary"] {
+  background-color: #4caf50; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Remover borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Borda arredondada */
+  cursor: pointer; /* Altera o cursor ao passar por cima */
+}
+
+button[color="primary"]:hover {
+  background-color: #45a049; /* Cor de fundo ao passar o mouse */
+}
