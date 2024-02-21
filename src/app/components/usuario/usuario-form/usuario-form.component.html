@@ -1,0 +1,77 @@
+<div class="container">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="input-group">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="nome" />
+        <mat-error
+          *ngIf="
+            formGroup.get('nome') &&
+            formGroup.get('nome')?.invalid &&
+            formGroup.get('nome')?.touched
+          "
+        >
+          O nome é obrigatório.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error
+          *ngIf="
+            formGroup.get('email') &&
+            formGroup.get('email')?.invalid &&
+            formGroup.get('email')?.touched
+          "
+        >
+          O email é obrigatório.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field>
+        <mat-label>Idade</mat-label>
+        <input matInput type="number" formControlName="idade" />
+        <mat-error
+          *ngIf="
+            formGroup.get('idade') &&
+            formGroup.get('idade')?.invalid &&
+            formGroup.get('idade')?.touched
+          "
+        >
+          A idade é obrigatória.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" formControlName="senha" />
+        <mat-error
+          *ngIf="
+            formGroup.get('senha') &&
+            formGroup.get('senha')?.invalid &&
+            formGroup.get('senha')?.touched
+          "
+        >
+          A senha é obrigatória.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="formGroup.invalid"
+      class="submit-button"
+    >
+      Salvar
+    </button>
+  </form>
+</div>
