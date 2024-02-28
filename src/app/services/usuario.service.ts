@@ -11,11 +11,23 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getUsuarios(): Observable<Usuario[]> {
+  findAll(): Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(this.baseUrl);
   }
 
-  salvar(usuario: Usuario): Observable<Usuario> {
+  findById(id: String): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`);
+  }
+
+  insert(usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(this.baseUrl, usuario);
+  }
+
+  update(usuario: Usuario): Observable<Usuario> {
+    return this.httpClient.put<Usuario>(`${this.baseUrl}/${usuario}`, usuario);
+  }
+
+  delete(usuario: Usuario): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/${usuario.id}`);
   }
 }
