@@ -24,7 +24,10 @@ export class UsuarioService {
   }
 
   update(usuario: Usuario): Observable<Usuario> {
-    return this.httpClient.put<Usuario>(`${this.baseUrl}/${usuario}`, usuario);
+    return this.httpClient.put<Usuario>(
+      `${this.baseUrl}/${usuario.id}`,
+      usuario
+    );
   }
 
   delete(usuario: Usuario): Observable<any> {

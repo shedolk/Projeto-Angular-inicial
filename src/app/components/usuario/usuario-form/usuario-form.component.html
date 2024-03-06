@@ -70,7 +70,7 @@
       </button>
       <button
         mat-raised-button
-        *ngIf="formGroup.get('id')?.value"
+        *ngIf="formGroup?.get('id')?.value"
         color="warn"
         (click)="excluirUsuario()"
         [disabled]="formGroup.invalid"
