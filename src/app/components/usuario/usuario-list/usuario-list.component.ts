@@ -6,7 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-list',
@@ -26,11 +26,23 @@ export class UsuarioListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nome', 'email', 'idade', 'acao'];
   usuarios: Usuario[] = [];
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   ngOnInit(): void {
     this.usuarioService.findAll().subscribe((data) => {
       this.usuarios = data;
+    });
+  }
+
+  excluirUsuario(usuario: Usuario) {
+    this.usuarioService.delete(usuario).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/usuarios');
+        this.ngOnInit();
+      },
+      error: (err) => {
+        console.log('Erro ao Excluir' + JSON.stringify(err));
+      },
     });
   }
 }

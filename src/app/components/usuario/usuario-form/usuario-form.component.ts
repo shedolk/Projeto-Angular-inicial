@@ -53,10 +53,7 @@ export class UsuarioFormComponent {
         usuario && usuario.idade ? usuario.idade : '',
         Validators.required,
       ],
-      senha: [
-        usuario && usuario.senha ? usuario.senha : '',
-        Validators.required,
-      ],
+      senha: [usuario && usuario.senha ? usuario.senha : ''],
     });
   }
   salvarUsuario() {
