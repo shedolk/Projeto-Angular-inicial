@@ -45,15 +45,23 @@ export class UsuarioFormComponent {
     this.formGroup = formBuilder.group({
       id: [usuario && usuario.id ? usuario.id : null],
       nome: [usuario && usuario.nome ? usuario.nome : '', Validators.required],
-      email: [
-        usuario && usuario.email ? usuario.email : '',
+      login: [
+        usuario && usuario.login ? usuario.login : '',
         Validators.required,
       ],
-      idade: [
-        usuario && usuario.idade ? usuario.idade : '',
+      senha: [
+        usuario && usuario.senha ? usuario.senha : '',
         Validators.required,
       ],
-      senha: [usuario && usuario.senha ? usuario.senha : ''],
+      cpf: [usuario && usuario.cpf ? usuario.cpf : ''],
+      perfil: [usuario && usuario.perfil ? usuario.perfil : ''],
+      codigoArea: [usuario && usuario.codigoArea ? usuario.codigoArea : ''],
+      numero: [usuario && usuario.numero ? usuario.numero : ''],
+      rua: [usuario && usuario.rua ? usuario.rua : ''],
+      numeroCasa: [usuario && usuario.numeroCasa ? usuario.numeroCasa : ''],
+      cidade: [usuario && usuario.cidade ? usuario.cidade : ''],
+      estado: [usuario && usuario.estado ? usuario.estado : ''],
+      cep: [usuario && usuario.cep ? usuario.cep : ''],
     });
   }
   salvarUsuario() {

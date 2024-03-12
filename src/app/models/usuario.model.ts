@@ -1,7 +1,15 @@
 export class Usuario {
   id!: number;
   nome!: string;
-  email!: string;
-  idade!: number;
+  login!: string;
   senha!: string;
+  cpf!: string;
+  perfil!: number;
+  codigoArea!: string;
+  numero!: string;
+  rua!: string;
+  numeroCasa!: string;
+  cidade!: string;
+  estado!: string;
+  cep!: string;
 }
