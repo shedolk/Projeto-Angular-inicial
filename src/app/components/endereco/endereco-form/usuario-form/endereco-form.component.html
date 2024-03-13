@@ -1,0 +1,117 @@
+<mat-toolbar color="primary" class="toolbar-title"
+  >Cadastro de usuário</mat-toolbar
+>
+
+<div class="form-container">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formGroup">
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" />
+          <mat-error
+            *ngIf="
+              formGroup.get('nome') &&
+              formGroup.get('nome')?.invalid &&
+              formGroup.get('nome')?.touched
+            "
+            >O nome é obrigatório.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Login</mat-label>
+          <input matInput type="text" formControlName="login" />
+          <!-- Validação para o campo de login -->
+          <mat-error
+            *ngIf="
+              formGroup.get('login') &&
+              formGroup.get('login')?.invalid &&
+              formGroup.get('login')?.touched
+            "
+            >O login é obrigatório.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Senha</mat-label>
+          <input matInput type="text" formControlName="senha" />
+          <!-- Validação para o campo de senha -->
+          <mat-error
+            *ngIf="
+              formGroup.get('senha') &&
+              formGroup.get('senha')?.invalid &&
+              formGroup.get('senha')?.touched
+            "
+            >a senha é obrigatória.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>CPF</mat-label>
+          <input matInput type="text" formControlName="cpf" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Endereco ou adiministrador</mat-label>
+          <input matInput type="text" formControlName="perfil" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Código de Área do celular</mat-label>
+          <input matInput type="text" formControlName="codigoArea" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Número do celular</mat-label>
+          <input matInput type="text" formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Rua da casa</mat-label>
+          <input matInput type="text" formControlName="rua" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Número da Casa</mat-label>
+          <input matInput type="text" formControlName="numeroCasa" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Cidade</mat-label>
+          <input matInput type="text" formControlName="cidade" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Estado</mat-label>
+          <input matInput type="text" formControlName="estado" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>CEP</mat-label>
+          <input matInput type="text" formControlName="cep" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="salvarEndereco()"
+        [disabled]="formGroup.invalid"
+      >
+        Salvar
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="formGroup?.get('id')?.value"
+        color="warn"
+        (click)="excluirEndereco()"
+        [disabled]="formGroup.invalid"
+      >
+        Excluir
+      </button>
+      <button mat-raised-button routerLink="/enderecos">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
