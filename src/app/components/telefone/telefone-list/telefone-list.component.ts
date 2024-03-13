@@ -1,15 +1,16 @@
-import { UsuarioService } from './../../../services/usuario.service';
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../../models/usuario.model';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
+import { Telefone } from '../../../models/telefone.models';
+import { TelefoneService } from '../../../services/telefone.service';
 
 @Component({
-  selector: 'app-usuario-list',
+  selector: 'app-telefone-list',
   standalone: true,
   imports: [
     NgFor,
@@ -19,10 +20,10 @@ import { Router, RouterModule } from '@angular/router';
     MatButtonModule,
     RouterModule,
   ],
-  templateUrl: './usuario-list.component.html',
-  styleUrl: './usuario-list.component.css',
+  templateUrl: './telefone-list.component.html',
+  styleUrl: './telefone-list.component.css',
 })
-export class UsuarioListComponent implements OnInit {
+export class TelefoneListComponent implements OnInit {
   displayedColumns: string[] = [
     // 'id',
     // 'nome',
@@ -40,20 +41,23 @@ export class UsuarioListComponent implements OnInit {
     // 'cep',
     'acao',
   ];
-  usuarios: Usuario[] = [];
+  telefones: Telefone[] = [];
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(
+    private telefoneService: TelefoneService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.usuarioService.findAll().subscribe((data) => {
-      this.usuarios = data;
+    this.telefoneService.findAll().subscribe((data) => {
+      this.telefones = data;
     });
   }
 
-  excluirUsuario(usuario: Usuario) {
-    this.usuarioService.delete(usuario).subscribe({
+  excluirTelefone(telefone: Telefone) {
+    this.telefoneService.delete(telefone).subscribe({
       next: () => {
-        this.router.navigateByUrl('/usuarios');
+        this.router.navigateByUrl('/telefones');
         this.ngOnInit();
       },
       error: (err) => {

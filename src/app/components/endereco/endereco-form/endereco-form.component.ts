@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-
+import { EnderecoService } from '../../../services/endereco.service';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -13,8 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import { EnderecoService } from '../../../../services/endereco.service';
-import { Endereco } from '../../../../models/endereco.models';
+import { Endereco } from '../../../models/endereco.models';
 
 @Component({
   selector: 'app-endereco-form',
