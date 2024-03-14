@@ -44,28 +44,11 @@ export class TelefoneFormComponent {
     const telefone: Telefone = activatedRoute.snapshot.data['telefone'];
 
     this.formGroup = formBuilder.group({
-      // id: [telefone && telefone.id ? telefone.id : null],
-      // nome: [
-      //   telefone && telefone.nome ? telefone.nome : '',
-      //   Validators.required,
-      // ],
-      // login: [
-      //   telefone && telefone.login ? telefone.login : '',
-      //   Validators.required,
-      // ],
-      // senha: [
-      //   telefone && telefone.senha ? telefone.senha : '',
-      //   Validators.required,
-      // ],
-      // cpf: [telefone && telefone.cpf ? telefone.cpf : ''],
-      // perfil: [telefone && telefone.perfil ? telefone.perfil : ''],
-      // codigoArea: [telefone && telefone.codigoArea ? telefone.codigoArea : ''],
-      // numero: [telefone && telefone.numero ? telefone.numero : ''],
-      // rua: [telefone && telefone.rua ? telefone.rua : ''],
-      // numeroCasa: [telefone && telefone.numeroCasa ? telefone.numeroCasa : ''],
-      // cidade: [telefone && telefone.cidade ? telefone.cidade : ''],
-      // estado: [telefone && telefone.estado ? telefone.estado : ''],
-      // cep: [telefone && telefone.cep ? telefone.cep : ''],
+      id: [telefone && telefone.id ? telefone.id : null],
+      codigoArea: [
+        telefone && telefone.codigoArea ? telefone.codigoArea : null,
+      ],
+      numero: [telefone && telefone.numero ? telefone.numero : null],
     });
   }
   salvarTelefone() {

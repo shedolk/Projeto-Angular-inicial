@@ -24,23 +24,7 @@ import { TelefoneService } from '../../../services/telefone.service';
   styleUrl: './telefone-list.component.css',
 })
 export class TelefoneListComponent implements OnInit {
-  displayedColumns: string[] = [
-    // 'id',
-    // 'nome',
-    // 'login',
-    // 'senha',
-    // 'cpf',
-
-    // 'perfil',
-    // 'codigoArea',
-    // 'numero',
-    // 'rua',
-    // 'numeroCasa',
-    // 'cidade',
-    // 'estado',
-    // 'cep',
-    'acao',
-  ];
+  displayedColumns: string[] = ['id', 'codigoArea', 'numero', 'acao'];
   telefones: Telefone[] = [];
 
   constructor(

@@ -6,112 +6,82 @@
   <mat-card>
     <mat-card-content>
       <form [formGroup]="formGroup">
-        <mat-form-field appearance="fill" class="full-width-input">
+        <!-- Input para o campo Nome -->
+        <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Nome</mat-label>
           <input matInput type="text" formControlName="nome" />
-          <mat-error
-            *ngIf="
-              formGroup.get('nome') &&
-              formGroup.get('nome')?.invalid &&
-              formGroup.get('nome')?.touched
-            "
-            >O nome é obrigatório.</mat-error
-          >
         </mat-form-field>
 
+        <!-- Input para o campo Login -->
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Login</mat-label>
           <input matInput type="text" formControlName="login" />
-          <!-- Validação para o campo de login -->
-          <mat-error
-            *ngIf="
-              formGroup.get('login') &&
-              formGroup.get('login')?.invalid &&
-              formGroup.get('login')?.touched
-            "
-            >O login é obrigatório.</mat-error
-          >
         </mat-form-field>
 
+        <!-- Input para o campo Senha -->
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Senha</mat-label>
-          <input matInput type="text" formControlName="senha" />
-          <!-- Validação para o campo de senha -->
-          <mat-error
-            *ngIf="
-              formGroup.get('senha') &&
-              formGroup.get('senha')?.invalid &&
-              formGroup.get('senha')?.touched
-            "
-            >a senha é obrigatória.</mat-error
-          >
+          <input matInput type="password" formControlName="senha" />
         </mat-form-field>
 
+        <!-- Input para o campo Perfil -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>CPF</mat-label>
-          <input matInput type="text" formControlName="cpf" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Usuario ou adiministrador</mat-label>
+          <mat-label>Perfil</mat-label>
           <input matInput type="text" formControlName="perfil" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Código de Área do celular</mat-label>
-          <input matInput type="text" formControlName="codigoArea" />
-        </mat-form-field>
+        <!-- Input para a lista de Telefones -->
+        <div formArrayName="listaTelefone">
+          <div
+            *ngFor="
+              let telefone of formGroup.get('listaTelefone').controls;
+              let i = index
+            "
+            class="full-width-input"
+          >
+            <mat-form-field appearance="outline">
+              <mat-label>Telefone {{ i + 1 }}</mat-label>
+              <input matInput type="text" [formControlName]="i" />
+            </mat-form-field>
+          </div>
+        </div>
 
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Número do celular</mat-label>
-          <input matInput type="text" formControlName="numero" />
-        </mat-form-field>
+        <!-- Input para a lista de Endereços -->
+        <div formArrayName="listaEndereco">
+          <div
+            *ngFor="
+              let endereco of formGroup.get('listaEndereco').controls;
+              let i = index
+            "
+            class="full-width-input"
+          >
+            <mat-form-field appearance="outline">
+              <mat-label>Endereço {{ i + 1 }}</mat-label>
+              <input matInput type="text" [formControlName]="i" />
+            </mat-form-field>
+          </div>
+        </div>
 
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Rua da casa</mat-label>
-          <input matInput type="text" formControlName="rua" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Número da Casa</mat-label>
-          <input matInput type="text" formControlName="numeroCasa" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Cidade</mat-label>
-          <input matInput type="text" formControlName="cidade" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Estado</mat-label>
-          <input matInput type="text" formControlName="estado" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>CEP</mat-label>
-          <input matInput type="text" formControlName="cep" />
-        </mat-form-field>
+        <!-- Botões de ação -->
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="salvarUsuario()"
+          [disabled]="formGroup.invalid"
+        >
+          Salvar
+        </button>
+        <button
+          mat-raised-button
+          *ngIf="formGroup.get('id')?.value"
+          color="warn"
+          (click)="excluirUsuario()"
+          [disabled]="formGroup.invalid"
+        >
+          Excluir
+        </button>
+        <button mat-raised-button routerLink="/usuarios">Cancelar</button>
       </form>
     </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="salvarUsuario()"
-        [disabled]="formGroup.invalid"
-      >
-        Salvar
-      </button>
-      <button
-        mat-raised-button
-        *ngIf="formGroup?.get('id')?.value"
-        color="warn"
-        (click)="excluirUsuario()"
-        [disabled]="formGroup.invalid"
-      >
-        Excluir
-      </button>
-      <button mat-raised-button routerLink="/usuarios">Cancelar</button>
-    </mat-card-actions>
   </mat-card>
 </div>

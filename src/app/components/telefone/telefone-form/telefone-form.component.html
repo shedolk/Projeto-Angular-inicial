@@ -1,96 +1,41 @@
 <mat-toolbar color="primary" class="toolbar-title"
-  >Cadastro de usuário</mat-toolbar
+  >Cadastro de telefone</mat-toolbar
 >
 
 <div class="form-container">
   <mat-card>
     <mat-card-content>
       <form [formGroup]="formGroup">
+        <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Nome</mat-label>
-          <input matInput type="text" formControlName="nome" />
+          <mat-label>Codigo de area</mat-label>
+          <input matInput type="text" formControlName="codigoArea" />
           <mat-error
             *ngIf="
-              formGroup.get('nome') &&
-              formGroup.get('nome')?.invalid &&
-              formGroup.get('nome')?.touched
+              formGroup.get('codigoArea') &&
+              formGroup.get('codigoArea')?.invalid &&
+              formGroup.get('codigoArea')?.touched
             "
-            >O nome é obrigatório.</mat-error
+            >O codigo de Area é obrigatório.</mat-error
           >
         </mat-form-field>
+        <!-- espaço -->
 
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Login</mat-label>
-          <input matInput type="text" formControlName="login" />
+          <mat-label>Numero</mat-label>
+          <input matInput type="text" formControlName="numero" />
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
-              formGroup.get('login') &&
-              formGroup.get('login')?.invalid &&
-              formGroup.get('login')?.touched
+              formGroup.get('numero') &&
+              formGroup.get('numero')?.invalid &&
+              formGroup.get('numero')?.touched
             "
-            >O login é obrigatório.</mat-error
+            >O numero é obrigatório.</mat-error
           >
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Senha</mat-label>
-          <input matInput type="text" formControlName="senha" />
-          <!-- Validação para o campo de senha -->
-          <mat-error
-            *ngIf="
-              formGroup.get('senha') &&
-              formGroup.get('senha')?.invalid &&
-              formGroup.get('senha')?.touched
-            "
-            >a senha é obrigatória.</mat-error
-          >
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>CPF</mat-label>
-          <input matInput type="text" formControlName="cpf" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Telefone ou adiministrador</mat-label>
-          <input matInput type="text" formControlName="perfil" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Código de Área do celular</mat-label>
-          <input matInput type="text" formControlName="codigoArea" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Número do celular</mat-label>
-          <input matInput type="text" formControlName="numero" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Rua da casa</mat-label>
-          <input matInput type="text" formControlName="rua" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Número da Casa</mat-label>
-          <input matInput type="text" formControlName="numeroCasa" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Cidade</mat-label>
-          <input matInput type="text" formControlName="cidade" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Estado</mat-label>
-          <input matInput type="text" formControlName="estado" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>CEP</mat-label>
-          <input matInput type="text" formControlName="cep" />
-        </mat-form-field>
+        <!-- espaço -->
       </form>
     </mat-card-content>
     <mat-card-actions>

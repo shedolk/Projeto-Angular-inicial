@@ -43,28 +43,12 @@ export class EnderecoFormComponent {
     const endereco: Endereco = activatedRoute.snapshot.data['endereco'];
 
     this.formGroup = formBuilder.group({
-      // id: [endereco && endereco.id ? endereco.id : null],
-      // nome: [
-      //   endereco && endereco.nome ? endereco.nome : '',
-      //   Validators.required,
-      // ],
-      // login: [
-      //   endereco && endereco.login ? endereco.login : '',
-      //   Validators.required,
-      // ],
-      // senha: [
-      //   endereco && endereco.senha ? endereco.senha : '',
-      //   Validators.required,
-      // ],
-      // cpf: [endereco && endereco.cpf ? endereco.cpf : ''],
-      // perfil: [endereco && endereco.perfil ? endereco.perfil : ''],
-      // codigoArea: [endereco && endereco.codigoArea ? endereco.codigoArea : ''],
-      // numero: [endereco && endereco.numero ? endereco.numero : ''],
-      // rua: [endereco && endereco.rua ? endereco.rua : ''],
-      // numeroCasa: [endereco && endereco.numeroCasa ? endereco.numeroCasa : ''],
-      // cidade: [endereco && endereco.cidade ? endereco.cidade : ''],
-      // estado: [endereco && endereco.estado ? endereco.estado : ''],
-      // cep: [endereco && endereco.cep ? endereco.cep : ''],
+      id: [endereco && endereco.id ? endereco.id : null],
+      rua: [endereco && endereco.rua ? endereco.rua : null],
+      numero: [endereco && endereco.numero ? endereco.numero : null],
+      cidade: [endereco && endereco.cidade ? endereco.cidade : null],
+      estado: [endereco && endereco.estado ? endereco.estado : null],
+      cep: [endereco && endereco.cep ? endereco.cep : null],
     });
   }
   salvarEndereco() {

@@ -25,20 +25,12 @@ import { Endereco } from '../../../models/endereco.models';
 })
 export class EnderecoListComponent implements OnInit {
   displayedColumns: string[] = [
-    // 'id',
-    // 'nome',
-    // 'login',
-    // 'senha',
-    // 'cpf',
-
-    // 'perfil',
-    // 'codigoArea',
-    // 'numero',
-    // 'rua',
-    // 'numeroCasa',
-    // 'cidade',
-    // 'estado',
-    // 'cep',
+    'id',
+    'rua',
+    'numero',
+    'cidade',
+    'estado',
+    'cep',
     'acao',
   ];
   enderecos: Endereco[] = [];

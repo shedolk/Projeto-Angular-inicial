@@ -24,20 +24,13 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class UsuarioListComponent implements OnInit {
   displayedColumns: string[] = [
-    // 'id',
-    // 'nome',
-    // 'login',
-    // 'senha',
-    // 'cpf',
-
-    // 'perfil',
-    // 'codigoArea',
-    // 'numero',
-    // 'rua',
-    // 'numeroCasa',
-    // 'cidade',
-    // 'estado',
-    // 'cep',
+    'id',
+    'nome',
+    'login',
+    'senha',
+    'perfil',
+    'listaTelefone',
+    'listaEndereco',
     'acao',
   ];
   usuarios: Usuario[] = [];
