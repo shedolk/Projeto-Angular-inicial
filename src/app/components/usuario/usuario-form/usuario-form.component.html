@@ -24,43 +24,17 @@
           <input matInput type="password" formControlName="senha" />
         </mat-form-field>
 
+        <!-- Input para o campo Cpf -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>CPF</mat-label>
+          <input matInput type="text" formControlName="cpf" />
+        </mat-form-field>
+
         <!-- Input para o campo Perfil -->
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Perfil</mat-label>
           <input matInput type="text" formControlName="perfil" />
         </mat-form-field>
-
-        <!-- Input para a lista de Telefones -->
-        <div formArrayName="listaTelefone">
-          <div
-            *ngFor="
-              let telefone of formGroup.get('listaTelefone').controls;
-              let i = index
-            "
-            class="full-width-input"
-          >
-            <mat-form-field appearance="outline">
-              <mat-label>Telefone {{ i + 1 }}</mat-label>
-              <input matInput type="text" [formControlName]="i" />
-            </mat-form-field>
-          </div>
-        </div>
-
-        <!-- Input para a lista de Endereços -->
-        <div formArrayName="listaEndereco">
-          <div
-            *ngFor="
-              let endereco of formGroup.get('listaEndereco').controls;
-              let i = index
-            "
-            class="full-width-input"
-          >
-            <mat-form-field appearance="outline">
-              <mat-label>Endereço {{ i + 1 }}</mat-label>
-              <input matInput type="text" [formControlName]="i" />
-            </mat-form-field>
-          </div>
-        </div>
 
         <!-- Botões de ação -->
         <button

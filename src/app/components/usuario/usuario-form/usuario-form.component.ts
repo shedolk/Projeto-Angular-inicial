@@ -3,7 +3,9 @@ import { UsuarioService } from './../../../services/usuario.service';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -15,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Usuario } from '../../../models/usuario.model';
 import { CommonModule } from '@angular/common';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-usuario-form',
@@ -29,6 +32,8 @@ import { CommonModule } from '@angular/common';
     MatToolbarModule,
     RouterModule,
     CommonModule,
+    FormsModule,
+    MatSelectModule,
   ],
   templateUrl: './usuario-form.component.html',
   styleUrl: './usuario-form.component.css',
@@ -42,9 +47,9 @@ export class UsuarioFormComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    const usuario: Usuario = activatedRoute.snapshot.data['usuario'];
+    const usuario: Usuario = this.activatedRoute.snapshot.data['usuario'];
 
-    this.formGroup = formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       id: [usuario && usuario.id ? usuario.id : null],
       nome: [usuario && usuario.nome ? usuario.nome : '', Validators.required],
       login: [
@@ -55,9 +60,8 @@ export class UsuarioFormComponent {
         usuario && usuario.senha ? usuario.senha : '',
         Validators.required,
       ],
-      perfil: [usuario && usuario.perfil ? usuario.perfil : ''],
-      listaTelefone: this.formBuilder.array([]),
-      listaEndereco: this.formBuilder.array([]),
+      cpf: [usuario && usuario.cpf ? usuario.cpf : '', Validators.required],
+      perfil: [usuario && usuario.perfil ? usuario.perfil.label : ''],
     });
   }
   salvarUsuario() {

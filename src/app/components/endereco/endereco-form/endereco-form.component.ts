@@ -40,7 +40,7 @@ export class EnderecoFormComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    const endereco: Endereco = activatedRoute.snapshot.data['endereco'];
+    const endereco: Endereco = this.activatedRoute.snapshot.data['endereco'];
 
     this.formGroup = formBuilder.group({
       id: [endereco && endereco.id ? endereco.id : null],
@@ -49,6 +49,7 @@ export class EnderecoFormComponent {
       cidade: [endereco && endereco.cidade ? endereco.cidade : null],
       estado: [endereco && endereco.estado ? endereco.estado : null],
       cep: [endereco && endereco.cep ? endereco.cep : null],
+      idUsuario: [endereco && endereco.usuario.id ? endereco.usuario.id : null],
     });
   }
   salvarEndereco() {

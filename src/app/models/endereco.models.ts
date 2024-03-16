@@ -1,3 +1,5 @@
+import { Usuario } from './usuario.model';
+
 export class Endereco {
   id!: number;
   rua!: string;
@@ -5,4 +7,5 @@ export class Endereco {
   cidade!: string;
   estado!: string;
   cep!: string;
+  usuario!: Usuario;
 }

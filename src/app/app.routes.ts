@@ -32,6 +32,11 @@ export const routes: Routes = [
     title: 'Lista de Enderecos',
   },
   {
+    path: 'enderecos/usuario/:id',
+    component: EnderecoListComponent,
+    title: 'Lista de Enderecos',
+  },
+  {
     path: 'enderecos/new',
     component: EnderecoFormComponent,
     title: 'Novo endereco',
@@ -44,6 +49,16 @@ export const routes: Routes = [
 
   {
     path: 'telefones',
+    component: TelefoneListComponent,
+    title: 'Lista de Telefones',
+  },
+  {
+    path: 'telefones/:id',
+    component: TelefoneListComponent,
+    title: 'Lista de Telefones',
+  },
+  {
+    path: 'telefones/usuario/:id',
     component: TelefoneListComponent,
     title: 'Lista de Telefones',
   },

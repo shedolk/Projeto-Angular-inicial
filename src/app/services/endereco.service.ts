@@ -19,6 +19,12 @@ export class EnderecoService {
     return this.httpClient.get<Endereco>(`${this.baseUrl}/${id}`);
   }
 
+  findByIdUsuario(idUsuario: String): Observable<Endereco[]> {
+    return this.httpClient.get<Endereco[]>(
+      `${this.baseUrl}/usuario/${idUsuario}`
+    );
+  }
+
   insert(endereco: Endereco): Observable<Endereco> {
     return this.httpClient.post<Endereco>(this.baseUrl, endereco);
   }

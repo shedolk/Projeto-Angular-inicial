@@ -6,7 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Endereco } from '../../../models/endereco.models';
 
 @Component({
@@ -35,13 +35,18 @@ export class EnderecoListComponent implements OnInit {
   ];
   enderecos: Endereco[] = [];
 
+  idUsuario: String;
+
   constructor(
     private enderecoService: EnderecoService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.idUsuario = this.activatedRoute.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
-    this.enderecoService.findAll().subscribe((data) => {
+    this.enderecoService.findByIdUsuario(this.idUsuario).subscribe((data) => {
       this.enderecos = data;
     });
   }

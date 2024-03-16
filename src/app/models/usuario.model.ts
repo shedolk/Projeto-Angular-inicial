@@ -7,6 +7,7 @@ export class Usuario {
   nome!: string;
   login!: string;
   senha!: string;
+  cpf!: string;
   perfil!: Perfil;
   listaTelefone!: Telefone[];
   listaEndereco!: Endereco[];

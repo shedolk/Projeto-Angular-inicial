@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-list',
@@ -18,6 +19,7 @@ import { Router, RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    FormsModule,
   ],
   templateUrl: './usuario-list.component.html',
   styleUrl: './usuario-list.component.css',
@@ -28,6 +30,7 @@ export class UsuarioListComponent implements OnInit {
     'nome',
     'login',
     'senha',
+    'cpf',
     'perfil',
     'listaTelefone',
     'listaEndereco',
