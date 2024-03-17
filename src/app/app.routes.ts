@@ -50,22 +50,17 @@ export const routes: Routes = [
   {
     path: 'telefones',
     component: TelefoneListComponent,
-    title: 'Lista de Telefones',
-  },
-  {
-    path: 'telefones/:id',
-    component: TelefoneListComponent,
-    title: 'Lista de Telefones',
+    title: 'Lista de telefones',
   },
   {
     path: 'telefones/usuario/:id',
     component: TelefoneListComponent,
-    title: 'Lista de Telefones',
+    title: 'Lista de telefones',
   },
   {
     path: 'telefones/new',
     component: TelefoneFormComponent,
-    title: 'Novo telefone',
+    title: 'Novo Telefone',
   },
   {
     path: 'telefones/edit/:id',

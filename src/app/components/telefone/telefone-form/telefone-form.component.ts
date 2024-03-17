@@ -41,7 +41,7 @@ export class TelefoneFormComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    const telefone: Telefone = activatedRoute.snapshot.data['telefone'];
+    const telefone: Telefone = this.activatedRoute.snapshot.data['telefone'];
 
     this.formGroup = formBuilder.group({
       id: [telefone && telefone.id ? telefone.id : null],
@@ -49,6 +49,7 @@ export class TelefoneFormComponent {
         telefone && telefone.codigoArea ? telefone.codigoArea : null,
       ],
       numero: [telefone && telefone.numero ? telefone.numero : null],
+      idUsuario: [telefone && telefone.usuario.id ? telefone.usuario.id : null],
     });
   }
   salvarTelefone() {

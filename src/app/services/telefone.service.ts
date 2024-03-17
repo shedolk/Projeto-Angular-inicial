@@ -19,6 +19,12 @@ export class TelefoneService {
     return this.httpClient.get<Telefone>(`${this.baseUrl}/${id}`);
   }
 
+  findByIdUsuario(idUsuario: String): Observable<Telefone[]> {
+    return this.httpClient.get<Telefone[]>(
+      `${this.baseUrl}/usuario/${idUsuario}`
+    );
+  }
+
   insert(telefone: Telefone): Observable<Telefone> {
     return this.httpClient.post<Telefone>(this.baseUrl, telefone);
   }
