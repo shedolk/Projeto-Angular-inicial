@@ -26,11 +26,12 @@ import { Product } from '../../../models/product.models';
 export class ProductListComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
-    'rua',
-    'numero',
-    'cidade',
-    'estado',
-    'cep',
+    'nome',
+    'descricao',
+    'category',
+    'preco',
+    'estoque',
+    'nomeImagem',
     'acao',
   ];
   products: Product[] = [];
@@ -54,7 +55,7 @@ export class ProductListComponent implements OnInit {
   excluirProduct(product: Product) {
     this.productService.delete(product).subscribe({
       next: () => {
-        this.router.navigateByUrl('/products');
+        this.router.navigateByUrl('/produtos');
         this.ngOnInit();
       },
       error: (err) => {

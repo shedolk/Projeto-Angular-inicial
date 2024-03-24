@@ -96,17 +96,17 @@ export const routes: Routes = [
   },
   // Rota cupom
   {
-    path: 'cupons',
+    path: 'cupom',
     component: CupomListComponent,
     title: 'Lista de Cupons',
   },
   {
-    path: 'cupons/new',
+    path: 'cupom/new',
     component: CupomFormComponent,
     title: 'Novo Cupom',
   },
   {
-    path: 'cupons/edit/:id',
+    path: 'cupom/edit/:id',
     component: CupomFormComponent,
     title: 'Editar Cupom',
   },

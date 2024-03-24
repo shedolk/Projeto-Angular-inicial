@@ -43,13 +43,13 @@ export class ProductFormComponent {
     const product: Product = this.activatedRoute.snapshot.data['product'];
 
     this.formGroup = formBuilder.group({
-      // id: [product && product.id ? product.id : null],
-      // rua: [product && product.rua ? product.rua : null],
-      // numero: [product && product.numero ? product.numero : null],
-      // cidade: [product && product.cidade ? product.cidade : null],
-      // estado: [product && product.estado ? product.estado : null],
-      // cep: [product && product.cep ? product.cep : null],
-      // idUsuario: [product && product.usuario.id ? product.usuario.id : null],
+      id: [product && product.id ? product.id : null],
+      nome: [product && product.nome ? product.nome : null],
+      descricao: [product && product.descricao ? product.descricao : null],
+      category: [product && product.category ? product.category : ''],
+      preco: [product && product.preco ? product.preco : null],
+      estoque: [product && product.estoque ? product.estoque : null],
+      nomeImagem: [product && product.nomeImagem ? product.nomeImagem : null],
     });
   }
   salvarProduct() {
@@ -58,7 +58,7 @@ export class ProductFormComponent {
       if (product.id == null) {
         this.productService.insert(product).subscribe({
           next: (productCadastrado) => {
-            this.router.navigateByUrl('/products');
+            this.router.navigateByUrl('/produtos');
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -67,7 +67,7 @@ export class ProductFormComponent {
       } else {
         this.productService.update(product).subscribe({
           next: (productAlterado) => {
-            this.router.navigateByUrl('/products');
+            this.router.navigateByUrl('/produtos');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -83,7 +83,7 @@ export class ProductFormComponent {
       if (product.id != null) {
         this.productService.delete(product).subscribe({
           next: () => {
-            this.router.navigateByUrl('/products');
+            this.router.navigateByUrl('/produtos');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

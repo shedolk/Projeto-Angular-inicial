@@ -8,72 +8,86 @@
       <form [formGroup]="formGroup">
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Rua</mat-label>
-          <input matInput type="text" formControlName="rua" />
+          <mat-label>nome</mat-label>
+          <input matInput type="text" formControlName="nome" />
           <mat-error
             *ngIf="
-              formGroup.get('rua') &&
-              formGroup.get('rua')?.invalid &&
-              formGroup.get('rua')?.touched
+              formGroup.get('nome') &&
+              formGroup.get('nome')?.invalid &&
+              formGroup.get('nome')?.touched
             "
-            >A rua é obrigatório.</mat-error
+            >o nome é obrigatório.</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Numero</mat-label>
-          <input matInput type="text" formControlName="numero" />
+          <mat-label>descricao</mat-label>
+          <input matInput type="text" formControlName="descricao" />
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
-              formGroup.get('numero') &&
-              formGroup.get('numero')?.invalid &&
-              formGroup.get('numero')?.touched
+              formGroup.get('descricao') &&
+              formGroup.get('descricao')?.invalid &&
+              formGroup.get('descricao')?.touched
             "
-            >O numero é obrigatório.</mat-error
+            >a descricao é obrigatório.</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Cidade</mat-label>
-          <input matInput type="text" formControlName="cidade" />
+          <mat-label>category</mat-label>
+          <input matInput type="text" formControlName="category" />
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('cidade') &&
-              formGroup.get('cidade')?.invalid &&
-              formGroup.get('cidade')?.touched
+              formGroup.get('category') &&
+              formGroup.get('category')?.invalid &&
+              formGroup.get('category')?.touched
             "
-            >a cidade é obrigatória.</mat-error
+            >a categoria é obrigatória.</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Estado</mat-label>
-          <input matInput type="text" formControlName="estado" />
+          <mat-label>preco</mat-label>
+          <input matInput type="text" formControlName="preco" />
           <mat-error
             *ngIf="
-              formGroup.get('estado') &&
-              formGroup.get('estado')?.invalid &&
-              formGroup.get('estado')?.touched
+              formGroup.get('preco') &&
+              formGroup.get('preco')?.invalid &&
+              formGroup.get('preco')?.touched
             "
-            >O estado é obrigatório.</mat-error
+            >O preco é obrigatório.</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Cep</mat-label>
-          <input matInput type="text" formControlName="cep" />
+          <mat-label>estoque</mat-label>
+          <input matInput type="text" formControlName="estoque" />
           <mat-error
             *ngIf="
-              formGroup.get('cep') &&
-              formGroup.get('cep')?.invalid &&
-              formGroup.get('cep')?.touched
+              formGroup.get('estoque') &&
+              formGroup.get('estoque')?.invalid &&
+              formGroup.get('estoque')?.touched
             "
-            >O cep é obrigatório.</mat-error
+            >O estoque é obrigatório.</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
+
+        <!-- espaço -->
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>nomeImagem</mat-label>
+          <input matInput type="text" formControlName="nomeImagem" />
+          <mat-error
+            *ngIf="
+              formGroup.get('nomeImagem') &&
+              formGroup.get('nomeImagem')?.invalid &&
+              formGroup.get('nomeImagem')?.touched
+            "
+            >O nomeImagem é obrigatório.</mat-error
+          >
+        </mat-form-field>
       </form>
 
       <!-- espaço -->
@@ -84,7 +98,7 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="salvarEndereco()"
+        (click)="salvarProduct()"
         [disabled]="formGroup.invalid"
       >
         Salvar
@@ -93,12 +107,12 @@
         mat-raised-button
         *ngIf="formGroup?.get('id')?.value"
         color="warn"
-        (click)="excluirEndereco()"
+        (click)="excluirProduct()"
         [disabled]="formGroup.invalid"
       >
         Excluir
       </button>
-      <button mat-raised-button routerLink="/enderecos">Cancelar</button>
+      <button mat-raised-button routerLink="/produtos">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

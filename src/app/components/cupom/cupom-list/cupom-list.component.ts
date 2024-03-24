@@ -24,15 +24,7 @@ import { Cupom } from '../../../models/cupom.models';
   styleUrl: './cupom-list.component.css',
 })
 export class CupomListComponent implements OnInit {
-  displayedColumns: string[] = [
-    'id',
-    'rua',
-    'numero',
-    'cidade',
-    'estado',
-    'cep',
-    'acao',
-  ];
+  displayedColumns: string[] = ['id', 'nomeCupom', 'dataAplicada', 'desconto'];
   cupoms: Cupom[] = [];
 
   idUsuario: String;
@@ -54,7 +46,7 @@ export class CupomListComponent implements OnInit {
   excluirCupom(cupom: Cupom) {
     this.cupomService.delete(cupom).subscribe({
       next: () => {
-        this.router.navigateByUrl('/cupoms');
+        this.router.navigateByUrl('/cupom');
         this.ngOnInit();
       },
       error: (err) => {

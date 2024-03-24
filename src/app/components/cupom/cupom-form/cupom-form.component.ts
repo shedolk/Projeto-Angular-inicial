@@ -42,14 +42,11 @@ export class CupomFormComponent {
   ) {
     const cupom: Cupom = this.activatedRoute.snapshot.data['cupom'];
 
-    this.formGroup = formBuilder.group({
-      // id: [cupom && cupom.id ? cupom.id : null],
-      // rua: [cupom && cupom.rua ? cupom.rua : null],
-      // numero: [cupom && cupom.numero ? cupom.numero : null],
-      // cidade: [cupom && cupom.cidade ? cupom.cidade : null],
-      // estado: [cupom && cupom.estado ? cupom.estado : null],
-      // cep: [cupom && cupom.cep ? cupom.cep : null],
-      // idUsuario: [cupom && cupom.usuario.id ? cupom.usuario.id : null],
+    this.formGroup = this.formBuilder.group({
+      id: [cupom && cupom.id ? cupom.id : null],
+      nomeCupom: [cupom && cupom.nomeCupom ? cupom.nomeCupom : null],
+      dataAplicada: [cupom && cupom.dataAplicada ? cupom.dataAplicada : null],
+      cidade: [cupom && cupom.desconto ? cupom.desconto : null],
     });
   }
   salvarCupom() {
@@ -67,7 +64,7 @@ export class CupomFormComponent {
       } else {
         this.cupomService.update(cupom).subscribe({
           next: (cupomAlterado) => {
-            this.router.navigateByUrl('/cupoms');
+            this.router.navigateByUrl('/cupom');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -83,7 +80,7 @@ export class CupomFormComponent {
       if (cupom.id != null) {
         this.cupomService.delete(cupom).subscribe({
           next: () => {
-            this.router.navigateByUrl('/cupoms');
+            this.router.navigateByUrl('/cupom');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
