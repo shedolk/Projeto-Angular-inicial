@@ -8,8 +8,17 @@ import { TelefoneListComponent } from './components/telefone/telefone-list/telef
 import { TelefoneFormComponent } from './components/telefone/telefone-form/telefone-form.component';
 import { telefoneResolver } from './components/telefone/resolver/telefone-resolver';
 import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
+import { PedidoListComponent } from './components/pedido/pedido-list/pedido-list.component';
+import { PedidoFormComponent } from './components/pedido/pedido-form/pedido-form.component';
+import { CupomListComponent } from './components/cupom/cupom-list/cupom-list.component';
+import { CupomFormComponent } from './components/cupom/cupom-form/cupom-form.component';
+import { ItemPedidoListComponent } from './components/itemPedido/itemPedido-list/itemPedido-list.component';
+import { ItemPedidoFormComponent } from './components/itemPedido/itemPedido-form/itemPedido-form.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { ProductFormComponent } from './components/product/product-form/product-form.component';
 
 export const routes: Routes = [
+  // Rota usuarios
   {
     path: 'usuarios',
     component: UsuarioListComponent,
@@ -26,6 +35,7 @@ export const routes: Routes = [
     resolve: { usuario: usuarioResolver },
   },
 
+  // Rota enderecos
   {
     path: 'enderecos',
     component: EnderecoListComponent,
@@ -47,6 +57,7 @@ export const routes: Routes = [
     resolve: { endereco: enderecoResolver },
   },
 
+  // Rota telefones
   {
     path: 'telefones',
     component: TelefoneListComponent,
@@ -66,5 +77,70 @@ export const routes: Routes = [
     path: 'telefones/edit/:id',
     component: TelefoneFormComponent,
     resolve: { telefone: telefoneResolver },
+  },
+  // Rota pedidos
+  {
+    path: 'pedidos',
+    component: PedidoListComponent,
+    title: 'Lista de Pedidos',
+  },
+  {
+    path: 'pedidos/new',
+    component: PedidoFormComponent,
+    title: 'Novo Pedido',
+  },
+  {
+    path: 'pedidos/edit/:id',
+    component: PedidoFormComponent,
+    title: 'Editar Pedido',
+  },
+  // Rota cupom
+  {
+    path: 'cupons',
+    component: CupomListComponent,
+    title: 'Lista de Cupons',
+  },
+  {
+    path: 'cupons/new',
+    component: CupomFormComponent,
+    title: 'Novo Cupom',
+  },
+  {
+    path: 'cupons/edit/:id',
+    component: CupomFormComponent,
+    title: 'Editar Cupom',
+  },
+  // rota ItemPedido
+  {
+    path: 'itenspedidos',
+    component: ItemPedidoListComponent,
+    title: 'Lista de Itens do Pedido',
+  },
+  {
+    path: 'itenspedidos/new',
+    component: ItemPedidoFormComponent,
+    title: 'Novo Item do Pedido',
+  },
+  {
+    path: 'itenspedidos/edit/:id',
+    component: ItemPedidoFormComponent,
+    title: 'Editar Item do Pedido',
+  },
+
+  // Rota Produtos
+  {
+    path: 'produtos',
+    component: ProductListComponent,
+    title: 'Lista de Produtos',
+  },
+  {
+    path: 'produtos/new',
+    component: ProductFormComponent,
+    title: 'Novo Produto',
+  },
+  {
+    path: 'produtos/edit/:id',
+    component: ProductFormComponent,
+    title: 'Editar Produto',
   },
 ];
