@@ -26,11 +26,13 @@ import { Pedido } from '../../../models/pedido.models';
 export class PedidoListComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
-    'rua',
-    'numero',
-    'cidade',
-    'estado',
-    'cep',
+    'dataPedido',
+    'pagamento',
+    'statusPedido',
+    'cupom',
+    'totalPedido',
+    'usuario',
+    'itens',
     'acao',
   ];
   pedidos: Pedido[] = [];

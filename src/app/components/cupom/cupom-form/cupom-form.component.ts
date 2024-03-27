@@ -5,6 +5,7 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -14,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Cupom } from '../../../models/cupom.models';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cupom-form',
@@ -44,33 +46,38 @@ export class CupomFormComponent {
 
     this.formGroup = this.formBuilder.group({
       id: [cupom && cupom.id ? cupom.id : null],
-      nomeCupom: [cupom && cupom.nomeCupom ? cupom.nomeCupom : null],
+      nomeCupom: [
+        cupom && cupom.nomeCupom ? cupom.nomeCupom : '',
+        Validators.compose([Validators.required, Validators.minLength(4)]),
+      ],
       dataAplicada: [cupom && cupom.dataAplicada ? cupom.dataAplicada : null],
-      cidade: [cupom && cupom.desconto ? cupom.desconto : null],
+      nome: [
+        cupom && cupom.desconto ? cupom.desconto : '',
+        Validators.compose([Validators.required, Validators.minLength(4)]),
+      ],
     });
   }
+
   salvarCupom() {
+    // marca todos os campos do formulario como 'touched'
+    this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
       const cupom = this.formGroup.value;
-      if (cupom.id == null) {
-        this.cupomService.insert(cupom).subscribe({
-          next: (cupomCadastrado) => {
-            this.router.navigateByUrl('/cupoms');
-          },
-          error: (err) => {
-            console.log('Erro ao Incluir' + JSON.stringify(err));
-          },
-        });
-      } else {
-        this.cupomService.update(cupom).subscribe({
-          next: (cupomAlterado) => {
-            this.router.navigateByUrl('/cupom');
-          },
-          error: (err) => {
-            console.log('Erro ao Editar' + JSON.stringify(err));
-          },
-        });
-      }
+
+      // operacao obtem o retorno de um observable de insert ou update
+      const operacao =
+        cupom.id == null
+          ? this.cupomService.insert(cupom)
+          : this.cupomService.update(cupom);
+
+      // realiza a operacao e trata a resposta.
+      operacao.subscribe({
+        next: () => this.router.navigateByUrl('/cupom'),
+        error: (error: HttpErrorResponse) => {
+          console.log('Erro ao salvar' + JSON.stringify(error));
+          this.tratarErros(error);
+        },
+      });
     }
   }
 
@@ -88,5 +95,60 @@ export class CupomFormComponent {
         });
       }
     }
+  }
+
+  tratarErros(error: HttpErrorResponse) {
+    if (error.status === 400) {
+      // erros relacionados a campos
+      if (error.error?.errors) {
+        error.error.errors.forEach((validationError: any) => {
+          // obs: o fieldName tem o mesmo valor da api
+          const formControl = this.formGroup.get(validationError.fieldName);
+          console.log(validationError);
+          if (formControl) {
+            console.log(formControl);
+            formControl.setErrors({ apiError: validationError.message });
+          }
+        });
+      }
+    } else if (error.status < 400) {
+      // Erro genérico não relacionado a um campo específico.
+      alert(error.error?.message || 'Erro genérico no envio do formulário.');
+    } else if (error.status >= 500) {
+      alert('Erro interno do servidor. Por favor, tente novamente mais tarde.');
+    }
+  }
+
+  errorMessages: { [controlName: string]: { [errorName: string]: string } } = {
+    nome: {
+      required: 'O nome deve ser informado.',
+      minlength: 'O nome deve possuir ao menos 4 caracteres.',
+    },
+    sigla: {
+      required: 'A sigla deve ser informada.',
+      minlength: 'A sigla deve possuir 2 caracteres.',
+      maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+  };
+
+  getErrorMessage(
+    controlName: string,
+    errors: ValidationErrors | null | undefined
+  ): string {
+    if (!errors) {
+      return '';
+    }
+    // retorna a mensagem de erro
+    for (const errorName in errors) {
+      if (
+        errors.hasOwnProperty(errorName) &&
+        this.errorMessages[controlName][errorName]
+      ) {
+        return this.errorMessages[controlName][errorName];
+      }
+    }
+
+    return 'Erro não mapeado (entre em contato com o desenvolvedor)';
   }
 }

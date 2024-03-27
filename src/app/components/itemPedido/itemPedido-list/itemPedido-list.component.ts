@@ -26,11 +26,10 @@ import { ItemPedidoService } from '../../../services/itemPedido.service';
 export class ItemPedidoListComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
-    'rua',
-    'numero',
-    'cidade',
-    'estado',
-    'cep',
+    'quantidade',
+    'preco',
+    'product',
+    'pedido',
     'acao',
   ];
   itempedidos: ItemPedido[] = [];

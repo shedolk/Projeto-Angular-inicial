@@ -12,12 +12,18 @@
           <input matInput type="text" formControlName="nomeCupom" />
           <mat-error
             *ngIf="
-              formGroup.get('nomeCupom') &&
-              formGroup.get('nomeCupom')?.invalid &&
+              formGroup.get('nomeCupom')?.errors &&
               formGroup.get('nomeCupom')?.touched
             "
-            >o nome do cupom é obrigatório.</mat-error
           >
+            @if (formGroup.get('nomeCupom')?.errors?.['required']) {
+            <span>O nomeCupom deve ser informado.</span>
+            } @if (formGroup.get('nomeCupom')?.errors?.['minlength']) {
+            <span>O nomeCupom deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('nomeCupom')?.hasError('apiError')) {
+            <span>{{ formGroup.get("nomeCupom")?.getError("apiError") }}</span>
+            }
+          </mat-error>
         </mat-form-field>
         <!-- espaço -->
 
@@ -26,12 +32,19 @@
           <input matInput type="text" formControlName="dataAplicada" />
           <mat-error
             *ngIf="
-              formGroup.get('dataAplicada') &&
-              formGroup.get('dataAplicada')?.invalid &&
+              formGroup.get('dataAplicada')?.errors &&
               formGroup.get('dataAplicada')?.touched
             "
           >
-            A data aplicada é obrigatória.</mat-error
+            @if (formGroup.get('dataAplicada')?.errors?.['required']) {
+            <span>O dataAplicada deve ser informado.</span>
+            } @if (formGroup.get('dataAplicada')?.errors?.['minlength']) {
+            <span>O dataAplicada deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('dataAplicada')?.hasError('apiError')) {
+            <span>{{
+              formGroup.get("dataAplicada")?.getError("apiError")
+            }}</span>
+            }</mat-error
           >
         </mat-form-field>
 
@@ -42,11 +55,18 @@
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('desconto') &&
-              formGroup.get('desconto')?.invalid &&
+              formGroup.get('desconto')?.errors &&
               formGroup.get('desconto')?.touched
             "
-            >o desconto é obrigatória.</mat-error
+            > @if (formGroup.get('desconto')?.errors?.['required']) {
+              <span>O desconto deve ser informado.</span>
+              } @if (formGroup.get('desconto')?.errors?.['minlength']) {
+              <span>O desconto deve possuir ao menos 4 caracteres.</span>
+              } @if (formGroup.get('desconto')?.hasError('apiError')) {
+              <span>{{
+                formGroup.get("desconto")?.getError("apiError")
+              }}</span>
+              }
           >
         </mat-form-field>
         <!-- espaço -->
@@ -60,9 +80,9 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="salvarCupom()"
-        [disabled]="formGroup.invalid"
-      >
+        (click)="salvarCupom()">
+        <!-- [disabled]="formGroup.invalid" -->
+      
         Salvar
       </button>
       <button

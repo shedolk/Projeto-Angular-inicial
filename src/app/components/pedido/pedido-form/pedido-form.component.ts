@@ -43,13 +43,16 @@ export class PedidoFormComponent {
     const pedido: Pedido = this.activatedRoute.snapshot.data['pedido'];
 
     this.formGroup = formBuilder.group({
-      // id: [pedido && pedido.id ? pedido.id : null],
-      // rua: [pedido && pedido.rua ? pedido.rua : null],
-      // numero: [pedido && pedido.numero ? pedido.numero : null],
-      // cidade: [pedido && pedido.cidade ? pedido.cidade : null],
-      // estado: [pedido && pedido.estado ? pedido.estado : null],
-      // cep: [pedido && pedido.cep ? pedido.cep : null],
-      // idUsuario: [pedido && pedido.usuario.id ? pedido.usuario.id : null],
+      id: [pedido && pedido.id ? pedido.id : null],
+      dataPedido: [pedido && pedido.dataPedido ? pedido.dataPedido : null],
+      pagamento: [pedido && pedido.pagamento ? pedido.pagamento : null],
+      statusPedido: [
+        pedido && pedido.statusPedido ? pedido.statusPedido : null,
+      ],
+      cupom: [pedido && pedido.cupom ? pedido.cupom : null],
+      totalPedido: [pedido && pedido.totalPedido ? pedido.totalPedido : null],
+      idUsuario: [pedido && pedido.usuario.id ? pedido.usuario.id : null],
+      idItemPedido: [pedido && pedido.itemPedido ? pedido.itemPedido : null],
     });
   }
   salvarPedido() {

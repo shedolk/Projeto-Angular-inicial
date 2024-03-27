@@ -44,15 +44,17 @@ export class ItemPedidoFormComponent {
       this.activatedRoute.snapshot.data['itempedido'];
 
     this.formGroup = formBuilder.group({
-      // id: [itempedido && itempedido.id ? itempedido.id : null],
-      // rua: [itempedido && itempedido.rua ? itempedido.rua : null],
-      // numero: [itempedido && itempedido.numero ? itempedido.numero : null],
-      // cidade: [itempedido && itempedido.cidade ? itempedido.cidade : null],
-      // estado: [itempedido && itempedido.estado ? itempedido.estado : null],
-      // cep: [itempedido && itempedido.cep ? itempedido.cep : null],
-      // idUsuario: [
-      //   itempedido && itempedido.usuario.id ? itempedido.usuario.id : null,
-      // ],
+      id: [itempedido && itempedido.id ? itempedido.id : null],
+      quantidade: [
+        itempedido && itempedido.quantidade ? itempedido.quantidade : null,
+      ],
+      preco: [itempedido && itempedido.preco ? itempedido.preco : null],
+      product: [
+        itempedido && itempedido.product.id ? itempedido.product.id : null,
+      ],
+      pedido: [
+        itempedido && itempedido.pedido.id ? itempedido.pedido.id : null,
+      ],
     });
   }
   salvarItemPedido() {
