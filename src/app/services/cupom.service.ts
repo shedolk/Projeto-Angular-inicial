@@ -7,7 +7,7 @@ import { Cupom } from '../models/cupom.models';
   providedIn: 'root',
 })
 export class CupomService {
-  private baseUrl = 'http://localhost:8080/cupom';
+  private baseUrl = 'http://localhost:8080/cupons';
 
   constructor(private httpClient: HttpClient) {}
 

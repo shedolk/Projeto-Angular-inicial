@@ -16,10 +16,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Cupom } from '../../../models/cupom.models';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-cupom-form',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     NgIf,
     ReactiveFormsModule,
@@ -29,6 +32,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatCardModule,
     MatToolbarModule,
     RouterModule,
+    MatDatepickerModule,
   ],
   templateUrl: './cupom-form.component.html',
   styleUrl: './cupom-form.component.css',
@@ -51,7 +55,7 @@ export class CupomFormComponent {
         Validators.compose([Validators.required, Validators.minLength(4)]),
       ],
       dataAplicada: [cupom && cupom.dataAplicada ? cupom.dataAplicada : null],
-      nome: [
+      desconto: [
         cupom && cupom.desconto ? cupom.desconto : '',
         Validators.compose([Validators.required, Validators.minLength(4)]),
       ],

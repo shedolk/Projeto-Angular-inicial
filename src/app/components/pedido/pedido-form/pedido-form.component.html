@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="toolbar-title"
-  >Cadastro de endereço</mat-toolbar
+  >Cadastro de pedidos</mat-toolbar
 >
 
 <div class="form-container">
@@ -21,8 +21,14 @@
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>pagamento</mat-label>
-          <input matInput type="text" formControlName="pagamento" />
+          <mat-label>Pagamento</mat-label>
+          <mat-select formControlName="pagamento">
+            @for (pagamento of pagamentos; track pagamento) {
+            <mat-option [value]="pagamento.id">{{
+              pagamento.formaPagamento.label
+            }}</mat-option>
+            }
+          </mat-select>
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
@@ -35,8 +41,14 @@
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>statusPedido</mat-label>
-          <input matInput type="text" formControlName="statusPedido" />
+          <mat-label>Status do pedido</mat-label>
+          <mat-select formControlName="statusPedido">
+            @for (statusPedido of statusPedidos; track statusPedido) {
+            <mat-option [value]="statusPedido.id">{{
+              statusPedido.label
+            }}</mat-option>
+            }
+          </mat-select>
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
@@ -49,8 +61,12 @@
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>cupom</mat-label>
-          <input matInput type="text" formControlName="cupom" />
+          <mat-label>Cupom</mat-label>
+          <mat-select formControlName="cupom">
+            @for (cupom of cupons; track cupom) {
+            <mat-option [value]="cupom.id">{{ cupom.nomeCupom }}</mat-option>
+            }
+          </mat-select>
           <mat-error
             *ngIf="
               formGroup.get('cupom') &&
@@ -88,8 +104,14 @@
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>idItemPedido</mat-label>
-          <input matInput type="text" formControlName="idItemPedido" />
+          <mat-label>Item Pedido</mat-label>
+          <mat-select formControlName="idItemPedido">
+            @for (idItemPedido of idItemPedidos; track idItemPedido) {
+            <mat-option [value]="idItemPedido.id">{{
+              idItemPedido.id
+            }}</mat-option>
+            }
+          </mat-select>
           <mat-error
             *ngIf="
               formGroup.get('idItemPedido') &&

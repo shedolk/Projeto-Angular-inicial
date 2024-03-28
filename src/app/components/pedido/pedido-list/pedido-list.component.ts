@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Pedido } from '../../../models/pedido.models';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-pedido-list',
@@ -19,6 +20,7 @@ import { Pedido } from '../../../models/pedido.models';
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    MatListModule,
   ],
   templateUrl: './pedido-list.component.html',
   styleUrl: './pedido-list.component.css',
@@ -48,7 +50,7 @@ export class PedidoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pedidoService.findByIdUsuario(this.idUsuario).subscribe((data) => {
+    this.pedidoService.findAll().subscribe((data) => {
       this.pedidos = data;
     });
   }

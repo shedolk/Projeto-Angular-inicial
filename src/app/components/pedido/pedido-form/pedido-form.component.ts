@@ -1,3 +1,5 @@
+import { ItemPedidoService } from './../../../services/itemPedido.service';
+import { CupomService } from './../../../services/cupom.service';
 import { NgIf } from '@angular/common';
 import { PedidoService } from '../../../services/pedido.service';
 import { Component } from '@angular/core';
@@ -14,6 +16,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Pedido } from '../../../models/pedido.models';
+import { MatSelectModule } from '@angular/material/select';
+import { Pagamento } from '../../../models/pagamento.models';
+import { StatusPedido } from '../../../models/statusPedido.models';
+import { Cupom } from '../../../models/cupom.models';
+import { ItemPedido } from '../../../models/itemPedido.models';
 
 @Component({
   selector: 'app-pedido-form',
@@ -27,18 +34,32 @@ import { Pedido } from '../../../models/pedido.models';
     MatCardModule,
     MatToolbarModule,
     RouterModule,
+    MatSelectModule,
   ],
   templateUrl: './pedido-form.component.html',
   styleUrl: './pedido-form.component.css',
 })
 export class PedidoFormComponent {
   formGroup: FormGroup;
+  pagamentos: Pagamento[] = [];
+  statusPedidos: StatusPedido[] = [
+    {
+      id: 1,
+      label: '',
+    },
+  ];
+  cupons: Cupom[] = [];
+  idItemPedidos: ItemPedido[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private pedidoService: PedidoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private CupomService: CupomService,
+    private PagamentoService: PagamentoService,
+    private StatusPedidoService: StatusPedidoService,
+    private ItemPedidoService: ItemPedidoService
   ) {
     const pedido: Pedido = this.activatedRoute.snapshot.data['pedido'];
 
@@ -49,12 +70,22 @@ export class PedidoFormComponent {
       statusPedido: [
         pedido && pedido.statusPedido ? pedido.statusPedido : null,
       ],
-      cupom: [pedido && pedido.cupom ? pedido.cupom : null],
+      cupom: [pedido && pedido.cupom.id ? pedido.cupom.id : null],
       totalPedido: [pedido && pedido.totalPedido ? pedido.totalPedido : null],
-      idUsuario: [pedido && pedido.usuario.id ? pedido.usuario.id : null],
+      idUsuario: [pedido && pedido.usuario.nome ? pedido.usuario.id : null],
       idItemPedido: [pedido && pedido.itemPedido ? pedido.itemPedido : null],
     });
   }
+
+  ngOnInit(): void {
+    this.CupomService.findAll().subscribe((data) => {
+      this.cupons = data;
+    });
+    this.ItemPedidoService.findAll().subscribe((data) => {
+      this.idItemPedidos = data;
+    });
+  }
+
   salvarPedido() {
     if (this.formGroup.valid) {
       const pedido = this.formGroup.value;

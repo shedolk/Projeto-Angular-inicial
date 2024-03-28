@@ -8,8 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Cupom } from '../../../models/cupom.models';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cupom-list',
@@ -22,13 +21,18 @@ import { PageEvent } from '@angular/material/paginator';
     MatButtonModule,
     RouterModule,
     MatPaginatorModule,
-    PageEvent,
   ],
   templateUrl: './cupom-list.component.html',
   styleUrl: './cupom-list.component.css',
 })
 export class CupomListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nomeCupom', 'dataAplicada', 'desconto'];
+  displayedColumns: string[] = [
+    'id',
+    'nomeCupom',
+    'dataAplicada',
+    'desconto',
+    'acao',
+  ];
   cupoms: Cupom[] = [];
 
   // variaveis de controle de paginacao

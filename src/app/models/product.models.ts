@@ -8,4 +8,5 @@ export class Product {
   preco!: number;
   estoque!: number;
   nomeImagem!: string;
+  idCategory!: number;
 }

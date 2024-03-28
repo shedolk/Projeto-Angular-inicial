@@ -29,7 +29,16 @@
 
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>Data aplicada</mat-label>
-          <input matInput type="text" formControlName="dataAplicada" />
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="dataAplicada"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
           <mat-error
             *ngIf="
               formGroup.get('dataAplicada')?.errors &&
@@ -58,16 +67,15 @@
               formGroup.get('desconto')?.errors &&
               formGroup.get('desconto')?.touched
             "
-            > @if (formGroup.get('desconto')?.errors?.['required']) {
-              <span>O desconto deve ser informado.</span>
-              } @if (formGroup.get('desconto')?.errors?.['minlength']) {
-              <span>O desconto deve possuir ao menos 4 caracteres.</span>
-              } @if (formGroup.get('desconto')?.hasError('apiError')) {
-              <span>{{
-                formGroup.get("desconto")?.getError("apiError")
-              }}</span>
-              }
           >
+            @if (formGroup.get('desconto')?.errors?.['required']) {
+            <span>O desconto deve ser informado.</span>
+            } @if (formGroup.get('desconto')?.errors?.['minlength']) {
+            <span>O desconto deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('desconto')?.hasError('apiError')) {
+            <span>{{ formGroup.get("desconto")?.getError("apiError") }}</span>
+            } >
+          </mat-error>
         </mat-form-field>
         <!-- espaço -->
       </form>
@@ -77,12 +85,9 @@
 
     <!-- espaço -->
     <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="salvarCupom()">
+      <button mat-raised-button color="primary" (click)="salvarCupom()">
         <!-- [disabled]="formGroup.invalid" -->
-      
+
         Salvar
       </button>
       <button

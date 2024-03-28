@@ -16,6 +16,10 @@ import { ItemPedidoListComponent } from './components/itemPedido/itemPedido-list
 import { ItemPedidoFormComponent } from './components/itemPedido/itemPedido-form/itemPedido-form.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
+import { cupomResolver } from './components/cupom/resolver/cupom-resolver';
+import { itempedidoResolver } from './components/itemPedido/resolver/itemPedido-resolver';
+import { productResolver } from './components/product/resolver/product-resolver';
+import { pedidoResolver } from './components/pedido/resolver/pedido-resolver';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -93,6 +97,7 @@ export const routes: Routes = [
     path: 'pedidos/edit/:id',
     component: PedidoFormComponent,
     title: 'Editar Pedido',
+    resolve: { pedido: pedidoResolver },
   },
   // Rota cupom
   {
@@ -109,6 +114,7 @@ export const routes: Routes = [
     path: 'cupom/edit/:id',
     component: CupomFormComponent,
     title: 'Editar Cupom',
+    resolve: { cupom: cupomResolver },
   },
   // rota ItemPedido
   {
@@ -125,6 +131,7 @@ export const routes: Routes = [
     path: 'itenspedidos/edit/:id',
     component: ItemPedidoFormComponent,
     title: 'Editar Item do Pedido',
+    resolve: { itemPedido: itempedidoResolver },
   },
 
   // Rota Produtos
@@ -142,5 +149,6 @@ export const routes: Routes = [
     path: 'produtos/edit/:id',
     component: ProductFormComponent,
     title: 'Editar Produto',
+    resolve: { product: productResolver },
   },
 ];

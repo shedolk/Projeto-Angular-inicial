@@ -1,3 +1,4 @@
+import { Category } from './../../../models/category.models';
 import { NgIf } from '@angular/common';
 import { ProductService } from '../../../services/product.service';
 import { Component } from '@angular/core';
@@ -16,6 +17,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Product } from '../../../models/product.models';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { CategoryService } from '../../../services/categoria.service';
 
 @Component({
   selector: 'app-product-form',
@@ -29,18 +32,21 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatCardModule,
     MatToolbarModule,
     RouterModule,
+    MatSelectModule,
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css',
 })
 export class ProductFormComponent {
   formGroup: FormGroup;
+  categories: Category[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private categoryService: CategoryService
   ) {
     const product: Product = this.activatedRoute.snapshot.data['product'];
 
@@ -54,17 +60,25 @@ export class ProductFormComponent {
         product && product.descricao ? product.descricao : '',
         Validators.compose([Validators.required, Validators.minLength(4)]),
       ],
-      category: [product && product.category ? product.category : ''],
+      idCategory: [product && product.category.id ? product.category.id : ''],
       preco: [product && product.preco ? product.preco : null],
       estoque: [product && product.estoque ? product.estoque : null],
       nomeImagem: [product && product.nomeImagem ? product.nomeImagem : null],
     });
   }
+
+  ngOnInit(): void {
+    this.categoryService.findAll().subscribe((data) => {
+      this.categories = data;
+    });
+  }
+
   salvarProduct() {
     // marca todos os campos do formulario como 'touched'
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
       const product = this.formGroup.value;
+      console.log(product);
 
       // operacao obtem o retorno de um observable de insert ou update
       const operacao =

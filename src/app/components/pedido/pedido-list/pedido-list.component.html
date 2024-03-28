@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
   <div class="flex-container">
-    <span class="toolbar-title">Controle de Endereços</span>
-    <button mat-fab color="accent" routerLink="/enderecos/new">
+    <span class="toolbar-title">Controle de pedidos</span>
+    <button mat-fab color="accent" routerLink="/pedidos/new">
       <mat-icon>add</mat-icon>
     </button>
   </div>
 </mat-toolbar>
 
-<table mat-table [dataSource]="enderecos" class="mat-elevation-z8">
+<table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
   <!-- ID Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -23,19 +23,21 @@
   <!-- Número da Casa Column -->
   <ng-container matColumnDef="pagamento">
     <th mat-header-cell *matHeaderCellDef>pagamento</th>
-    <td mat-cell *matCellDef="let element">{{ element.pagamento }}</td>
+    <td mat-cell *matCellDef="let element">
+      {{ element.pagamento.formaPagamento.label }}
+    </td>
   </ng-container>
 
   <!-- Cidade Column -->
   <ng-container matColumnDef="statusPedido">
     <th mat-header-cell *matHeaderCellDef>statusPedido</th>
-    <td mat-cell *matCellDef="let element">{{ element.statusPedido }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.statusPedido.label }}</td>
   </ng-container>
 
   <!-- Estado Column -->
   <ng-container matColumnDef="cupom">
     <th mat-header-cell *matHeaderCellDef>cupom</th>
-    <td mat-cell *matCellDef="let element">{{ element.cupom }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.cupom.nomeCupom }}</td>
   </ng-container>
 
   <!-- CEP Column -->
@@ -46,12 +48,23 @@
   <!-- CEP Column -->
   <ng-container matColumnDef="usuario">
     <th mat-header-cell *matHeaderCellDef>usuario</th>
-    <td mat-cell *matCellDef="let element">{{ element.usuario }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.usuario.nome }}</td>
   </ng-container>
   <!-- CEP Column -->
   <ng-container matColumnDef="itens">
     <th mat-header-cell *matHeaderCellDef>itens</th>
-    <td mat-cell *matCellDef="let element">{{ element.itens }}</td>
+    <td mat-cell *matCellDef="let element">
+      <mat-list>
+        @for (item of element.itens; track item) {
+        <mat-list-item>
+          <h3 matListItemTitle>{{ item.productId }}</h3>
+          <p matListItemLine>
+            <span>{{ item.preco }}</span>
+          </p>
+        </mat-list-item>
+        }
+      </mat-list>
+    </td>
   </ng-container>
 
   <!-- Ação Column -->

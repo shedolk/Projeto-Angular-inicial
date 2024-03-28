@@ -21,7 +21,6 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     MatButtonModule,
     RouterModule,
     MatPaginatorModule,
-    PageEvent,
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
