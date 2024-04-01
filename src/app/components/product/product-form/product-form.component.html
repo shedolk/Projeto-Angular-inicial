@@ -1,6 +1,4 @@
-<mat-toolbar color="primary" class="toolbar-title"
-  >Cadastro de endereço</mat-toolbar
->
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Peça</mat-toolbar>
 
 <div class="form-container">
   <mat-card>
@@ -10,11 +8,9 @@
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>nome</mat-label>
           <input matInput type="text" formControlName="nome" />
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               formGroup.get('nome')?.errors && formGroup.get('nome')?.touched
-            "
-          >
+            ">
             @if (formGroup.get('nome')?.errors?.['required']) {
             <span>O nome deve ser informado.</span>
             } @if (formGroup.get('nome')?.errors?.['minlength']) {
@@ -29,12 +25,10 @@
           <mat-label>descricao</mat-label>
           <input matInput type="text" formControlName="descricao" />
           <!-- Validação para o campo de login -->
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               formGroup.get('descricao')?.errors &&
               formGroup.get('descricao')?.touched
-            "
-          >
+            ">
             @if (formGroup.get('descricao')?.errors?.['required']) {
             <span>O descricao deve ser informado.</span>
             } @if (formGroup.get('descricao')?.errors?.['minlength']) {
@@ -45,35 +39,48 @@
           </mat-error>
         </mat-form-field>
         <!-- espaço -->
+
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>categoria</mat-label>
-          <mat-select formControlName="idCategory">
-            @for (category of categories; track category) {
-            <mat-option [value]="category.id">{{
-              category.category
-            }}</mat-option>
+        <mat-label>categoria</mat-label>
+        <mat-select formControlName="idCategory">
+        @for (category of categories; track category) {
+        <mat-option [value]="category.id">{{
+         category.category
+         }}</mat-option>
+        }
+        </mat-select>
+
+         <!-- Validação para o campo de senha -->
+        <mat-error -
+        *ngIf="
+         formGroup.get('idCategory') &&
+         formGroup.get('idCategory')?.invalid &&
+         formGroup.get('idCategory')?.touched
+         "
+         >a categoria é obrigatória.</mat-error
+         >
+         </mat-form-field>
+
+         <!-- <mat-form-field appearance="fill">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category">
+            @for (category of categories; track category.id) {
+            <mat-option [value]="category">
+              {{category.category}}
+            </mat-option>
             }
           </mat-select>
+        </mat-form-field> -->
 
-          <!-- Validação para o campo de senha -->
-          <mat-error
-            *ngIf="
-              formGroup.get('idCategory') &&
-              formGroup.get('idCategory')?.invalid &&
-              formGroup.get('idCategory')?.touched
-            "
-            >a categoria é obrigatória.</mat-error
-          >
-        </mat-form-field>
+
         <!-- espaço -->
+
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>preco</mat-label>
           <input matInput type="text" formControlName="preco" />
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               formGroup.get('preco')?.errors && formGroup.get('preco')?.touched
-            "
-          >
+            ">
             @if (formGroup.get('preco')?.errors?.['required']) {
             <span>O preco deve ser informado.</span>
             } @if (formGroup.get('preco')?.errors?.['minlength']) {
@@ -83,16 +90,15 @@
             }
           </mat-error>
         </mat-form-field>
+
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>estoque</mat-label>
           <input matInput type="text" formControlName="estoque" />
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               formGroup.get('estoque')?.errors &&
               formGroup.get('estoque')?.touched
-            "
-          >
+            ">
             @if (formGroup.get('estoque')?.errors?.['required']) {
             <span>O estoque deve ser informado.</span>
             } @if (formGroup.get('estoque')?.errors?.['minlength']) {
@@ -108,14 +114,11 @@
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>nomeImagem</mat-label>
           <input matInput type="text" formControlName="nomeImagem" />
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               formGroup.get('nomeImagem') &&
               formGroup.get('nomeImagem')?.invalid &&
               formGroup.get('nomeImagem')?.touched
-            "
-            >O nomeImagem é obrigatório.</mat-error
-          >
+            ">O nomeImagem é obrigatório.</mat-error>
         </mat-form-field>
       </form>
 
@@ -124,21 +127,11 @@
 
     <!-- espaço -->
     <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="salvarProduct()"
-        [disabled]="formGroup.invalid"
-      >
+      <button mat-raised-button color="primary" (click)="salvarProduct()" [disabled]="formGroup.invalid">
         Salvar
       </button>
-      <button
-        mat-raised-button
-        *ngIf="formGroup?.get('id')?.value"
-        color="warn"
-        (click)="excluirProduct()"
-        [disabled]="formGroup.invalid"
-      >
+      <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluirProduct()"
+        [disabled]="formGroup.invalid">
         Excluir
       </button>
       <button mat-raised-button routerLink="/produtos">Cancelar</button>

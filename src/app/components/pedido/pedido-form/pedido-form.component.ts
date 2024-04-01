@@ -57,8 +57,8 @@ export class PedidoFormComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private CupomService: CupomService,
-    private PagamentoService: PagamentoService,
-    private StatusPedidoService: StatusPedidoService,
+   // private PagamentoService: PagamentoService,
+   // private StatusPedidoService: StatusPedidoService,
     private ItemPedidoService: ItemPedidoService
   ) {
     const pedido: Pedido = this.activatedRoute.snapshot.data['pedido'];

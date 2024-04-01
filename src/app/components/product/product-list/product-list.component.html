@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <div class="flex-container">
-    <span class="toolbar-title">Controle de Endereços</span>
+    <span class="toolbar-title">Controle de Peças</span>
     <button mat-fab color="accent" routerLink="/produtos/new">
       <mat-icon>add</mat-icon>
     </button>
@@ -14,37 +14,43 @@
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
 
-  <!-- Rua Column -->
+  <!-- Nome Column -->
   <ng-container matColumnDef="nome">
     <th mat-header-cell *matHeaderCellDef>Nome</th>
     <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
   </ng-container>
 
-  <!-- Número da Casa Column -->
+  <!-- Descricao Column -->
   <ng-container matColumnDef="descricao">
     <th mat-header-cell *matHeaderCellDef>Descricao</th>
     <td mat-cell *matCellDef="let element">{{ element.descricao }}</td>
   </ng-container>
 
-  <!-- Cidade Column -->
+  Category Column
   <ng-container matColumnDef="category">
     <th mat-header-cell *matHeaderCellDef>Categoria</th>
     <td mat-cell *matCellDef="let element">{{ element.category?.category }}</td>
   </ng-container>
 
-  <!-- Estado Column -->
+  <!-- Category Column
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>Categoria</th>
+    <td mat-cell *matCellDef="let element">{{ element.category.category }}</td>
+  </ng-container> -->
+
+  <!-- Preco Column -->
   <ng-container matColumnDef="preco">
     <th mat-header-cell *matHeaderCellDef>Preco</th>
     <td mat-cell *matCellDef="let element">{{ element.preco }}</td>
   </ng-container>
 
-  <!-- CEP Column -->
+  <!-- Estoque Column -->
   <ng-container matColumnDef="estoque">
     <th mat-header-cell *matHeaderCellDef>Estoque</th>
     <td mat-cell *matCellDef="let element">{{ element.estoque }}</td>
   </ng-container>
 
-  <!-- CEP Column -->
+  <!-- NomeImagem Column -->
   <ng-container matColumnDef="nomeImagem">
     <th mat-header-cell *matHeaderCellDef>nomeImagem</th>
     <td mat-cell *matCellDef="let element">{{ element.nomeImagem }}</td>

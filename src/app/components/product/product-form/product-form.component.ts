@@ -60,18 +60,41 @@ export class ProductFormComponent {
         product && product.descricao ? product.descricao : '',
         Validators.compose([Validators.required, Validators.minLength(4)]),
       ],
+      //category: [null],
       idCategory: [product && product.category.id ? product.category.id : ''],
       preco: [product && product.preco ? product.preco : null],
       estoque: [product && product.estoque ? product.estoque : null],
       nomeImagem: [product && product.nomeImagem ? product.nomeImagem : null],
+      //idCategory: [product && product.category.id ? product.category.id : ''],
     });
   }
 
   ngOnInit(): void {
     this.categoryService.findAll().subscribe((data) => {
       this.categories = data;
+      //this.initializeForm();
     });
   }
+
+  // initializeForm() {
+
+  //   const product: Product = this.activatedRoute.snapshot.data['product'];
+
+  //   // selecionando a suspensao
+  //   const category = this.categories
+  //     .find(category => category.id === (product?.category?.id || null));
+
+  //   this.formGroup = this.formBuilder.group({
+  //     id: [(product && product.id) ? product.id : null],
+  //     nome: [(product && product.nome) ? product.nome : '', Validators.required],
+  //     descricao: [(product && product.descricao) ? product.descricao : '', Validators.required],
+  //     preco: [(product && product.preco) ? product.preco : '', Validators.required],
+  //     estoque: [(product && product.estoque) ? product.estoque: '', Validators.required],
+  //     nomeImagem: [(product && product.nomeImagem) ? product.nomeImagem : '', Validators.required],
+  //     category: [category]
+  //   });
+  // }
+
 
   salvarProduct() {
     // marca todos os campos do formulario como 'touched'
@@ -141,9 +164,9 @@ export class ProductFormComponent {
       minlength: 'O nome deve possuir ao menos 4 caracteres.',
     },
     descricao: {
-      required: 'o produto deve ser informada.',
-      minlength: 'o produto deve possuir 2 caracteres.',
-      maxlength: 'o produto deve possuir 2 caracteres.',
+      required: 'a peça deve ser informada.',
+      minlength: 'a peça deve possuir 2 caracteres no minimo.',
+      maxlength: 'a descricao deve possuir 60 caracteres no maximo.',
       apiError: ' ', // mensagem da api
     },
   };
