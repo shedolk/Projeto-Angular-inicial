@@ -20,6 +20,7 @@ import { cupomResolver } from './components/cupom/resolver/cupom-resolver';
 import { itempedidoResolver } from './components/itemPedido/resolver/itemPedido-resolver';
 import { productResolver } from './components/product/resolver/product-resolver';
 import { pedidoResolver } from './components/pedido/resolver/pedido-resolver';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -150,5 +151,12 @@ export const routes: Routes = [
     component: ProductFormComponent,
     title: 'Editar Produto',
     resolve: { product: productResolver },
+  },
+
+  // Rota categories
+  {
+    path: 'categories',
+    component: CategoryListComponent,
+    title: 'Lista de Suspensoes',
   },
 ];

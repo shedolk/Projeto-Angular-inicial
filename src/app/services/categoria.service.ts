@@ -11,8 +11,16 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) {}
 
-  findAll(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>(this.baseUrl);
+  findAll(page?: number, pageSize?: number): Observable<Category[]> {
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined) {
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString(),
+      };
+    }
+    return this.httpClient.get<Category[]>(`${this.baseUrl}`, { params });
   }
 
   findById(id: String): Observable<Category> {
