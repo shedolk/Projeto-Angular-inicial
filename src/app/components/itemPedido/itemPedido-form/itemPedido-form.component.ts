@@ -50,10 +50,10 @@ export class ItemPedidoFormComponent {
       ],
       preco: [itempedido && itempedido.preco ? itempedido.preco : null],
       product: [
-        itempedido && itempedido.product.id ? itempedido.product.id : null,
+        itempedido && itempedido.idProduct.id ? itempedido.idProduct.id : null,
       ],
       pedido: [
-        itempedido && itempedido.pedido.id ? itempedido.pedido.id : null,
+        itempedido && itempedido.idPedido.id ? itempedido.idPedido.id : null,
       ],
     });
   }
@@ -63,7 +63,7 @@ export class ItemPedidoFormComponent {
       if (itempedido.id == null) {
         this.itempedidoService.insert(itempedido).subscribe({
           next: (itempedidoCadastrado) => {
-            this.router.navigateByUrl('/itempedidos');
+            this.router.navigateByUrl('/itenspedidos');
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -72,7 +72,7 @@ export class ItemPedidoFormComponent {
       } else {
         this.itempedidoService.update(itempedido).subscribe({
           next: (itempedidoAlterado) => {
-            this.router.navigateByUrl('/itempedidos');
+            this.router.navigateByUrl('/itenspedidos');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -88,7 +88,7 @@ export class ItemPedidoFormComponent {
       if (itempedido.id != null) {
         this.itempedidoService.delete(itempedido).subscribe({
           next: () => {
-            this.router.navigateByUrl('/itempedidos');
+            this.router.navigateByUrl('/itenspedidos');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

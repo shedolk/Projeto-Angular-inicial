@@ -4,6 +4,6 @@ export class ItemPedido {
   id!: number;
   quantidade!: number;
   preco!: number;
-  product!: Product;
-  pedido!: Pedido;
+  idProduct!: Product;
+  idPedido!: Pedido;
 }
