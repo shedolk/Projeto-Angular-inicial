@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <div class="flex-container">
-    <span class="toolbar-title">Controle de Endereços</span>
-    <button mat-fab color="accent" routerLink="/enderecos/new">
+    <span class="toolbar-title">Controle de Itens Pedido</span>
+    <button mat-fab color="accent" routerLink="/itenspedidos/new">
       <mat-icon>add</mat-icon>
     </button>
   </div>
@@ -28,14 +28,14 @@
 
   <!-- Cidade Column -->
   <ng-container matColumnDef="product">
-    <th mat-header-cell *matHeaderCellDef>product</th>
-    <td mat-cell *matCellDef="let element">{{ element.product }}</td>
+    <th mat-header-cell *matHeaderCellDef>Produto</th>
+    <td mat-cell *matCellDef="let element">{{ element.product.nome }}</td>
   </ng-container>
 
   <!-- Estado Column -->
   <ng-container matColumnDef="pedido">
     <th mat-header-cell *matHeaderCellDef>pedido</th>
-    <td mat-cell *matCellDef="let element">{{ element.pedido }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.pedido.id }}</td>
   </ng-container>
 
   <!-- Ação Column -->
@@ -59,3 +59,11 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<mat-paginator
+  [pageSizeOptions]="[2, 4, 8, 16]"
+  [pageSize]="pageSize"
+  [length]="totalRecords"
+  (page)="paginar($event)"
+>
+</mat-paginator>

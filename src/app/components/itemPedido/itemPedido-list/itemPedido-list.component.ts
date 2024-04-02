@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ItemPedido } from '../../../models/itemPedido.models';
 import { ItemPedidoService } from '../../../services/itemPedido.service';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-itempedido-list',
@@ -19,6 +20,7 @@ import { ItemPedidoService } from '../../../services/itemPedido.service';
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    MatPaginatorModule,
   ],
   templateUrl: './itempedido-list.component.html',
   styleUrl: './itempedido-list.component.css',
@@ -34,20 +36,36 @@ export class ItemPedidoListComponent implements OnInit {
   ];
   itempedidos: ItemPedido[] = [];
 
-  idUsuario: String;
+  // variaveis de controle de paginacao
+  totalRecords = 0;
+  pageSize = 2;
+  page = 0;
 
   constructor(
     private itempedidoService: ItemPedidoService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-    this.idUsuario = this.activatedRoute.snapshot.params['id'];
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.itempedidoService.findByIdUsuario(this.idUsuario).subscribe((data) => {
-      this.itempedidos = data;
-    });
+    this.loadItemPedidos();
+  }
+
+  loadItemPedidos(): void {
+    this.itempedidoService
+      .findAll(this.page, this.pageSize)
+      .subscribe((data) => {
+        this.itempedidos = data;
+        console.log(this.itempedidos);
+      });
+
+    // Removendo a chamada para 'this.itempedidoService.count()' que não está definida no serviço
+  }
+
+  paginar(event: PageEvent): void {
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadItemPedidos(); // Chamando loadItemPedidos() ao invés de ngOnInit()
   }
 
   excluirItemPedido(itempedido: ItemPedido) {
