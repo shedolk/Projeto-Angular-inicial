@@ -24,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class CategoryListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'suspensao', 'material'];
+  displayedColumns: string[] = ['id', 'suspensao', 'material', 'acao'];
   categories: Category[] = [];
 
   // variaveis de controle de paginacao

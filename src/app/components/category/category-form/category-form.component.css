@@ -1,0 +1,94 @@
+/* Estilo para o toolbar */
+.toolbar-title {
+  justify-content: center;
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+/* Estilo para o container do formulário */
+.form-container {
+  margin: 20px auto; /* Margens automáticas para centralizar vertical e horizontalmente */
+  max-width: 600px; /* Largura máxima do formulário */
+}
+
+/* Estilo para o card */
+mat-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o conteúdo do card */
+mat-card-content {
+  padding: 20px;
+}
+
+/* Estilo para os campos de formulário */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Estilo para as labels dos campos */
+mat-label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para os inputs */
+mat-input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Estilo para as mensagens de erro */
+mat-error {
+  color: #d32f2f;
+}
+
+/* Estilo para os botões */
+mat-card-actions button {
+  margin-right: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Estilo para o botão de salvar */
+mat-raised-button[color="primary"] {
+  background-color: #4caf50;
+}
+
+/* Estilo para o botão de excluir */
+mat-raised-button[color="warn"] {
+  background-color: #f44336;
+}
+
+/* Estilo para o título dentro do card */
+mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para o subtítulo dentro do card */
+mat-card-subtitle {
+  font-size: 16px;
+  color: #777;
+}
+
+/* Estilo para o rodapé do card */
+mat-card-footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+.mat-icon {
+  font-size: 24px; /* Altere o tamanho do ícone conforme necessário */
+  color: #333; /* Altere a cor do ícone conforme necessário */
+}

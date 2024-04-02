@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <div class="flex-container">
-    <span class="toolbar-title">Controle de Suspensoes</span>
-    <button mat-fab color="accent" routerLink="/categories/new">
+    <span class="toolbar-title"><mat-icon>build</mat-icon> Controle de Suspensoes</span>
+    <button mat-fab color="basic" routerLink="/categories/new">
       <mat-icon>add</mat-icon>
     </button>
   </div>
@@ -11,29 +11,30 @@
   <!-- ID Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    <td mat-cell *matCellDef="let element" class="center-content font-styled">{{ element.id }}</td>
   </ng-container>
 
   <!-- Rua Column -->
   <ng-container matColumnDef="suspensao">
-    <th mat-header-cell *matHeaderCellDef>Nome da Suspensao</th>
-    <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+    <th mat-header-cell *matHeaderCellDef> <mat-icon>description</mat-icon> Nome da Suspensao</th>
+    <td mat-cell *matCellDef="let element" class="center-content font-styled">{{ element.category }}</td>
   </ng-container>
 
   <!-- Número da Casa Column -->
   <ng-container matColumnDef="material">
-    <th mat-header-cell *matHeaderCellDef>Material da Suspensao</th>
-    <td mat-cell *matCellDef="let element">{{ element.material }}</td>
+    <th mat-header-cell *matHeaderCellDef><mat-icon>terrain</mat-icon> Material da Suspensao</th>
+
+    <td mat-cell *matCellDef="let element" class="center-content font-styled">{{ element.material }}</td>
   </ng-container>
 
   <!-- Ação Column -->
   <ng-container matColumnDef="acao">
-    <th mat-header-cell *matHeaderCellDef>Ação</th>
+    <th mat-header-cell *matHeaderCellDef><mat-icon>directions</mat-icon>Ação</th>
     <td mat-cell *matCellDef="let element">
       <button
         mat-icon-button
         color="primary"
-        routerLink="/cupom/edit/{{ element.id }}"
+        routerLink="/category/edit/{{ element.id }}"
       >
         <mat-icon>edit</mat-icon>
       </button>

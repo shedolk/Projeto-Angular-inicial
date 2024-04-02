@@ -21,6 +21,8 @@ import { itempedidoResolver } from './components/itemPedido/resolver/itemPedido-
 import { productResolver } from './components/product/resolver/product-resolver';
 import { pedidoResolver } from './components/pedido/resolver/pedido-resolver';
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryFormComponent } from './components/category/category-form/category-form.component';
+import { categoryResolver } from './components/category/resolver/category-resolver';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -158,5 +160,16 @@ export const routes: Routes = [
     path: 'categories',
     component: CategoryListComponent,
     title: 'Lista de Suspensoes',
+  },
+  {
+    path: 'categories/new',
+    component: CategoryFormComponent,
+    title: 'Nova Suspensao'
+  },
+  {
+    path: 'categories/edit/:id',
+    component: CategoryFormComponent,
+    title: 'Editar Suspensao',
+    resolve: { category: categoryResolver },
   },
 ];
