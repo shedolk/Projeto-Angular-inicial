@@ -23,6 +23,7 @@ import { pedidoResolver } from './components/pedido/resolver/pedido-resolver';
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
 import { CategoryFormComponent } from './components/category/category-form/category-form.component';
 import { categoryResolver } from './components/category/resolver/category-resolver';
+import { DadostecnicosListComponent } from './components/dadostecnicos/dadostecnicos-list/dadostecnicos-list.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -171,5 +172,11 @@ export const routes: Routes = [
     component: CategoryFormComponent,
     title: 'Editar Suspensao',
     resolve: { category: categoryResolver },
+  },
+
+  {
+    path: 'dadostecnicos',
+    component: DadostecnicosListComponent,
+    title: 'Lista de Dados Tecnicos',
   },
 ];
