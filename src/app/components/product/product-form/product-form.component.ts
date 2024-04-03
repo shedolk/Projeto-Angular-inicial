@@ -19,6 +19,7 @@ import { Product } from '../../../models/product.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryService } from '../../../services/categoria.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-form',
@@ -33,6 +34,7 @@ import { CategoryService } from '../../../services/categoria.service';
     MatToolbarModule,
     RouterModule,
     MatSelectModule,
+    MatIconModule
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css',
@@ -169,6 +171,27 @@ export class ProductFormComponent {
       maxlength: 'a descricao deve possuir 60 caracteres no maximo.',
       apiError: ' ', // mensagem da api
     },
+    category: {
+      required: 'O tipo de suspensao deve ser informado.',
+      minlength: 'a peça deve possuir 2 caracteres no minimo.',
+      maxlength: 'a descricao deve possuir 60 caracteres no maximo.',
+      apiError: ' ', // mensagem da api
+    },
+    preco: {
+      required: 'O tipo de suspensao deve ser informado.',
+      minlength: 'a peça deve possuir 2 caracteres no minimo.',
+      apiError: ' ', // mensagem da api
+    },
+    estoque: {
+      required: 'O tipo de suspensao deve ser informado.',
+      minlength: 'a peça deve possuir 2 caracteres no minimo.',
+      apiError: ' ', // mensagem da api
+    },
+    nomeImagem: {
+      required: 'O tipo de suspensao deve ser informado.',
+      minlength: 'a peça deve possuir 2 caracteres no minimo.',
+      apiError: ' ', // mensagem da api
+    }
   };
 
   getErrorMessage(

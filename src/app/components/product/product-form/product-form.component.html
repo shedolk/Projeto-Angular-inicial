@@ -1,12 +1,12 @@
-<mat-toolbar color="primary" class="toolbar-title">Cadastro de Peça</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar-title"><mat-icon class="white-icon">directions_car</mat-icon>Cadastro de Peça</mat-toolbar>
 
 <div class="form-container">
   <mat-card>
     <mat-card-content>
       <form [formGroup]="formGroup">
         <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>nome</mat-label>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label><mat-icon>local_offer</mat-icon>Nome</mat-label>
           <input matInput type="text" formControlName="nome" />
           <mat-error *ngIf="
               formGroup.get('nome')?.errors && formGroup.get('nome')?.touched
@@ -22,7 +22,7 @@
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>descricao</mat-label>
+          <mat-label><mat-icon>description</mat-icon>Descricao</mat-label>
           <input matInput type="text" formControlName="descricao" />
           <!-- Validação para o campo de login -->
           <mat-error *ngIf="
@@ -41,7 +41,7 @@
         <!-- espaço -->
 
         <mat-form-field appearance="outline" class="full-width-input">
-        <mat-label>categoria</mat-label>
+        <mat-label><mat-icon>category</mat-icon>Tipo de Suspensao</mat-label>
         <mat-select formControlName="idCategory">
         @for (category of categories; track category) {
         <mat-option [value]="category.id">{{
@@ -75,8 +75,8 @@
 
         <!-- espaço -->
 
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>preco</mat-label>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label><mat-icon>monetization_on</mat-icon>Preco</mat-label>
           <input matInput type="text" formControlName="preco" />
           <mat-error *ngIf="
               formGroup.get('preco')?.errors && formGroup.get('preco')?.touched
@@ -92,8 +92,8 @@
         </mat-form-field>
 
         <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>estoque</mat-label>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label><mat-icon>inventory_2</mat-icon>Estoque</mat-label>
           <input matInput type="text" formControlName="estoque" />
           <mat-error *ngIf="
               formGroup.get('estoque')?.errors &&
@@ -111,8 +111,8 @@
         <!-- espaço -->
 
         <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>nomeImagem</mat-label>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label><mat-icon>image</mat-icon>Imagem da Peca</mat-label>
           <input matInput type="text" formControlName="nomeImagem" />
           <mat-error *ngIf="
               formGroup.get('nomeImagem') &&

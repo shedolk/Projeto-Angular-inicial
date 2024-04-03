@@ -1,35 +1,41 @@
 <mat-toolbar color="primary">
   <div class="flex-container">
-    <span class="toolbar-title">Controle de Peças</span>
-    <button mat-fab color="accent" routerLink="/produtos/new">
+    <span class="toolbar-title ">Controle de Peças</span>
+    </div>
+    <div class="toolbar-content">
+      <button mat-fab color="basic" routerLink="/produtos/new">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <!-- <button mat-fab color="accent" routerLink="/produtos/new">
       <mat-icon>add</mat-icon>
     </button>
-  </div>
+  </div> -->
 </mat-toolbar>
 
 <table mat-table [dataSource]="products" class="mat-elevation-z8">
   <!-- ID Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    <td mat-cell *matCellDef="let element" class="custom-cell">{{ element.id }}</td>
   </ng-container>
 
   <!-- Nome Column -->
   <ng-container matColumnDef="nome">
-    <th mat-header-cell *matHeaderCellDef>Nome</th>
-    <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+    <th mat-header-cell *matHeaderCellDef><mat-icon>description</mat-icon>Nome</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell">{{ element.nome }}</td>
   </ng-container>
 
   <!-- Descricao Column -->
   <ng-container matColumnDef="descricao">
-    <th mat-header-cell *matHeaderCellDef>Descricao</th>
-    <td mat-cell *matCellDef="let element">{{ element.descricao }}</td>
+    <th mat-header-cell *matHeaderCellDef> <mat-icon>info</mat-icon> Descricao</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell">{{ element.descricao }}</td>
   </ng-container>
 
   Category Column
   <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef>Categoria</th>
-    <td mat-cell *matCellDef="let element">{{ element.category?.category }}</td>
+    <th mat-header-cell *matHeaderCellDef> <mat-icon>category</mat-icon> Categoria</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell"> {{ element.category?.category }}</td>
   </ng-container>
 
   <!-- Category Column
@@ -40,26 +46,26 @@
 
   <!-- Preco Column -->
   <ng-container matColumnDef="preco">
-    <th mat-header-cell *matHeaderCellDef>Preco</th>
-    <td mat-cell *matCellDef="let element">{{ element.preco }}</td>
+    <th mat-header-cell *matHeaderCellDef><mat-icon>monetization_on</mat-icon>Preco</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell">{{ element.preco }}</td>
   </ng-container>
 
   <!-- Estoque Column -->
   <ng-container matColumnDef="estoque">
-    <th mat-header-cell *matHeaderCellDef>Estoque</th>
-    <td mat-cell *matCellDef="let element">{{ element.estoque }}</td>
+    <th mat-header-cell *matHeaderCellDef><mat-icon>inventory_2</mat-icon>Estoque</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell">{{ element.estoque }}</td>
   </ng-container>
 
   <!-- NomeImagem Column -->
   <ng-container matColumnDef="nomeImagem">
-    <th mat-header-cell *matHeaderCellDef>nomeImagem</th>
-    <td mat-cell *matCellDef="let element">{{ element.nomeImagem }}</td>
+    <th mat-header-cell *matHeaderCellDef><mat-icon>image</mat-icon>Imagem</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell">{{ element.nomeImagem }}</td>
   </ng-container>
 
   <!-- Ação Column -->
   <ng-container matColumnDef="acao">
-    <th mat-header-cell *matHeaderCellDef>Ação</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef><mat-icon>settings</mat-icon>Ação</th>
+    <td mat-cell *matCellDef="let element"class="custom-cell">
       <button
         mat-icon-button
         color="primary"
