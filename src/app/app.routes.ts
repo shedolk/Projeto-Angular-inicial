@@ -1,3 +1,4 @@
+import { dadosTecnicosResolver } from './components/dadostecnicos/resolver/dadostecnicos-resolver';
 import { Routes } from '@angular/router';
 import { UsuarioListComponent } from './components/usuario/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './components/usuario/usuario-form/usuario-form.component';
@@ -24,6 +25,7 @@ import { CategoryListComponent } from './components/category/category-list/categ
 import { CategoryFormComponent } from './components/category/category-form/category-form.component';
 import { categoryResolver } from './components/category/resolver/category-resolver';
 import { DadostecnicosListComponent } from './components/dadostecnicos/dadostecnicos-list/dadostecnicos-list.component';
+import { DadostecnicosFormComponent } from './components/dadostecnicos/dadostecnicos-form/dadostecnicos-form.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -178,5 +180,16 @@ export const routes: Routes = [
     path: 'dadostecnicos',
     component: DadostecnicosListComponent,
     title: 'Lista de Dados Tecnicos',
+  },
+  {
+    path: 'dadostecnidos/edit/:id',
+    component: DadostecnicosFormComponent,
+    title: 'Cadastrar Dados Tecnicos da Peças',
+    resolve: { dadosTecnicos: dadosTecnicosResolver },
+  },
+  {
+    path: 'dadostecnicos/new',
+    component: DadostecnicosFormComponent,
+    title: 'Novos dados tecnicos',
   },
 ];

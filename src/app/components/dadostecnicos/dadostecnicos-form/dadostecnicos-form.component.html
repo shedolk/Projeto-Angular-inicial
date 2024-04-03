@@ -1,0 +1,92 @@
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Dados Técnicos</mat-toolbar>
+
+<div class="form-container">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+        <!-- Compatibilidade -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Compatibilidade</mat-label>
+
+          <input matInput type="text" formControlName="compatibilidade" />
+          <mat-error *ngIf="formGroup.get('compatibilidade')?.invalid && formGroup.get('compatibilidade')?.touched">
+            {{ formGroup.get('compatibilidade')?.errors?.['required'] ? 'A compatibilidade deve ser informada.' : '' }}
+            {{ formGroup.get('compatibilidade')?.errors?.['minlength'] ? 'A compatibilidade deve possuir pelo menos 4 caracteres.' : '' }}
+            {{ formGroup.get('compatibilidade')?.hasError('apiError') ? formGroup.get('compatibilidade')?.getError('apiError') : '' }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Tipo de Mola -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Tipo de Mola</mat-label>
+
+          <input matInput type="text" formControlName="tipoMola" />
+          <mat-error *ngIf="formGroup.get('tipoMola')?.invalid && formGroup.get('tipoMola')?.touched">
+            {{ formGroup.get('tipoMola')?.errors?.['required'] ? 'O tipo de mola deve ser informado.' : '' }}
+            {{ formGroup.get('tipoMola')?.errors?.['minlength'] ? 'O tipo de mola deve possuir pelo menos 4 caracteres.' : '' }}
+            {{ formGroup.get('tipoMola')?.hasError('apiError') ? formGroup.get('tipoMola')?.getError('apiError') : '' }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Tipo de Amortecedor -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Tipo de Amortecedor</mat-label>
+
+          <input matInput type="text" formControlName="tipoAmortecedor" />
+          <mat-error *ngIf="formGroup.get('tipoAmortecedor')?.invalid && formGroup.get('tipoAmortecedor')?.touched">
+            {{ formGroup.get('tipoAmortecedor')?.errors?.['required'] ? 'O tipo de amortecedor deve ser informado.' : '' }}
+            {{ formGroup.get('tipoAmortecedor')?.errors?.['minlength'] ? 'O tipo de amortecedor deve possuir pelo menos 4 caracteres.' : '' }}
+            {{ formGroup.get('tipoAmortecedor')?.hasError('apiError') ? formGroup.get('tipoAmortecedor')?.getError('apiError') : '' }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Fornecedor -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Fornecedor</mat-label>
+
+          <input matInput type="text" formControlName="fornecedor" />
+          <mat-error *ngIf="formGroup.get('fornecedor')?.invalid && formGroup.get('fornecedor')?.touched">
+            {{ formGroup.get('fornecedor')?.errors?.['required'] ? 'O fornecedor deve ser informado.' : '' }}
+            {{ formGroup.get('fornecedor')?.errors?.['minlength'] ? 'O fornecedor deve possuir pelo menos 4 caracteres.' : '' }}
+            {{ formGroup.get('fornecedor')?.hasError('apiError') ? formGroup.get('fornecedor')?.getError('apiError') : '' }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Embalagem -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Embalagem</mat-label>
+
+          <input matInput type="text" formControlName="embalagem" />
+          <mat-error *ngIf="formGroup.get('embalagem')?.invalid && formGroup.get('embalagem')?.touched">
+            {{ formGroup.get('embalagem')?.errors?.['required'] ? 'A embalagem deve ser informada.' : '' }}
+            {{ formGroup.get('embalagem')?.errors?.['minlength'] ? 'A embalagem deve possuir pelo menos 4 caracteres.' : '' }}
+            {{ formGroup.get('embalagem')?.hasError('apiError') ? formGroup.get('embalagem')?.getError('apiError') : '' }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Peso -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Peso</mat-label>
+
+          <input matInput type="text" formControlName="peso" />
+          <mat-error *ngIf="formGroup.get('peso')?.invalid && formGroup.get('peso')?.touched">
+            {{ formGroup.get('peso')?.errors?.['required'] ? 'O peso deve ser informado.' : '' }}
+            {{ formGroup.get('peso')?.errors?.['minlength'] ? 'O peso deve possuir pelo menos 4 caracteres.' : '' }}
+            {{ formGroup.get('peso')?.hasError('apiError') ? formGroup.get('peso')?.getError('apiError') : '' }}
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="salvar()"
+        [disabled]="formGroup.invalid">
+        Salvar
+      </button>
+      <button mat-raised-button color="warn" type="button" (click)="excluir()" *ngIf="formGroup.get('id')?.value">
+        Excluir
+      </button>
+      <button mat-raised-button routerLink="/dadostecnicos">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
