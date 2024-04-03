@@ -134,7 +134,7 @@ export const routes: Routes = [
     path: 'itenspedidos/edit/:id',
     component: ItemPedidoFormComponent,
     title: 'Editar Item do Pedido',
-    resolve: { itemPedido: itempedidoResolver },
+    resolve: { itempedido: itempedidoResolver },
   },
 
   // Rota Produtos
@@ -164,7 +164,7 @@ export const routes: Routes = [
   {
     path: 'categories/new',
     component: CategoryFormComponent,
-    title: 'Nova Suspensao'
+    title: 'Nova Suspensao',
   },
   {
     path: 'categories/edit/:id',

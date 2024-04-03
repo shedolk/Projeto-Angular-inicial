@@ -71,7 +71,7 @@ export class ItemPedidoListComponent implements OnInit {
   excluirItemPedido(itempedido: ItemPedido) {
     this.itempedidoService.delete(itempedido).subscribe({
       next: () => {
-        this.router.navigateByUrl('/itempedidos');
+        this.router.navigateByUrl('/itenspedidos');
         this.ngOnInit();
       },
       error: (err) => {

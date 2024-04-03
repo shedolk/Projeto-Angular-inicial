@@ -8,21 +8,36 @@
       <form [formGroup]="formGroup">
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>dataPedido</mat-label>
-          <input matInput type="text" formControlName="dataPedido" />
+          <mat-label>Data pedido</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="dataPedido"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
           <mat-error
             *ngIf="
-              formGroup.get('dataPedido') &&
-              formGroup.get('dataPedido')?.invalid &&
+              formGroup.get('dataPedido')?.errors &&
               formGroup.get('dataPedido')?.touched
             "
-            >A dataPedido é obrigatório.</mat-error
+          >
+            @if (formGroup.get('dataPedido')?.errors?.['required']) {
+            <span>a data pedido deve ser informado.</span>
+            } @if (formGroup.get('dataPedido')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('dataPedido')?.hasError('apiError')) {
+            <span>{{ formGroup.get("dataPedido")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Pagamento</mat-label>
-          <mat-select formControlName="pagamento">
+          <mat-select formControlName="pagamento_id">
             @for (pagamento of pagamentos; track pagamento) {
             <mat-option [value]="pagamento.id">{{
               pagamento.formaPagamento.label
@@ -32,9 +47,9 @@
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
-              formGroup.get('pagamento') &&
-              formGroup.get('pagamento')?.invalid &&
-              formGroup.get('pagamento')?.touched
+              formGroup.get('pagamento_id') &&
+              formGroup.get('pagamento_id')?.invalid &&
+              formGroup.get('pagamento_id')?.touched
             "
             >O pagamento é obrigatório.</mat-error
           >
@@ -62,16 +77,16 @@
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>Cupom</mat-label>
-          <mat-select formControlName="cupom">
+          <mat-select formControlName="cupom_id">
             @for (cupom of cupons; track cupom) {
             <mat-option [value]="cupom.id">{{ cupom.nomeCupom }}</mat-option>
             }
           </mat-select>
           <mat-error
             *ngIf="
-              formGroup.get('cupom') &&
-              formGroup.get('cupom')?.invalid &&
-              formGroup.get('cupom')?.touched
+              formGroup.get('cupom_id') &&
+              formGroup.get('cupom_id')?.invalid &&
+              formGroup.get('cupom_id')?.touched
             "
             >O cupom é obrigatório.</mat-error
           >
@@ -90,35 +105,21 @@
           >
         </mat-form-field>
         <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>idUsuario</mat-label>
-          <input matInput type="text" formControlName="idUsuario" />
-          <mat-error
-            *ngIf="
-              formGroup.get('idUsuario') &&
-              formGroup.get('idUsuario')?.invalid &&
-              formGroup.get('idUsuario')?.touched
-            "
-            >O idUsuario é obrigatório.</mat-error
-          >
-        </mat-form-field>
-        <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Item Pedido</mat-label>
-          <mat-select formControlName="idItemPedido">
-            @for (idItemPedido of idItemPedidos; track idItemPedido) {
-            <mat-option [value]="idItemPedido.id">{{
-              idItemPedido.id
-            }}</mat-option>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Status do pedido</mat-label>
+          <mat-select formControlName="usuario_id">
+            @for (usuario of usuarios; track usuario) {
+            <mat-option [value]="usuario.id">{{ usuario.nome }}</mat-option>
             }
           </mat-select>
+          <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('idItemPedido') &&
-              formGroup.get('idItemPedido')?.invalid &&
-              formGroup.get('idItemPedido')?.touched
+              formGroup.get('usuario') &&
+              formGroup.get('usuario')?.invalid &&
+              formGroup.get('usuario')?.touched
             "
-            >O idItemPedido é obrigatório.</mat-error
+            >o usuário é obrigatória.</mat-error
           >
         </mat-form-field>
         <!-- espaço -->

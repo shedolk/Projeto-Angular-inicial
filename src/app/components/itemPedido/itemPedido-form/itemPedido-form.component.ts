@@ -49,11 +49,11 @@ export class ItemPedidoFormComponent {
         itempedido && itempedido.quantidade ? itempedido.quantidade : null,
       ],
       preco: [itempedido && itempedido.preco ? itempedido.preco : null],
-      product: [
-        itempedido && itempedido.idProduct.id ? itempedido.idProduct.id : null,
+      productId: [
+        itempedido && itempedido.product.id ? itempedido.product.id : null,
       ],
-      pedido: [
-        itempedido && itempedido.idPedido.id ? itempedido.idPedido.id : null,
+      pedidoId: [
+        itempedido && itempedido.pedido.id ? itempedido.pedido.id : null,
       ],
     });
   }

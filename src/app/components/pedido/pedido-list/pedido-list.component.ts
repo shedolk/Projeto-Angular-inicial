@@ -34,7 +34,6 @@ export class PedidoListComponent implements OnInit {
     'cupom',
     'totalPedido',
     'usuario',
-    'itens',
     'acao',
   ];
   pedidos: Pedido[] = [];

@@ -12,5 +12,4 @@ export class Pedido {
   cupom!: Cupom;
   totalPedido!: number;
   usuario!: Usuario;
-  itemPedido!: ItemPedido[];
 }

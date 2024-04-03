@@ -50,22 +50,6 @@
     <th mat-header-cell *matHeaderCellDef>usuario</th>
     <td mat-cell *matCellDef="let element">{{ element.usuario.nome }}</td>
   </ng-container>
-  <!-- CEP Column -->
-  <ng-container matColumnDef="itens">
-    <th mat-header-cell *matHeaderCellDef>itens</th>
-    <td mat-cell *matCellDef="let element">
-      <mat-list>
-        @for (item of element.itens; track item) {
-        <mat-list-item>
-          <h3 matListItemTitle>{{ item.productId }}</h3>
-          <p matListItemLine>
-            <span>{{ item.preco }}</span>
-          </p>
-        </mat-list-item>
-        }
-      </mat-list>
-    </td>
-  </ng-container>
 
   <!-- Ação Column -->
   <ng-container matColumnDef="acao">

@@ -36,13 +36,13 @@
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>product</mat-label>
-          <input matInput type="text" formControlName="product" />
+          <input matInput type="text" formControlName="productId" />
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('product') &&
-              formGroup.get('product')?.invalid &&
-              formGroup.get('product')?.touched
+              formGroup.get('productId') &&
+              formGroup.get('productId')?.invalid &&
+              formGroup.get('productId')?.touched
             "
             >A peca é obrigatória.</mat-error
           >
@@ -50,12 +50,12 @@
         <!-- espaço -->
         <mat-form-field appearance="fill" class="full-width-input">
           <mat-label>pedido</mat-label>
-          <input matInput type="text" formControlName="pedido" />
+          <input matInput type="text" formControlName="pedidoId" />
           <mat-error
             *ngIf="
-              formGroup.get('pedido') &&
-              formGroup.get('pedido')?.invalid &&
-              formGroup.get('pedido')?.touched
+              formGroup.get('pedidoId') &&
+              formGroup.get('pedidoId')?.invalid &&
+              formGroup.get('pedidoId')?.touched
             "
             >O pedido é obrigatório.</mat-error
           >

@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../../services/usuario.service';
 import { ItemPedidoService } from './../../../services/itemPedido.service';
 import { CupomService } from './../../../services/cupom.service';
 import { NgIf } from '@angular/common';
@@ -21,10 +22,16 @@ import { Pagamento } from '../../../models/pagamento.models';
 import { StatusPedido } from '../../../models/statusPedido.models';
 import { Cupom } from '../../../models/cupom.models';
 import { ItemPedido } from '../../../models/itemPedido.models';
+import { PagamentoService } from '../../../services/pagamento.service';
+import { StatusPedidoService } from '../../../services/statusPedido.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { Usuario } from '../../../models/usuario.model';
 
 @Component({
   selector: 'app-pedido-form',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     NgIf,
     ReactiveFormsModule,
@@ -35,6 +42,7 @@ import { ItemPedido } from '../../../models/itemPedido.models';
     MatToolbarModule,
     RouterModule,
     MatSelectModule,
+    MatDatepickerModule,
   ],
   templateUrl: './pedido-form.component.html',
   styleUrl: './pedido-form.component.css',
@@ -42,14 +50,9 @@ import { ItemPedido } from '../../../models/itemPedido.models';
 export class PedidoFormComponent {
   formGroup: FormGroup;
   pagamentos: Pagamento[] = [];
-  statusPedidos: StatusPedido[] = [
-    {
-      id: 1,
-      label: '',
-    },
-  ];
+  statusPedidos: StatusPedido[] = [];
   cupons: Cupom[] = [];
-  idItemPedidos: ItemPedido[] = [];
+  usuarios: Usuario[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,23 +60,22 @@ export class PedidoFormComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private CupomService: CupomService,
-   // private PagamentoService: PagamentoService,
-   // private StatusPedidoService: StatusPedidoService,
-    private ItemPedidoService: ItemPedidoService
+    private PagamentoService: PagamentoService,
+    private StatusPedidoService: StatusPedidoService,
+    private UsuarioService: UsuarioService
   ) {
     const pedido: Pedido = this.activatedRoute.snapshot.data['pedido'];
 
     this.formGroup = formBuilder.group({
       id: [pedido && pedido.id ? pedido.id : null],
       dataPedido: [pedido && pedido.dataPedido ? pedido.dataPedido : null],
-      pagamento: [pedido && pedido.pagamento ? pedido.pagamento : null],
+      pagamento_id: [pedido && pedido.pagamento ? pedido.pagamento.id : null],
       statusPedido: [
-        pedido && pedido.statusPedido ? pedido.statusPedido : null,
+        pedido && pedido.statusPedido.id ? pedido.statusPedido.id : null,
       ],
-      cupom: [pedido && pedido.cupom.id ? pedido.cupom.id : null],
+      cupom_id: [pedido && pedido.cupom.id ? pedido.cupom.id : null],
       totalPedido: [pedido && pedido.totalPedido ? pedido.totalPedido : null],
-      idUsuario: [pedido && pedido.usuario.nome ? pedido.usuario.id : null],
-      idItemPedido: [pedido && pedido.itemPedido ? pedido.itemPedido : null],
+      usuario_id: [pedido && pedido.usuario.id ? pedido.usuario.id : null],
     });
   }
 
@@ -81,8 +83,14 @@ export class PedidoFormComponent {
     this.CupomService.findAll().subscribe((data) => {
       this.cupons = data;
     });
-    this.ItemPedidoService.findAll().subscribe((data) => {
-      this.idItemPedidos = data;
+    this.PagamentoService.findAll().subscribe((data) => {
+      this.pagamentos = data;
+    });
+    this.StatusPedidoService.findAll().subscribe((data) => {
+      this.statusPedidos = data;
+    });
+    this.UsuarioService.findAll().subscribe((data) => {
+      this.usuarios = data;
     });
   }
 
