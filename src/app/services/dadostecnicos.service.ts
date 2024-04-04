@@ -32,10 +32,15 @@ export class DadostecnicosService {
   }
 
   update(dadostecnicos: DadosTecnicos): Observable<DadosTecnicos> {
-    return this.httpClient.put<DadosTecnicos>(
-      `${this.baseUrl}/${dadostecnicos.id}`,
-      dadostecnicos
-    );
+    const data = {
+      compatibilidade: dadostecnicos.compatibilidade,
+      tipoMola: dadostecnicos.tipoMola,
+      tipoAmortecedor: dadostecnicos.tipoAmortecedor,
+      fornecedor: dadostecnicos.fornecedor,
+      embalagem: dadostecnicos.embalagem,
+      peso: dadostecnicos.peso
+    }
+    return this.httpClient.put<DadosTecnicos>(`${this.baseUrl}/${dadostecnicos.id}`, data);
   }
 
   delete(dadostecnicos: DadosTecnicos): Observable<any> {

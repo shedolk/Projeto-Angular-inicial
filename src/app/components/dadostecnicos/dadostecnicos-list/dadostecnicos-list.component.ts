@@ -24,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class DadostecnicosListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'compatibilidade', 'tipoMola', 'tipoAmortecedor', 'fornecedor', 'embalagem', 'peso'];
+  displayedColumns: string[] = ['id', 'compatibilidade', 'tipoMola', 'tipoAmortecedor', 'fornecedor', 'embalagem', 'peso', 'acao'];
 
   dadosTecnicos: DadosTecnicos[] = [];
 

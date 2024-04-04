@@ -7,6 +7,16 @@
   </div>
 </mat-toolbar>
 
+<!-- <div class="container">
+  <mat-form-field appearance="outline" class="input-field">
+    <mat-label>Pesquisar</mat-label>
+    <input [(ngModel)]="filtro" matInput placeholder="Ex. Suspensão esportiva" #input>
+  </mat-form-field>
+  <button mat-icon-button color="primary" class="search-button" (click)="aplicarFiltro()">
+    <mat-icon>search</mat-icon>
+  </button>
+</div> -->
+
 <table mat-table [dataSource]="categories" class="mat-elevation-z8">
   <!-- ID Column -->
   <ng-container matColumnDef="id">
@@ -34,7 +44,7 @@
       <button
         mat-icon-button
         color="primary"
-        routerLink="/category/edit/{{ element.id }}"
+        routerLink="/categories/edit/{{ element.id }}"
       >
         <mat-icon>edit</mat-icon>
       </button>
@@ -47,6 +57,12 @@
   <!-- Definição das colunas a serem exibidas -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  <!-- Row shown when there is no matching data.
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr> -->
+
 </table>
 
 <mat-paginator

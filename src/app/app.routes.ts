@@ -182,7 +182,7 @@ export const routes: Routes = [
     title: 'Lista de Dados Tecnicos',
   },
   {
-    path: 'dadostecnidos/edit/:id',
+    path: 'dadostecnicoss/edit/:id',
     component: DadostecnicosFormComponent,
     title: 'Cadastrar Dados Tecnicos da Peças',
     resolve: { dadosTecnicos: dadosTecnicosResolver },

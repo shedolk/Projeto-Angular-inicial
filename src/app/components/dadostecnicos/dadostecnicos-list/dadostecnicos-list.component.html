@@ -55,7 +55,7 @@
   <ng-container matColumnDef="acao">
     <th mat-header-cell *matHeaderCellDef> Ação </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button color="primary" routerLink="/dadostecnicos/edit/{{element.id}}">
+      <button mat-icon-button color="primary" routerLink="/dadostecnicoss/edit/{{ element.id }}">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" (click)="excluirDadosTecnicos(element)">

@@ -11,6 +11,24 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) {}
 
+  // METODO NOVO TESTE
+  findByNome(category: string, pagina: number, tamanhoPagina: number): Observable<Category[]> {
+    const params = {
+      page: pagina.toString(),
+      pageSize: tamanhoPagina.toString()
+    }
+    return this.httpClient.get<Category[]>(`${this.baseUrl}/search/${category}`, {params});
+  }
+
+  count(): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/count`);
+  }
+
+  // teste tambem
+  countByNome(category: string): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/search/${category}/count`);
+  }
+
   findAll(page?: number, pageSize?: number): Observable<Category[]> {
     let params = {};
 
@@ -32,10 +50,11 @@ export class CategoryService {
   }
 
   update(category: Category): Observable<Category> {
-    return this.httpClient.put<Category>(
-      `${this.baseUrl}/${category.id}`,
-      category
-    );
+    const data = {
+      category: category.category,
+      material: category.material
+    }
+    return this.httpClient.put<Category>(`${this.baseUrl}/${category.id}`,data);
   }
 
   delete(category: Category): Observable<any> {
