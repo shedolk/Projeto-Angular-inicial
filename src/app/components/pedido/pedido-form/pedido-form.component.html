@@ -26,7 +26,7 @@
             "
           >
             @if (formGroup.get('dataPedido')?.errors?.['required']) {
-            <span>a data pedido deve ser informado.</span>
+            <span>a data do pedido deve ser informado.</span>
             } @if (formGroup.get('dataPedido')?.errors?.['minlength']) {
             <span>a data pedido deve possuir ao menos 4 caracteres.</span>
             } @if (formGroup.get('dataPedido')?.hasError('apiError')) {
@@ -47,11 +47,19 @@
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
-              formGroup.get('pagamento_id') &&
-              formGroup.get('pagamento_id')?.invalid &&
+              formGroup.get('pagamento_id')?.errors &&
               formGroup.get('pagamento_id')?.touched
             "
-            >O pagamento é obrigatório.</mat-error
+          >
+            @if (formGroup.get('pagamento_id')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('pagamento_id')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('pagamento_id')?.hasError('apiError')) {
+            <span>{{
+              formGroup.get("pagamento_id")?.getError("apiError")
+            }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -67,11 +75,19 @@
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('statusPedido') &&
-              formGroup.get('statusPedido')?.invalid &&
+              formGroup.get('statusPedido')?.errors &&
               formGroup.get('statusPedido')?.touched
             "
-            >o statusPedido é obrigatória.</mat-error
+          >
+            @if (formGroup.get('statusPedido')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('statusPedido')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('statusPedido')?.hasError('apiError')) {
+            <span>{{
+              formGroup.get("statusPedido")?.getError("apiError")
+            }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -84,11 +100,17 @@
           </mat-select>
           <mat-error
             *ngIf="
-              formGroup.get('cupom_id') &&
-              formGroup.get('cupom_id')?.invalid &&
+              formGroup.get('cupom_id')?.errors &&
               formGroup.get('cupom_id')?.touched
             "
-            >O cupom é obrigatório.</mat-error
+          >
+            @if (formGroup.get('cupom_id')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('cupom_id')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('cupom_id')?.hasError('apiError')) {
+            <span>{{ formGroup.get("cupom_id")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -97,16 +119,24 @@
           <input matInput type="text" formControlName="totalPedido" />
           <mat-error
             *ngIf="
-              formGroup.get('totalPedido') &&
-              formGroup.get('totalPedido')?.invalid &&
+              formGroup.get('totalPedido')?.errors &&
               formGroup.get('totalPedido')?.touched
             "
-            >O totalPedido é obrigatório.</mat-error
+          >
+            @if (formGroup.get('totalPedido')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('totalPedido')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('totalPedido')?.hasError('apiError')) {
+            <span>{{
+              formGroup.get("totalPedido")?.getError("apiError")
+            }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Status do pedido</mat-label>
+          <mat-label>Usuario</mat-label>
           <mat-select formControlName="usuario_id">
             @for (usuario of usuarios; track usuario) {
             <mat-option [value]="usuario.id">{{ usuario.nome }}</mat-option>
@@ -115,11 +145,17 @@
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('usuario') &&
-              formGroup.get('usuario')?.invalid &&
-              formGroup.get('usuario')?.touched
+              formGroup.get('usuario_id')?.errors &&
+              formGroup.get('usuario_id')?.touched
             "
-            >o usuário é obrigatória.</mat-error
+          >
+            @if (formGroup.get('usuario_id')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('usuario_id')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('usuario_id')?.hasError('apiError')) {
+            <span>{{ formGroup.get("usuario_id")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->

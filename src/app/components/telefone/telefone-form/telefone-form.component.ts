@@ -5,6 +5,7 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Telefone } from '../../../models/telefone.models';
 import { TelefoneService } from '../../../services/telefone.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-telefone-form',
@@ -53,6 +55,7 @@ export class TelefoneFormComponent {
     });
   }
   salvarTelefone() {
+    this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
       const telefone = this.formGroup.value;
       if (telefone.id == null) {
@@ -91,5 +94,60 @@ export class TelefoneFormComponent {
         });
       }
     }
+  }
+
+  tratarErros(error: HttpErrorResponse) {
+    if (error.status === 400) {
+      // erros relacionados a campos
+      if (error.error?.errors) {
+        error.error.errors.forEach((validationError: any) => {
+          // obs: o fieldName tem o mesmo valor da api
+          const formControl = this.formGroup.get(validationError.fieldName);
+          console.log(validationError);
+          if (formControl) {
+            console.log(formControl);
+            formControl.setErrors({ apiError: validationError.message });
+          }
+        });
+      }
+    } else if (error.status < 400) {
+      // Erro genérico não relacionado a um campo específico.
+      alert(error.error?.message || 'Erro genérico no envio do formulário.');
+    } else if (error.status >= 500) {
+      alert('Erro interno do servidor. Por favor, tente novamente mais tarde.');
+    }
+  }
+
+  errorMessages: { [controlName: string]: { [errorName: string]: string } } = {
+    codigoArea: {
+      required: 'codigoArea deve ser informado.',
+      minlength: 'codigoArea deve possuir ao menos 4 caracteres.',
+    },
+    numero: {
+      required: ' numero deve ser informada.',
+      minlength: ' numero deve possuir 2 caracteres.',
+      // maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+  };
+
+  getErrorMessage(
+    controlName: string,
+    errors: ValidationErrors | null | undefined
+  ): string {
+    if (!errors) {
+      return '';
+    }
+    // retorna a mensagem de erro
+    for (const errorName in errors) {
+      if (
+        errors.hasOwnProperty(errorName) &&
+        this.errorMessages[controlName][errorName]
+      ) {
+        return this.errorMessages[controlName][errorName];
+      }
+    }
+
+    return 'Erro não mapeado (entre em contato com o desenvolvedor)';
   }
 }

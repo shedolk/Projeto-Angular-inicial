@@ -53,6 +53,8 @@ export class EnderecoFormComponent {
     });
   }
   salvarEndereco() {
+    this.formGroup.markAllAsTouched();
+
     if (this.formGroup.valid) {
       const endereco = this.formGroup.value;
       if (endereco.id == null) {

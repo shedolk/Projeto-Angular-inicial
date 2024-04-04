@@ -124,14 +124,20 @@ export class CupomFormComponent {
   }
 
   errorMessages: { [controlName: string]: { [errorName: string]: string } } = {
-    nome: {
+    nomeCupom: {
       required: 'O nome deve ser informado.',
       minlength: 'O nome deve possuir ao menos 4 caracteres.',
     },
-    sigla: {
-      required: 'A sigla deve ser informada.',
-      minlength: 'A sigla deve possuir 2 caracteres.',
-      maxlength: 'A sigla deve possuir 2 caracteres.',
+    dataAplicada: {
+      required: 'A data deve ser informada.',
+      minlength: 'A data deve possuir 2 caracteres.',
+      // maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+    desconto: {
+      required: 'O desconto deve ser informada.',
+      minlength: 'O desconto deve possuir 2 caracteres.',
+      maxlength: 'A desconto deve possuir 50 caracteres.',
       apiError: ' ', // mensagem da api
     },
   };

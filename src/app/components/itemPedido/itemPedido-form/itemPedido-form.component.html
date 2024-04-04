@@ -12,11 +12,17 @@
           <input matInput type="text" formControlName="quantidade" />
           <mat-error
             *ngIf="
-              formGroup.get('quantidade') &&
-              formGroup.get('quantidade')?.invalid &&
+              formGroup.get('quantidade')?.errors &&
               formGroup.get('quantidade')?.touched
             "
-            >A quantidade é obrigatório.</mat-error
+          >
+            @if (formGroup.get('quantidade')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('quantidade')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('quantidade')?.hasError('apiError')) {
+            <span>{{ formGroup.get("quantidade")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -26,11 +32,16 @@
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
-              formGroup.get('preco') &&
-              formGroup.get('preco')?.invalid &&
-              formGroup.get('preco')?.touched
+              formGroup.get('preco')?.errors && formGroup.get('preco')?.touched
             "
-            >O preco é obrigatório.</mat-error
+          >
+            @if (formGroup.get('preco')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('preco')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('preco')?.hasError('apiError')) {
+            <span>{{ formGroup.get("preco")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -40,11 +51,17 @@
           <!-- Validação para o campo de senha -->
           <mat-error
             *ngIf="
-              formGroup.get('productId') &&
-              formGroup.get('productId')?.invalid &&
+              formGroup.get('productId')?.errors &&
               formGroup.get('productId')?.touched
             "
-            >A peca é obrigatória.</mat-error
+          >
+            @if (formGroup.get('productId')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('productId')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('productId')?.hasError('apiError')) {
+            <span>{{ formGroup.get("productId")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -53,11 +70,17 @@
           <input matInput type="text" formControlName="pedidoId" />
           <mat-error
             *ngIf="
-              formGroup.get('pedidoId') &&
-              formGroup.get('pedidoId')?.invalid &&
+              formGroup.get('pedidoId')?.errors &&
               formGroup.get('pedidoId')?.touched
             "
-            >O pedido é obrigatório.</mat-error
+          >
+            @if (formGroup.get('pedidoId')?.errors?.['required']) {
+            <span>a data do pedido deve ser informado.</span>
+            } @if (formGroup.get('pedidoId')?.errors?.['minlength']) {
+            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('pedidoId')?.hasError('apiError')) {
+            <span>{{ formGroup.get("pedidoId")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
 

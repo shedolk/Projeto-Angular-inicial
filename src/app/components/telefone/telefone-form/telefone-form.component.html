@@ -12,11 +12,17 @@
           <input matInput type="text" formControlName="codigoArea" />
           <mat-error
             *ngIf="
-              formGroup.get('codigoArea') &&
-              formGroup.get('codigoArea')?.invalid &&
+              formGroup.get('codigoArea')?.errors &&
               formGroup.get('codigoArea')?.touched
             "
-            >O codigo de Area é obrigatório.</mat-error
+          >
+            @if (formGroup.get('codigoArea')?.errors?.['required']) {
+            <span>codigoArea deve ser informado.</span>
+            } @if (formGroup.get('codigoArea')?.errors?.['minlength']) {
+            <span>codigoArea deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('codigoArea')?.hasError('apiError')) {
+            <span>{{ formGroup.get("codigoArea")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
         <!-- espaço -->
@@ -27,11 +33,17 @@
           <!-- Validação para o campo de login -->
           <mat-error
             *ngIf="
-              formGroup.get('numero') &&
-              formGroup.get('numero')?.invalid &&
+              formGroup.get('numero')?.errors &&
               formGroup.get('numero')?.touched
             "
-            >O numero é obrigatório.</mat-error
+          >
+            @if (formGroup.get('numero')?.errors?.['required']) {
+            <span>numero deve ser informado.</span>
+            } @if (formGroup.get('numero')?.errors?.['minlength']) {
+            <span>numero deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('numero')?.hasError('apiError')) {
+            <span>{{ formGroup.get("numero")?.getError("apiError") }}</span>
+            }</mat-error
           >
         </mat-form-field>
 

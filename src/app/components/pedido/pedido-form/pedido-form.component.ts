@@ -8,6 +8,7 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -27,6 +28,7 @@ import { StatusPedidoService } from '../../../services/statusPedido.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Usuario } from '../../../models/usuario.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-pedido-form',
@@ -95,6 +97,7 @@ export class PedidoFormComponent {
   }
 
   salvarPedido() {
+    this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
       const pedido = this.formGroup.value;
       if (pedido.id == null) {
@@ -133,5 +136,84 @@ export class PedidoFormComponent {
         });
       }
     }
+  }
+
+  tratarErros(error: HttpErrorResponse) {
+    if (error.status === 400) {
+      // erros relacionados a campos
+      if (error.error?.errors) {
+        error.error.errors.forEach((validationError: any) => {
+          // obs: o fieldName tem o mesmo valor da api
+          const formControl = this.formGroup.get(validationError.fieldName);
+          console.log(validationError);
+          if (formControl) {
+            console.log(formControl);
+            formControl.setErrors({ apiError: validationError.message });
+          }
+        });
+      }
+    } else if (error.status < 400) {
+      // Erro genérico não relacionado a um campo específico.
+      alert(error.error?.message || 'Erro genérico no envio do formulário.');
+    } else if (error.status >= 500) {
+      alert('Erro interno do servidor. Por favor, tente novamente mais tarde.');
+    }
+  }
+
+  errorMessages: { [controlName: string]: { [errorName: string]: string } } = {
+    dataPedido: {
+      required: 'dataPedido deve ser informado.',
+      minlength: 'dataPedido deve possuir ao menos 4 caracteres.',
+    },
+    pagamento_id: {
+      required: ' pagamento deve ser informada.',
+      minlength: ' pagamento deve possuir 2 caracteres.',
+      // maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+    statusPedido: {
+      required: 'O statusPedido deve ser informada.',
+      minlength: 'O statusPedido deve possuir 2 caracteres.',
+      maxlength: 'A statusPedido deve possuir 50 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+    cupom_id: {
+      required: ' cupom_id deve ser informada.',
+      minlength: ' cupom_id deve possuir 2 caracteres.',
+      // maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+    totalPedido: {
+      required: ' totalPedido deve ser informada.',
+      minlength: ' totalPedido deve possuir 2 caracteres.',
+      // maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+    usuario_id: {
+      required: ' usuario_id deve ser informada.',
+      minlength: ' usuario_id deve possuir 2 caracteres.',
+      // maxlength: 'A sigla deve possuir 2 caracteres.',
+      apiError: ' ', // mensagem da api
+    },
+  };
+
+  getErrorMessage(
+    controlName: string,
+    errors: ValidationErrors | null | undefined
+  ): string {
+    if (!errors) {
+      return '';
+    }
+    // retorna a mensagem de erro
+    for (const errorName in errors) {
+      if (
+        errors.hasOwnProperty(errorName) &&
+        this.errorMessages[controlName][errorName]
+      ) {
+        return this.errorMessages[controlName][errorName];
+      }
+    }
+
+    return 'Erro não mapeado (entre em contato com o desenvolvedor)';
   }
 }

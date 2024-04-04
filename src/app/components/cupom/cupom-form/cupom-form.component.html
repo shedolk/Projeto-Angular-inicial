@@ -17,7 +17,7 @@
             "
           >
             @if (formGroup.get('nomeCupom')?.errors?.['required']) {
-            <span>O nomeCupom deve ser informado.</span>
+            <span>O nome do cupom deve ser informado.</span>
             } @if (formGroup.get('nomeCupom')?.errors?.['minlength']) {
             <span>O nomeCupom deve possuir ao menos 4 caracteres.</span>
             } @if (formGroup.get('nomeCupom')?.hasError('apiError')) {
@@ -46,9 +46,9 @@
             "
           >
             @if (formGroup.get('dataAplicada')?.errors?.['required']) {
-            <span>O dataAplicada deve ser informado.</span>
+            <span>A data deve ser informado.</span>
             } @if (formGroup.get('dataAplicada')?.errors?.['minlength']) {
-            <span>O dataAplicada deve possuir ao menos 4 caracteres.</span>
+            <span>O dataAplicada deve possuir ao menos 6 caracteres.</span>
             } @if (formGroup.get('dataAplicada')?.hasError('apiError')) {
             <span>{{
               formGroup.get("dataAplicada")?.getError("apiError")
