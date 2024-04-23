@@ -57,7 +57,7 @@ export class CupomFormComponent {
       dataAplicada: [cupom && cupom.dataAplicada ? cupom.dataAplicada : null],
       desconto: [
         cupom && cupom.desconto ? cupom.desconto : '',
-        Validators.compose([Validators.required, Validators.minLength(4)]),
+        Validators.compose([Validators.required, Validators.minLength(2)]),
       ],
     });
   }

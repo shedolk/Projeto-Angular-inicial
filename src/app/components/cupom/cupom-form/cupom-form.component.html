@@ -19,7 +19,7 @@
             @if (formGroup.get('nomeCupom')?.errors?.['required']) {
             <span>O nome do cupom deve ser informado.</span>
             } @if (formGroup.get('nomeCupom')?.errors?.['minlength']) {
-            <span>O nomeCupom deve possuir ao menos 4 caracteres.</span>
+            <span>O nomeCupom deve possuir ao menos 2 caracteres.</span>
             } @if (formGroup.get('nomeCupom')?.hasError('apiError')) {
             <span>{{ formGroup.get("nomeCupom")?.getError("apiError") }}</span>
             }
