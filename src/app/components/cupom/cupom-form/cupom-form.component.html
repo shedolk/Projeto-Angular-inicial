@@ -1,105 +1,100 @@
-<mat-toolbar color="primary" class="toolbar-title"
-  >Cadastro de cupom</mat-toolbar
->
+<mat-sidenav-container class="sidenav-container" style="height: 100%">
+  <mat-sidenav #sidenav mode="over" opened="false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/produtos">Produtos</a>
+      <a mat-list-item routerLink="/enderecos">Endereços</a>
+      <a mat-list-item routerLink="/telefones">Telefones</a>
+      <a mat-list-item routerLink="/pedidos">Pedidos</a>
+      <a mat-list-item routerLink="/usuarios">Meu usuário</a>
+      <!-- Adicione mais links conforme necessário -->
+    </mat-nav-list>
+  </mat-sidenav>
 
-<div class="form-container">
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="formGroup">
-        <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Nome do cupom</mat-label>
-          <input matInput type="text" formControlName="nomeCupom" />
-          <mat-error
-            *ngIf="
-              formGroup.get('nomeCupom')?.errors &&
-              formGroup.get('nomeCupom')?.touched
-            "
-          >
-            @if (formGroup.get('nomeCupom')?.errors?.['required']) {
-            <span>O nome do cupom deve ser informado.</span>
-            } @if (formGroup.get('nomeCupom')?.errors?.['minlength']) {
-            <span>O nomeCupom deve possuir ao menos 2 caracteres.</span>
-            } @if (formGroup.get('nomeCupom')?.hasError('apiError')) {
-            <span>{{ formGroup.get("nomeCupom")?.getError("apiError") }}</span>
-            }
-          </mat-error>
-        </mat-form-field>
-        <!-- espaço -->
-
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Data aplicada</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            formControlName="dataAplicada"
-          />
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error
-            *ngIf="
-              formGroup.get('dataAplicada')?.errors &&
-              formGroup.get('dataAplicada')?.touched
-            "
-          >
-            @if (formGroup.get('dataAplicada')?.errors?.['required']) {
-            <span>A data deve ser informado.</span>
-            } @if (formGroup.get('dataAplicada')?.errors?.['minlength']) {
-            <span>O dataAplicada deve possuir ao menos 6 caracteres.</span>
-            } @if (formGroup.get('dataAplicada')?.hasError('apiError')) {
-            <span>{{
-              formGroup.get("dataAplicada")?.getError("apiError")
-            }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-
-        <!-- espaço -->
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Desconto</mat-label>
-          <input matInput type="text" formControlName="desconto" />
-          <!-- Validação para o campo de senha -->
-          <mat-error
-            *ngIf="
-              formGroup.get('desconto')?.errors &&
-              formGroup.get('desconto')?.touched
-            "
-          >
-            @if (formGroup.get('desconto')?.errors?.['required']) {
-            <span>O desconto deve ser informado.</span>
-            } @if (formGroup.get('desconto')?.errors?.['minlength']) {
-            <span>O desconto deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('desconto')?.hasError('apiError')) {
-            <span>{{ formGroup.get("desconto")?.getError("apiError") }}</span>
-            } >
-          </mat-error>
-        </mat-form-field>
-        <!-- espaço -->
-      </form>
-
-      <!-- espaço -->
-    </mat-card-content>
-
-    <!-- espaço -->
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="salvarCupom()">
-        <!-- [disabled]="formGroup.invalid" -->
-
-        Salvar
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-toolbar-black">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
       </button>
-      <button
-        mat-raised-button
-        *ngIf="formGroup?.get('id')?.value"
-        color="warn"
-        (click)="excluirCupom()"
-        [disabled]="formGroup.invalid"
-      >
-        Excluir
-      </button>
-      <button mat-raised-button routerLink="/cupom">Cancelar</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      <span class="toolbar-title">Cadastro de cupom</span>
+    </mat-toolbar>
+
+    <div class="form-container">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="formGroup">
+            <!-- Espaço -->
+            <mat-form-field appearance="fill" class="full-width-input">
+              <mat-label>Nome do cupom</mat-label>
+              <input matInput type="text" formControlName="nomeCupom" />
+              <mat-error
+                *ngIf="
+                  formGroup.get('nomeCupom')?.errors &&
+                  formGroup.get('nomeCupom')?.touched
+                "
+              >
+                <!-- Validação para o campo de nome do cupom -->
+              </mat-error>
+            </mat-form-field>
+            <!-- Espaço -->
+
+            <mat-form-field appearance="fill" class="full-width-input">
+              <mat-label>Data aplicada</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="dataAplicada"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error
+                *ngIf="
+                  formGroup.get('dataAplicada')?.errors &&
+                  formGroup.get('dataAplicada')?.touched
+                "
+              >
+                <!-- Validação para o campo de data aplicada -->
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Espaço -->
+            <mat-form-field appearance="outline" class="full-width-input">
+              <mat-label>Desconto</mat-label>
+              <input matInput type="text" formControlName="desconto" />
+              <mat-error
+                *ngIf="
+                  formGroup.get('desconto')?.errors &&
+                  formGroup.get('desconto')?.touched
+                "
+              >
+                <!-- Validação para o campo de desconto -->
+              </mat-error>
+            </mat-form-field>
+            <!-- Espaço -->
+          </form>
+          <!-- Espaço -->
+        </mat-card-content>
+
+        <!-- Espaço -->
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="salvarCupom()">
+            Salvar
+          </button>
+          <button
+            mat-raised-button
+            *ngIf="formGroup?.get('id')?.value"
+            color="warn"
+            (click)="excluirCupom()"
+            [disabled]="formGroup.invalid"
+          >
+            Excluir
+          </button>
+          <button mat-raised-button routerLink="/cupom">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

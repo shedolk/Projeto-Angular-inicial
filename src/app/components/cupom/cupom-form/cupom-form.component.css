@@ -1,6 +1,8 @@
-toolbar-title {
+/* Estilos existentes */
+.toolbar-title {
   flex: 1;
   text-align: center;
+  color: white; /* Cor do texto como branco */
 }
 
 .full-width-input {
@@ -28,4 +30,14 @@ button[mat-raised-button] {
 
 button[mat-raised-button]:not(:last-child) {
   margin-right: 1rem;
+}
+
+/* Novas alterações */
+.mat-toolbar-black {
+  background-color: #1e1e1e; /* Cor de fundo preto */
+  color: white; /* Cor do texto como branco */
+}
+
+.mat-toolbar-black button.mat-icon-button {
+  margin-right: 8px; /* Adicionando um espaço entre o ícone do menu e o título */
 }

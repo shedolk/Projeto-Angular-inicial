@@ -1,3 +1,4 @@
+/* Estilos existentes */
 .toolbar-title {
   flex: 1;
   text-align: center;
@@ -9,20 +10,42 @@
   width: 100%;
 }
 
-.mat-column-id {
-  width: 5em;
+.mat-column-id,
+.mat-column-nome,
+.mat-column-sigla,
+.mat-column-acao {
   border-right: 1px solid currentColor;
   padding-right: 24px;
   text-align: center;
 }
-.mat-column-nome {
-  width: 100%;
+
+.mat-column-id {
+  width: 5em;
 }
+
+.mat-column-nome {
+  flex: 1;
+}
+
 .mat-column-sigla {
-  text-align: center;
   min-width: 5em;
 }
+
 .mat-column-acao {
-  text-align: center;
   min-width: 10em;
+}
+
+/* Novas alterações */
+/* Cor da toolbar vermelha */
+.mat-toolbar-black {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+/* Ícone do botão Add em branco */
+.add-button-icon {
+  color: white; /* Definindo a cor do ícone como branca */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }

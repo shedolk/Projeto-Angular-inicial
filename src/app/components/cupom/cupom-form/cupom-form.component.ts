@@ -18,6 +18,9 @@ import { Cupom } from '../../../models/cupom.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cupom-form',
@@ -33,12 +36,16 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatToolbarModule,
     RouterModule,
     MatDatepickerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
   ],
   templateUrl: './cupom-form.component.html',
   styleUrl: './cupom-form.component.css',
 })
 export class CupomFormComponent {
   formGroup: FormGroup;
+  isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
 
   constructor(
     private formBuilder: FormBuilder,
@@ -160,5 +167,9 @@ export class CupomFormComponent {
     }
 
     return 'Erro não mapeado (entre em contato com o desenvolvedor)';
+  }
+
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

@@ -6,9 +6,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Cupom } from '../../../models/cupom.models';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-cupom-list',
@@ -21,6 +23,8 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     MatButtonModule,
     RouterModule,
     MatPaginatorModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   templateUrl: './cupom-list.component.html',
   styleUrl: './cupom-list.component.css',
@@ -39,6 +43,7 @@ export class CupomListComponent implements OnInit {
   totalRecords = 0;
   pageSize = 2;
   page = 0;
+  isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
 
   constructor(
     private cupomService: CupomService,
@@ -76,5 +81,9 @@ export class CupomListComponent implements OnInit {
         console.log('Erro ao Excluir' + JSON.stringify(err));
       },
     });
+  }
+
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }
