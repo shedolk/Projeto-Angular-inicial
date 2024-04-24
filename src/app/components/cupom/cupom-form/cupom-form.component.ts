@@ -21,6 +21,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cupom-form',
@@ -39,6 +40,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    MatSnackBarModule,
   ],
   templateUrl: './cupom-form.component.html',
   styleUrl: './cupom-form.component.css',
@@ -51,7 +53,8 @@ export class CupomFormComponent {
     private formBuilder: FormBuilder,
     private cupomService: CupomService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     const cupom: Cupom = this.activatedRoute.snapshot.data['cupom'];
 
@@ -69,21 +72,53 @@ export class CupomFormComponent {
     });
   }
 
+  // salvarCupom() {
+  //   // marca todos os campos do formulario como 'touched'
+  //   this.formGroup.markAllAsTouched();
+  //   if (this.formGroup.valid) {
+  //     const cupom = this.formGroup.value;
+
+  //     // operacao obtem o retorno de um observable de insert ou update
+  //     const operacao =
+  //       cupom.id == null
+  //         ? this.cupomService.insert(cupom)
+  //         : this.cupomService.update(cupom);
+
+  //     // realiza a operacao e trata a resposta.
+  //     operacao.subscribe({
+  //       next: () => this.router.navigateByUrl('/cupom'),
+
+  //       error: (error: HttpErrorResponse) => {
+  //         console.log('Erro ao salvar' + JSON.stringify(error));
+  //         this.tratarErros(error);
+  //       },
+  //     });
+  //   }
+  // }
+
   salvarCupom() {
-    // marca todos os campos do formulario como 'touched'
+    // Marca todos os campos do formulário como 'touched'
     this.formGroup.markAllAsTouched();
+
+    // Verifica se o formulário é válido
     if (this.formGroup.valid) {
       const cupom = this.formGroup.value;
 
-      // operacao obtem o retorno de um observable de insert ou update
+      // Operação obtém o retorno de um observable de insert ou update
       const operacao =
         cupom.id == null
           ? this.cupomService.insert(cupom)
           : this.cupomService.update(cupom);
 
-      // realiza a operacao e trata a resposta.
+      // Realiza a operação e trata a resposta
       operacao.subscribe({
-        next: () => this.router.navigateByUrl('/cupom'),
+        next: () => {
+          this.router.navigateByUrl('/cupom');
+          // Exibir a snackbar após salvar o cupom
+          this.snackBar.open('Cupom salvo com sucesso!', 'Fechar', {
+            duration: 3000, // Duração da snackbar em milissegundos
+          });
+        },
         error: (error: HttpErrorResponse) => {
           console.log('Erro ao salvar' + JSON.stringify(error));
           this.tratarErros(error);
