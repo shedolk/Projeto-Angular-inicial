@@ -49,3 +49,10 @@
   border: none;
   cursor: pointer;
 }
+
+.back-button {
+  position: absolute;
+  top: 600;
+  left: 0px;
+  margin: 65px; /* Ajuste conforme necessário */
+}

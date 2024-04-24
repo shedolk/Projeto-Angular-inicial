@@ -16,6 +16,13 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
+      <button
+        mat-icon-button
+        class="back-button"
+        [routerLink]="'/rota do inicio '"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
       <div class="flex-container">
         <span class="toolbar-title">Controle de cupons</span>
         <button mat-fab color="accent" routerLink="/cupom/new">
