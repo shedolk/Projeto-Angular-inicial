@@ -50,11 +50,9 @@
   cursor: pointer;
 }
 
-.back-button {
-  position: absolute;
-  top: 600;
-  left: 0px;
-  margin: 65px; /* Ajuste conforme necessário */
+/* Estilos para o botão do menu */
+.menu-button {
+  color: white;
 }
 
 /* Estilos adicionais para o componente UsuarioListComponent */
@@ -110,4 +108,8 @@
 
 .mat-cell button.mat-icon-button:last-child {
   margin-right: 0;
+}
+.menu-button {
+  position: relative;
+  z-index: 999; /* Garante que o botão do menu esteja acima dos outros elementos */
 }
