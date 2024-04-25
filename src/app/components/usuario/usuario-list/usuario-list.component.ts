@@ -1,28 +1,31 @@
 import { UsuarioService } from './../../../services/usuario.service';
-import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../models/usuario.model';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-usuario-list',
   standalone: true,
   imports: [
-    NgFor,
     MatTableModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     RouterModule,
     FormsModule,
+
+    MatSidenavModule,
+    MatListModule, // Importe o MatSidenavModule
   ],
   templateUrl: './usuario-list.component.html',
-  styleUrl: './usuario-list.component.css',
+  styleUrls: ['./usuario-list.component.css'],
 })
 export class UsuarioListComponent implements OnInit {
   displayedColumns: string[] = [
@@ -37,6 +40,7 @@ export class UsuarioListComponent implements OnInit {
     'acao',
   ];
   usuarios: Usuario[] = [];
+  isMenuOpen = false; // Variável para controlar a abertura/fechamento do menu
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 
@@ -56,5 +60,9 @@ export class UsuarioListComponent implements OnInit {
         console.log('Erro ao Excluir' + JSON.stringify(err));
       },
     });
+  }
+
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

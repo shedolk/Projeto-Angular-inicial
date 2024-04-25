@@ -1,6 +1,16 @@
-toolbar-title {
+.mat-toolbar-black {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.mat-toolbar-black button.mat-icon-button {
+  margin-right: 8px;
+}
+
+.toolbar-title {
   flex: 1;
   text-align: center;
+  color: white;
 }
 
 .full-width-input {

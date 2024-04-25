@@ -1,31 +1,32 @@
-import { NgIf } from '@angular/common';
-import { UsuarioService } from './../../../services/usuario.service';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Usuario } from '../../../models/usuario.model';
+import { UsuarioService } from '../../../services/usuario.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import { Usuario } from '../../../models/usuario.model';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { HttpErrorResponse } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-usuario-form',
   standalone: true,
   imports: [
-    NgIf,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -36,9 +37,13 @@ import { HttpErrorResponse } from '@angular/common/http';
     CommonModule,
     FormsModule,
     MatSelectModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
   ],
   templateUrl: './usuario-form.component.html',
-  styleUrl: './usuario-form.component.css',
+  styleUrls: ['./usuario-form.component.css'],
 })
 export class UsuarioFormComponent {
   formGroup: FormGroup;
@@ -47,7 +52,8 @@ export class UsuarioFormComponent {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     const usuario: Usuario = this.activatedRoute.snapshot.data['usuario'];
 
@@ -66,6 +72,7 @@ export class UsuarioFormComponent {
       perfil: [usuario && usuario.perfil ? usuario.perfil.label : ''],
     });
   }
+
   salvarUsuario() {
     this.formGroup.markAllAsTouched();
 
@@ -75,18 +82,26 @@ export class UsuarioFormComponent {
         this.usuarioService.insert(usuario).subscribe({
           next: (usuarioCadastrado) => {
             this.router.navigateByUrl('/usuarios');
+            this.snackBar.open('Usuário cadastrado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
+            this.tratarErros(err);
           },
         });
       } else {
         this.usuarioService.update(usuario).subscribe({
           next: (usuarioAlterado) => {
             this.router.navigateByUrl('/usuarios');
+            this.snackBar.open('Usuário atualizado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
+            this.tratarErros(err);
           },
         });
       }
@@ -100,6 +115,9 @@ export class UsuarioFormComponent {
         this.usuarioService.delete(usuario).subscribe({
           next: () => {
             this.router.navigateByUrl('/usuarios');
+            this.snackBar.open('Usuário excluído com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
@@ -108,6 +126,7 @@ export class UsuarioFormComponent {
       }
     }
   }
+
   tratarErros(error: HttpErrorResponse) {
     if (error.status === 400) {
       // erros relacionados a campos
@@ -124,40 +143,39 @@ export class UsuarioFormComponent {
       }
     } else if (error.status < 400) {
       // Erro genérico não relacionado a um campo específico.
-      alert(error.error?.message || 'Erro genérico no envio do formulário.');
+      this.snackBar.open(
+        error.error?.message || 'Erro genérico no envio do formulário.',
+        'Fechar',
+        {
+          duration: 3000,
+        }
+      );
     } else if (error.status >= 500) {
-      alert('Erro interno do servidor. Por favor, tente novamente mais tarde.');
+      this.snackBar.open(
+        'Erro interno do servidor. Por favor, tente novamente mais tarde.',
+        'Fechar',
+        {
+          duration: 3000,
+        }
+      );
     }
   }
 
   errorMessages: { [controlName: string]: { [errorName: string]: string } } = {
     nome: {
-      required: 'nome deve ser informado.',
-      minlength: 'nome deve possuir ao menos 4 caracteres.',
+      required: 'O nome deve ser informado.',
     },
     login: {
-      required: ' login deve ser informada.',
-      minlength: ' login deve possuir 2 caracteres.',
-      // maxlength: 'A sigla deve possuir 2 caracteres.',
-      apiError: ' ', // mensagem da api
+      required: 'O login deve ser informado.',
     },
     senha: {
-      required: 'O senha deve ser informada.',
-      minlength: 'O senha deve possuir 2 caracteres.',
-      maxlength: 'A senha deve possuir 50 caracteres.',
-      apiError: ' ', // mensagem da api
+      required: 'A senha deve ser informada.',
     },
     cpf: {
-      required: ' cpf deve ser informada.',
-      minlength: ' cpf deve possuir 2 caracteres.',
-      // maxlength: 'A sigla deve possuir 2 caracteres.',
-      apiError: ' ', // mensagem da api
+      required: 'O CPF deve ser informado.',
     },
     perfil: {
-      required: ' perfil deve ser informada.',
-      minlength: ' perfil deve possuir 2 caracteres.',
-      // maxlength: 'A sigla deve possuir 2 caracteres.',
-      apiError: ' ', // mensagem da api
+      required: 'O perfil deve ser informado.',
     },
   };
 
