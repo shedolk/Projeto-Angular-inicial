@@ -78,20 +78,6 @@
               </mat-error>
             </mat-form-field>
 
-            <!-- Input para o campo Perfil -->
-            <!-- <mat-form-field appearance="outline" class="full-width-input">
-              <mat-label>Perfil</mat-label>
-              <input matInput type="text" formControlName="perfil" />
-              <mat-error
-                *ngIf="
-                  formGroup.get('perfil')?.errors &&
-                  formGroup.get('perfil')?.touched
-                "
-              >
-                {{ getErrorMessage("perfil", formGroup.get("perfil")?.errors) }}
-              </mat-error>
-            </mat-form-field> -->
-
             <mat-form-field appearance="outline" class="full-width-input">
               <mat-label>Perfil</mat-label>
               <mat-select formControlName="perfil">
@@ -112,8 +98,8 @@
                 <span>a data pedido deve possuir ao menos 4 caracteres.</span>
                 } @if (formGroup.get('perfil')?.hasError('apiError')) {
                 <span>{{ formGroup.get("perfil")?.getError("apiError") }}</span>
-                }</mat-error
-              >
+                }
+              </mat-error>
             </mat-form-field>
 
             <!-- Botões de ação -->
