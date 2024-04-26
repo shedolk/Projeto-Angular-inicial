@@ -79,7 +79,7 @@
             </mat-form-field>
 
             <!-- Input para o campo Perfil -->
-            <mat-form-field appearance="outline" class="full-width-input">
+            <!-- <mat-form-field appearance="outline" class="full-width-input">
               <mat-label>Perfil</mat-label>
               <input matInput type="text" formControlName="perfil" />
               <mat-error
@@ -90,6 +90,30 @@
               >
                 {{ getErrorMessage("perfil", formGroup.get("perfil")?.errors) }}
               </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="outline" class="full-width-input">
+              <mat-label>Perfil</mat-label>
+              <mat-select formControlName="perfil">
+                @for (perfil of perfils; track perfil) {
+                <mat-option [value]="perfil.id">{{ perfil.label }}</mat-option>
+                }
+              </mat-select>
+              <!-- Validação para o campo de login -->
+              <mat-error
+                *ngIf="
+                  formGroup.get('perfil')?.errors &&
+                  formGroup.get('perfil')?.touched
+                "
+              >
+                @if (formGroup.get('perfil')?.errors?.['required']) {
+                <span>a data do pedido deve ser informado.</span>
+                } @if (formGroup.get('perfil')?.errors?.['minlength']) {
+                <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('perfil')?.hasError('apiError')) {
+                <span>{{ formGroup.get("perfil")?.getError("apiError") }}</span>
+                }</mat-error
+              >
             </mat-form-field>
 
             <!-- Botões de ação -->

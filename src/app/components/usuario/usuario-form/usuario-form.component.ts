@@ -22,6 +22,8 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { Perfil } from '../../../models/perfil.models';
+import { PerfilService } from '../../../services/perfil.service';
 
 @Component({
   selector: 'app-usuario-form',
@@ -47,13 +49,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class UsuarioFormComponent {
   formGroup: FormGroup;
+  perfils: Perfil[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private PerfilService: PerfilService
   ) {
     const usuario: Usuario = this.activatedRoute.snapshot.data['usuario'];
 
@@ -70,6 +74,12 @@ export class UsuarioFormComponent {
       ],
       cpf: [usuario && usuario.cpf ? usuario.cpf : '', Validators.required],
       perfil: [usuario && usuario.perfil ? usuario.perfil.label : ''],
+    });
+  }
+
+  ngOnInit(): void {
+    this.PerfilService.findAll().subscribe((data) => {
+      this.perfils = data;
     });
   }
 
