@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Pedido } from '../../../models/pedido.models';
 import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-pedido-list',
@@ -21,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     RouterModule,
     MatListModule,
+    MatSidenavModule,
   ],
   templateUrl: './pedido-list.component.html',
   styleUrl: './pedido-list.component.css',
@@ -37,6 +39,7 @@ export class PedidoListComponent implements OnInit {
     'acao',
   ];
   pedidos: Pedido[] = [];
+  isMenuOpen = false;
 
   idUsuario: String;
 
@@ -64,5 +67,9 @@ export class PedidoListComponent implements OnInit {
         console.log('Erro ao Excluir' + JSON.stringify(err));
       },
     });
+  }
+
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

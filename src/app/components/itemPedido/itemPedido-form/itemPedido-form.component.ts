@@ -16,6 +16,9 @@ import { MatCardModule } from '@angular/material/card';
 import { ItemPedido } from '../../../models/itemPedido.models';
 import { ItemPedidoService } from '../../../services/itemPedido.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-itempedido-form',
@@ -29,12 +32,16 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatCardModule,
     MatToolbarModule,
     RouterModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
   ],
   templateUrl: './itempedido-form.component.html',
   styleUrl: './itempedido-form.component.css',
 })
 export class ItemPedidoFormComponent {
   formGroup: FormGroup;
+  isMenuOpen = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -166,5 +173,8 @@ export class ItemPedidoFormComponent {
     }
 
     return 'Erro não mapeado (entre em contato com o desenvolvedor)';
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

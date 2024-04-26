@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-usuario-list',
@@ -20,9 +21,10 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     RouterModule,
     FormsModule,
+    MatPaginatorModule,
 
     MatSidenavModule,
-    MatListModule, // Importe o MatSidenavModule
+    MatListModule,
   ],
   templateUrl: './usuario-list.component.html',
   styleUrls: ['./usuario-list.component.css'],
@@ -40,7 +42,7 @@ export class UsuarioListComponent implements OnInit {
     'acao',
   ];
   usuarios: Usuario[] = [];
-  isMenuOpen = false; // Variável para controlar a abertura/fechamento do menu
+  isMenuOpen = false;
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 

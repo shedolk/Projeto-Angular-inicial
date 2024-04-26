@@ -26,3 +26,7 @@
   text-align: center;
   min-width: 10em;
 }
+.mat-toolbar {
+  background-color: #1e1e1e;
+  color: white;
+}

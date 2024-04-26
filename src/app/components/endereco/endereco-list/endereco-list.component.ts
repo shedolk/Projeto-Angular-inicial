@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Endereco } from '../../../models/endereco.models';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-endereco-list',
@@ -19,6 +22,9 @@ import { Endereco } from '../../../models/endereco.models';
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   templateUrl: './endereco-list.component.html',
   styleUrl: './endereco-list.component.css',
@@ -34,6 +40,7 @@ export class EnderecoListComponent implements OnInit {
     'acao',
   ];
   enderecos: Endereco[] = [];
+  isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
 
   idUsuario: String;
 
@@ -61,5 +68,8 @@ export class EnderecoListComponent implements OnInit {
         console.log('Erro ao Excluir' + JSON.stringify(err));
       },
     });
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

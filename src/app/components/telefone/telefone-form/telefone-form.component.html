@@ -1,74 +1,95 @@
-<mat-toolbar color="primary" class="toolbar-title"
-  >Cadastro de telefone</mat-toolbar
+<mat-sidenav-container class="sidenav-container" style="height: 100%">
+  <mat-sidenav #sidenav mode="over" opened="false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/produtos">Produtos</a>
+      <a mat-list-item routerLink="/enderecos">Endereços</a>
+      <a mat-list-item routerLink="/telefones">Telefones</a>
+      <a mat-list-item routerLink="/pedidos">Pedidos</a>
+      <a mat-list-item routerLink="/usuarios">Meu usuário</a>
+      <!-- Adicione mais links conforme necessário -->
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-toolbar-black">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Cadastro de telefones</span>
+    </mat-toolbar>
+
+    <div class="form-container">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="formGroup">
+            <!-- espaço -->
+            <mat-form-field appearance="fill" class="full-width-input">
+              <mat-label>Codigo de area</mat-label>
+              <input matInput type="text" formControlName="codigoArea" />
+              <mat-error
+                *ngIf="
+                  formGroup.get('codigoArea')?.errors &&
+                  formGroup.get('codigoArea')?.touched
+                "
+              >
+                @if (formGroup.get('codigoArea')?.errors?.['required']) {
+                <span>codigoArea deve ser informado.</span>
+                } @if (formGroup.get('codigoArea')?.errors?.['minlength']) {
+                <span>codigoArea deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('codigoArea')?.hasError('apiError')) {
+                <span>{{
+                  formGroup.get("codigoArea")?.getError("apiError")
+                }}</span>
+                }</mat-error
+              >
+            </mat-form-field>
+            <!-- espaço -->
+
+            <mat-form-field appearance="outline" class="full-width-input">
+              <mat-label>Numero</mat-label>
+              <input matInput type="text" formControlName="numero" />
+              <!-- Validação para o campo de login -->
+              <mat-error
+                *ngIf="
+                  formGroup.get('numero')?.errors &&
+                  formGroup.get('numero')?.touched
+                "
+              >
+                @if (formGroup.get('numero')?.errors?.['required']) {
+                <span>numero deve ser informado.</span>
+                } @if (formGroup.get('numero')?.errors?.['minlength']) {
+                <span>numero deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('numero')?.hasError('apiError')) {
+                <span>{{ formGroup.get("numero")?.getError("apiError") }}</span>
+                }</mat-error
+              >
+            </mat-form-field>
+
+            <!-- espaço -->
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="salvarTelefone()"
+            [disabled]="formGroup.invalid"
+          >
+            Salvar
+          </button>
+          <button
+            mat-raised-button
+            *ngIf="formGroup?.get('id')?.value"
+            color="warn"
+            (click)="excluirTelefone()"
+            [disabled]="formGroup.invalid"
+          >
+            Excluir
+          </button>
+          <button mat-raised-button routerLink="/telefones">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-sidenav-content></mat-sidenav-container
 >
-
-<div class="form-container">
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="formGroup">
-        <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>Codigo de area</mat-label>
-          <input matInput type="text" formControlName="codigoArea" />
-          <mat-error
-            *ngIf="
-              formGroup.get('codigoArea')?.errors &&
-              formGroup.get('codigoArea')?.touched
-            "
-          >
-            @if (formGroup.get('codigoArea')?.errors?.['required']) {
-            <span>codigoArea deve ser informado.</span>
-            } @if (formGroup.get('codigoArea')?.errors?.['minlength']) {
-            <span>codigoArea deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('codigoArea')?.hasError('apiError')) {
-            <span>{{ formGroup.get("codigoArea")?.getError("apiError") }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-        <!-- espaço -->
-
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>Numero</mat-label>
-          <input matInput type="text" formControlName="numero" />
-          <!-- Validação para o campo de login -->
-          <mat-error
-            *ngIf="
-              formGroup.get('numero')?.errors &&
-              formGroup.get('numero')?.touched
-            "
-          >
-            @if (formGroup.get('numero')?.errors?.['required']) {
-            <span>numero deve ser informado.</span>
-            } @if (formGroup.get('numero')?.errors?.['minlength']) {
-            <span>numero deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('numero')?.hasError('apiError')) {
-            <span>{{ formGroup.get("numero")?.getError("apiError") }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-
-        <!-- espaço -->
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="salvarTelefone()"
-        [disabled]="formGroup.invalid"
-      >
-        Salvar
-      </button>
-      <button
-        mat-raised-button
-        *ngIf="formGroup?.get('id')?.value"
-        color="warn"
-        (click)="excluirTelefone()"
-        [disabled]="formGroup.invalid"
-      >
-        Excluir
-      </button>
-      <button mat-raised-button routerLink="/telefones">Cancelar</button>
-    </mat-card-actions>
-  </mat-card>
-</div>

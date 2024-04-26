@@ -29,6 +29,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Usuario } from '../../../models/usuario.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-pedido-form',
@@ -45,6 +48,9 @@ import { HttpErrorResponse } from '@angular/common/http';
     RouterModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   templateUrl: './pedido-form.component.html',
   styleUrl: './pedido-form.component.css',
@@ -55,6 +61,7 @@ export class PedidoFormComponent {
   statusPedidos: StatusPedido[] = [];
   cupons: Cupom[] = [];
   usuarios: Usuario[] = [];
+  isMenuOpen = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -215,5 +222,8 @@ export class PedidoFormComponent {
     }
 
     return 'Erro não mapeado (entre em contato com o desenvolvedor)';
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

@@ -9,6 +9,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ItemPedido } from '../../../models/itemPedido.models';
 import { ItemPedidoService } from '../../../services/itemPedido.service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-itempedido-list',
@@ -21,6 +23,8 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     MatButtonModule,
     RouterModule,
     MatPaginatorModule,
+    MatListModule,
+    MatSidenavModule,
   ],
   templateUrl: './itempedido-list.component.html',
   styleUrl: './itempedido-list.component.css',
@@ -40,6 +44,7 @@ export class ItemPedidoListComponent implements OnInit {
   totalRecords = 0;
   pageSize = 2;
   page = 0;
+  isMenuOpen = false;
 
   constructor(
     private itempedidoService: ItemPedidoService,
@@ -78,5 +83,8 @@ export class ItemPedidoListComponent implements OnInit {
         console.log('Erro ao Excluir' + JSON.stringify(err));
       },
     });
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

@@ -17,6 +17,11 @@ import { MatCardModule } from '@angular/material/card';
 import { Telefone } from '../../../models/telefone.models';
 import { TelefoneService } from '../../../services/telefone.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-telefone-form',
@@ -30,12 +35,18 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatCardModule,
     MatToolbarModule,
     RouterModule,
+    MatDatepickerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   templateUrl: './telefone-form.component.html',
   styleUrl: './telefone-form.component.css',
 })
 export class TelefoneFormComponent {
   formGroup: FormGroup;
+  isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
 
   constructor(
     private formBuilder: FormBuilder,
@@ -149,5 +160,8 @@ export class TelefoneFormComponent {
     }
 
     return 'Erro não mapeado (entre em contato com o desenvolvedor)';
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

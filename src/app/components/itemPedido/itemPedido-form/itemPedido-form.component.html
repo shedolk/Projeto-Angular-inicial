@@ -1,115 +1,141 @@
-<mat-toolbar color="primary" class="toolbar-title"
-  >Cadastro de itens Pedidos</mat-toolbar
+<mat-sidenav-container class="sidenav-container" style="height: 100%">
+  <mat-sidenav #sidenav mode="over" opened="false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/produtos">Produtos</a>
+      <a mat-list-item routerLink="/enderecos">Endereços</a>
+      <a mat-list-item routerLink="/telefones">Telefones</a>
+      <a mat-list-item routerLink="/pedidos">Pedidos</a>
+      <a mat-list-item routerLink="/usuarios">Meu usuário</a>
+      <!-- Adicione mais links conforme necessário -->
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-toolbar-black">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Cadastro de itens</span>
+    </mat-toolbar>
+
+    <div class="form-container">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="formGroup">
+            <!-- espaço -->
+            <mat-form-field appearance="fill" class="full-width-input">
+              <mat-label>quantidade</mat-label>
+              <input matInput type="text" formControlName="quantidade" />
+              <mat-error
+                *ngIf="
+                  formGroup.get('quantidade')?.errors &&
+                  formGroup.get('quantidade')?.touched
+                "
+              >
+                @if (formGroup.get('quantidade')?.errors?.['required']) {
+                <span>a data do pedido deve ser informado.</span>
+                } @if (formGroup.get('quantidade')?.errors?.['minlength']) {
+                <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('quantidade')?.hasError('apiError')) {
+                <span>{{
+                  formGroup.get("quantidade")?.getError("apiError")
+                }}</span>
+                }</mat-error
+              >
+            </mat-form-field>
+            <!-- espaço -->
+            <mat-form-field appearance="outline" class="full-width-input">
+              <mat-label>preco</mat-label>
+              <input matInput type="text" formControlName="preco" />
+              <!-- Validação para o campo de login -->
+              <mat-error
+                *ngIf="
+                  formGroup.get('preco')?.errors &&
+                  formGroup.get('preco')?.touched
+                "
+              >
+                @if (formGroup.get('preco')?.errors?.['required']) {
+                <span>a data do pedido deve ser informado.</span>
+                } @if (formGroup.get('preco')?.errors?.['minlength']) {
+                <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('preco')?.hasError('apiError')) {
+                <span>{{ formGroup.get("preco")?.getError("apiError") }}</span>
+                }</mat-error
+              >
+            </mat-form-field>
+            <!-- espaço -->
+            <mat-form-field appearance="outline" class="full-width-input">
+              <mat-label>product</mat-label>
+              <input matInput type="text" formControlName="productId" />
+              <!-- Validação para o campo de senha -->
+              <mat-error
+                *ngIf="
+                  formGroup.get('productId')?.errors &&
+                  formGroup.get('productId')?.touched
+                "
+              >
+                @if (formGroup.get('productId')?.errors?.['required']) {
+                <span>a data do pedido deve ser informado.</span>
+                } @if (formGroup.get('productId')?.errors?.['minlength']) {
+                <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('productId')?.hasError('apiError')) {
+                <span>{{
+                  formGroup.get("productId")?.getError("apiError")
+                }}</span>
+                }</mat-error
+              >
+            </mat-form-field>
+            <!-- espaço -->
+            <mat-form-field appearance="fill" class="full-width-input">
+              <mat-label>pedido</mat-label>
+              <input matInput type="text" formControlName="pedidoId" />
+              <mat-error
+                *ngIf="
+                  formGroup.get('pedidoId')?.errors &&
+                  formGroup.get('pedidoId')?.touched
+                "
+              >
+                @if (formGroup.get('pedidoId')?.errors?.['required']) {
+                <span>a data do pedido deve ser informado.</span>
+                } @if (formGroup.get('pedidoId')?.errors?.['minlength']) {
+                <span>a data pedido deve possuir ao menos 4 caracteres.</span>
+                } @if (formGroup.get('pedidoId')?.hasError('apiError')) {
+                <span>{{
+                  formGroup.get("pedidoId")?.getError("apiError")
+                }}</span>
+                }</mat-error
+              >
+            </mat-form-field>
+
+            <!-- espaço -->
+          </form>
+
+          <!-- espaço -->
+        </mat-card-content>
+
+        <!-- espaço -->
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="salvarItemPedido()"
+            [disabled]="formGroup.invalid"
+          >
+            Salvar
+          </button>
+          <button
+            mat-raised-button
+            *ngIf="formGroup?.get('id')?.value"
+            color="warn"
+            (click)="excluirItemPedido()"
+            [disabled]="formGroup.invalid"
+          >
+            Excluir
+          </button>
+          <button mat-raised-button routerLink="/itenspedidos">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-sidenav-content></mat-sidenav-container
 >
-
-<div class="form-container">
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="formGroup">
-        <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>quantidade</mat-label>
-          <input matInput type="text" formControlName="quantidade" />
-          <mat-error
-            *ngIf="
-              formGroup.get('quantidade')?.errors &&
-              formGroup.get('quantidade')?.touched
-            "
-          >
-            @if (formGroup.get('quantidade')?.errors?.['required']) {
-            <span>a data do pedido deve ser informado.</span>
-            } @if (formGroup.get('quantidade')?.errors?.['minlength']) {
-            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('quantidade')?.hasError('apiError')) {
-            <span>{{ formGroup.get("quantidade")?.getError("apiError") }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-        <!-- espaço -->
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>preco</mat-label>
-          <input matInput type="text" formControlName="preco" />
-          <!-- Validação para o campo de login -->
-          <mat-error
-            *ngIf="
-              formGroup.get('preco')?.errors && formGroup.get('preco')?.touched
-            "
-          >
-            @if (formGroup.get('preco')?.errors?.['required']) {
-            <span>a data do pedido deve ser informado.</span>
-            } @if (formGroup.get('preco')?.errors?.['minlength']) {
-            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('preco')?.hasError('apiError')) {
-            <span>{{ formGroup.get("preco")?.getError("apiError") }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-        <!-- espaço -->
-        <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>product</mat-label>
-          <input matInput type="text" formControlName="productId" />
-          <!-- Validação para o campo de senha -->
-          <mat-error
-            *ngIf="
-              formGroup.get('productId')?.errors &&
-              formGroup.get('productId')?.touched
-            "
-          >
-            @if (formGroup.get('productId')?.errors?.['required']) {
-            <span>a data do pedido deve ser informado.</span>
-            } @if (formGroup.get('productId')?.errors?.['minlength']) {
-            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('productId')?.hasError('apiError')) {
-            <span>{{ formGroup.get("productId")?.getError("apiError") }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-        <!-- espaço -->
-        <mat-form-field appearance="fill" class="full-width-input">
-          <mat-label>pedido</mat-label>
-          <input matInput type="text" formControlName="pedidoId" />
-          <mat-error
-            *ngIf="
-              formGroup.get('pedidoId')?.errors &&
-              formGroup.get('pedidoId')?.touched
-            "
-          >
-            @if (formGroup.get('pedidoId')?.errors?.['required']) {
-            <span>a data do pedido deve ser informado.</span>
-            } @if (formGroup.get('pedidoId')?.errors?.['minlength']) {
-            <span>a data pedido deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('pedidoId')?.hasError('apiError')) {
-            <span>{{ formGroup.get("pedidoId")?.getError("apiError") }}</span>
-            }</mat-error
-          >
-        </mat-form-field>
-
-        <!-- espaço -->
-      </form>
-
-      <!-- espaço -->
-    </mat-card-content>
-
-    <!-- espaço -->
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="salvarItemPedido()"
-        [disabled]="formGroup.invalid"
-      >
-        Salvar
-      </button>
-      <button
-        mat-raised-button
-        *ngIf="formGroup?.get('id')?.value"
-        color="warn"
-        (click)="excluirItemPedido()"
-        [disabled]="formGroup.invalid"
-      >
-        Excluir
-      </button>
-      <button mat-raised-button routerLink="/itenspedidos">Cancelar</button>
-    </mat-card-actions>
-  </mat-card>
-</div>

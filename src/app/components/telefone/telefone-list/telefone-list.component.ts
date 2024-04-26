@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Telefone } from '../../../models/telefone.models';
 import { TelefoneService } from '../../../services/telefone.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-telefone-list',
@@ -19,6 +22,9 @@ import { TelefoneService } from '../../../services/telefone.service';
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   templateUrl: './telefone-list.component.html',
   styleUrl: './telefone-list.component.css',
@@ -26,6 +32,7 @@ import { TelefoneService } from '../../../services/telefone.service';
 export class TelefoneListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'codigoArea', 'numero', 'acao'];
   telefones: Telefone[] = [];
+  isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
 
   idUsuario: String;
 
@@ -53,5 +60,8 @@ export class TelefoneListComponent implements OnInit {
         console.log('Erro ao Excluir' + JSON.stringify(err));
       },
     });
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

@@ -14,6 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { Endereco } from '../../../models/endereco.models';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-endereco-form',
@@ -27,12 +32,18 @@ import { Endereco } from '../../../models/endereco.models';
     MatCardModule,
     MatToolbarModule,
     RouterModule,
+    MatDatepickerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   templateUrl: './endereco-form.component.html',
   styleUrl: './endereco-form.component.css',
 })
 export class EnderecoFormComponent {
   formGroup: FormGroup;
+  isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
 
   constructor(
     private formBuilder: FormBuilder,
@@ -93,5 +104,8 @@ export class EnderecoFormComponent {
         });
       }
     }
+  }
+  toggleSidebar(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

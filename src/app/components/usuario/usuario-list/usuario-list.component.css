@@ -113,3 +113,6 @@
   position: relative;
   z-index: 999; /* Garante que o botão do menu esteja acima dos outros elementos */
 }
+.mat-cell {
+  box-sizing: content-box; /* Redefine a formatação de caixa para conteúdo apenas */
+}

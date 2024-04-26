@@ -1,69 +1,99 @@
-<mat-toolbar color="primary">
-  <div class="flex-container">
-    <span class="toolbar-title">Controle de Itens Pedido</span>
-    <button mat-fab color="accent" routerLink="/itenspedidos/new">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" [opened]="isMenuOpen">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/produtos">Produtos</a>
+      <a mat-list-item routerLink="/enderecos">Endereços</a>
+      <a mat-list-item routerLink="/telefones">Telefones</a>
+      <a mat-list-item routerLink="/usuarios">Meu usuário</a>
+      <a mat-list-item routerLink="/pedidos">Pedidos</a>
+      <a mat-list-item routerLink="/cupom">Meus cupons</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<table mat-table [dataSource]="itempedidos" class="mat-elevation-z8">
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-  </ng-container>
-
-  <!-- Rua Column -->
-  <ng-container matColumnDef="quantidade">
-    <th mat-header-cell *matHeaderCellDef>quantidade</th>
-    <td mat-cell *matCellDef="let element">{{ element.quantidade }}</td>
-  </ng-container>
-
-  <!-- Número da Casa Column -->
-  <ng-container matColumnDef="preco">
-    <th mat-header-cell *matHeaderCellDef>preco</th>
-    <td mat-cell *matCellDef="let element">{{ element.preco }}</td>
-  </ng-container>
-
-  <!-- Cidade Column -->
-  <ng-container matColumnDef="product">
-    <th mat-header-cell *matHeaderCellDef>Produto</th>
-    <td mat-cell *matCellDef="let element">{{ element.product.nome }}</td>
-  </ng-container>
-
-  <!-- Estado Column -->
-  <ng-container matColumnDef="pedido">
-    <th mat-header-cell *matHeaderCellDef>pedido</th>
-    <td mat-cell *matCellDef="let element">{{ element.pedido.id }}</td>
-  </ng-container>
-
-  <!-- Ação Column -->
-  <ng-container matColumnDef="acao">
-    <th mat-header-cell *matHeaderCellDef>Ação</th>
-    <td mat-cell *matCellDef="let element">
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button class="menu-button" (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
       <button
         mat-icon-button
-        color="primary"
-        routerLink="/itenspedidos/edit/{{ element.id }}"
+        class="back-button"
+        [routerLink]="'/itenspedidos/new'"
       >
-        <mat-icon>edit</mat-icon>
+        <mat-icon>chevron_left</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="excluirItemPedido(element)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+      <div class="flex-container">
+        <span class="toolbar-title">Controle de itens do pedido</span>
+        <button mat-fab color="accent" routerLink="/itenspedidos/new">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <!-- Adicionando o botão de adicionar cupom -->
+    </mat-toolbar>
 
-  <!-- Definição das colunas a serem exibidas -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <table mat-table [dataSource]="itempedidos" class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
 
-<mat-paginator
-  [pageSizeOptions]="[2, 4, 8, 16]"
-  [pageSize]="pageSize"
-  [length]="totalRecords"
-  (page)="paginar($event)"
->
-</mat-paginator>
+      <!-- Rua Column -->
+      <ng-container matColumnDef="quantidade">
+        <th mat-header-cell *matHeaderCellDef>quantidade</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantidade }}</td>
+      </ng-container>
+
+      <!-- Número da Casa Column -->
+      <ng-container matColumnDef="preco">
+        <th mat-header-cell *matHeaderCellDef>preco</th>
+        <td mat-cell *matCellDef="let element">{{ element.preco }}</td>
+      </ng-container>
+
+      <!-- Cidade Column -->
+      <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef>Produto</th>
+        <td mat-cell *matCellDef="let element">{{ element.product.nome }}</td>
+      </ng-container>
+
+      <!-- Estado Column -->
+      <ng-container matColumnDef="pedido">
+        <th mat-header-cell *matHeaderCellDef>pedido</th>
+        <td mat-cell *matCellDef="let element">{{ element.pedido.id }}</td>
+      </ng-container>
+
+      <!-- Ação Column -->
+      <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef>Ação</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="primary"
+            routerLink="/itenspedidos/edit/{{ element.id }}"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="excluirItemPedido(element)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Definição das colunas a serem exibidas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[2, 4, 8, 16]"
+      [pageSize]="pageSize"
+      [length]="totalRecords"
+      (page)="paginar($event)"
+    >
+    </mat-paginator> </mat-sidenav-content
+></mat-sidenav-container>
