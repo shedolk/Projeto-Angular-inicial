@@ -206,6 +206,6 @@ export class UsuarioFormComponent {
       }
     }
 
-    return 'Erro não mapeado (entre em contato com o desenvolvedor)';
+    return 'Login já existe , coloque outro.)';
   }
 }

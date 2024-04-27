@@ -18,7 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-endereco-form',
@@ -49,7 +49,8 @@ export class EnderecoFormComponent {
     private formBuilder: FormBuilder,
     private enderecoService: EnderecoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     const endereco: Endereco = this.activatedRoute.snapshot.data['endereco'];
 
@@ -72,6 +73,9 @@ export class EnderecoFormComponent {
         this.enderecoService.insert(endereco).subscribe({
           next: (enderecoCadastrado) => {
             this.router.navigateByUrl('/enderecos');
+            this.snackBar.open('Endereço adicionado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -81,6 +85,9 @@ export class EnderecoFormComponent {
         this.enderecoService.update(endereco).subscribe({
           next: (enderecoAlterado) => {
             this.router.navigateByUrl('/enderecos');
+            this.snackBar.open('Endereço atualizado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -97,6 +104,9 @@ export class EnderecoFormComponent {
         this.enderecoService.delete(endereco).subscribe({
           next: () => {
             this.router.navigateByUrl('/enderecos');
+            this.snackBar.open('Endereço excluido com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

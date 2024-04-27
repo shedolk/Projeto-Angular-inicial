@@ -72,30 +72,6 @@ export class CupomFormComponent {
     });
   }
 
-  // salvarCupom() {
-  //   // marca todos os campos do formulario como 'touched'
-  //   this.formGroup.markAllAsTouched();
-  //   if (this.formGroup.valid) {
-  //     const cupom = this.formGroup.value;
-
-  //     // operacao obtem o retorno de um observable de insert ou update
-  //     const operacao =
-  //       cupom.id == null
-  //         ? this.cupomService.insert(cupom)
-  //         : this.cupomService.update(cupom);
-
-  //     // realiza a operacao e trata a resposta.
-  //     operacao.subscribe({
-  //       next: () => this.router.navigateByUrl('/cupom'),
-
-  //       error: (error: HttpErrorResponse) => {
-  //         console.log('Erro ao salvar' + JSON.stringify(error));
-  //         this.tratarErros(error);
-  //       },
-  //     });
-  //   }
-  // }
-
   salvarCupom() {
     // Marca todos os campos do formulário como 'touched'
     this.formGroup.markAllAsTouched();
@@ -114,9 +90,8 @@ export class CupomFormComponent {
       operacao.subscribe({
         next: () => {
           this.router.navigateByUrl('/cupom');
-          // Exibir a snackbar após salvar o cupom
           this.snackBar.open('Cupom salvo com sucesso!', 'Fechar', {
-            duration: 3000, // Duração da snackbar em milissegundos
+            duration: 3000,
           });
         },
         error: (error: HttpErrorResponse) => {
@@ -134,6 +109,9 @@ export class CupomFormComponent {
         this.cupomService.delete(cupom).subscribe({
           next: () => {
             this.router.navigateByUrl('/cupom');
+            this.snackBar.open('Cupom excluido com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

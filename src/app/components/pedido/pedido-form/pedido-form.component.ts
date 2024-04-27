@@ -32,6 +32,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pedido-form',
@@ -71,7 +72,8 @@ export class PedidoFormComponent {
     private CupomService: CupomService,
     private PagamentoService: PagamentoService,
     private StatusPedidoService: StatusPedidoService,
-    private UsuarioService: UsuarioService
+    private UsuarioService: UsuarioService,
+    private snackBar: MatSnackBar
   ) {
     const pedido: Pedido = this.activatedRoute.snapshot.data['pedido'];
 
@@ -111,6 +113,9 @@ export class PedidoFormComponent {
         this.pedidoService.insert(pedido).subscribe({
           next: (pedidoCadastrado) => {
             this.router.navigateByUrl('/pedidos');
+            this.snackBar.open('Pedido realizado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -120,6 +125,9 @@ export class PedidoFormComponent {
         this.pedidoService.update(pedido).subscribe({
           next: (pedidoAlterado) => {
             this.router.navigateByUrl('/pedidos');
+            this.snackBar.open('Pedido atualizado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -136,6 +144,9 @@ export class PedidoFormComponent {
         this.pedidoService.delete(pedido).subscribe({
           next: () => {
             this.router.navigateByUrl('/pedidos');
+            this.snackBar.open('Pedido excluido com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

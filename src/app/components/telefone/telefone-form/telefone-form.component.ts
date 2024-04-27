@@ -19,7 +19,7 @@ import { TelefoneService } from '../../../services/telefone.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -52,7 +52,8 @@ export class TelefoneFormComponent {
     private formBuilder: FormBuilder,
     private telefoneService: TelefoneService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     const telefone: Telefone = this.activatedRoute.snapshot.data['telefone'];
 
@@ -73,6 +74,9 @@ export class TelefoneFormComponent {
         this.telefoneService.insert(telefone).subscribe({
           next: (telefoneCadastrado) => {
             this.router.navigateByUrl('/telefones');
+            this.snackBar.open('Telefone adicionado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
@@ -82,6 +86,9 @@ export class TelefoneFormComponent {
         this.telefoneService.update(telefone).subscribe({
           next: (telefoneAlterado) => {
             this.router.navigateByUrl('/telefones');
+            this.snackBar.open('Telefone atualizado com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
@@ -98,6 +105,9 @@ export class TelefoneFormComponent {
         this.telefoneService.delete(telefone).subscribe({
           next: () => {
             this.router.navigateByUrl('/telefones');
+            this.snackBar.open('Telefone excluido com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));
