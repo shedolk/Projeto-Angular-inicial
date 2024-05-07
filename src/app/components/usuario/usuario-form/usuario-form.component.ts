@@ -73,7 +73,7 @@ export class UsuarioFormComponent {
         Validators.required,
       ],
       cpf: [usuario && usuario.cpf ? usuario.cpf : '', Validators.required],
-      perfil: [usuario && usuario.perfil ? usuario.perfil.label : ''],
+      idPerfil: [usuario && usuario.perfil.id ? usuario.perfil.id : ''],
     });
   }
 

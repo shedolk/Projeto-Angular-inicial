@@ -61,7 +61,7 @@ export class EnderecoListComponent implements OnInit {
   excluirEndereco(endereco: Endereco) {
     this.enderecoService.delete(endereco).subscribe({
       next: () => {
-        this.router.navigateByUrl('/enderecos');
+        this.router.navigateByUrl('/enderecos/usuario/' + this.idUsuario);
         this.ngOnInit();
       },
       error: (err) => {

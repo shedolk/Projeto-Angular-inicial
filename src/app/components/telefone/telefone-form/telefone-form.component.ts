@@ -47,6 +47,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 export class TelefoneFormComponent {
   formGroup: FormGroup;
   isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
+  idUsuario: String;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,6 +57,7 @@ export class TelefoneFormComponent {
     private snackBar: MatSnackBar
   ) {
     const telefone: Telefone = this.activatedRoute.snapshot.data['telefone'];
+    this.idUsuario = this.activatedRoute.snapshot.params['idUsuario'];
 
     this.formGroup = formBuilder.group({
       id: [telefone && telefone.id ? telefone.id : null],
@@ -63,7 +65,7 @@ export class TelefoneFormComponent {
         telefone && telefone.codigoArea ? telefone.codigoArea : null,
       ],
       numero: [telefone && telefone.numero ? telefone.numero : null],
-      idUsuario: [telefone && telefone.usuario.id ? telefone.usuario.id : null],
+      idUsuario: this.idUsuario,
     });
   }
   salvarTelefone() {
@@ -73,7 +75,7 @@ export class TelefoneFormComponent {
       if (telefone.id == null) {
         this.telefoneService.insert(telefone).subscribe({
           next: (telefoneCadastrado) => {
-            this.router.navigateByUrl('/telefones');
+            this.router.navigateByUrl('/telefones/usuario/' + this.idUsuario);
             this.snackBar.open('Telefone adicionado com sucesso!', 'Fechar', {
               duration: 3000,
             });
@@ -85,7 +87,7 @@ export class TelefoneFormComponent {
       } else {
         this.telefoneService.update(telefone).subscribe({
           next: (telefoneAlterado) => {
-            this.router.navigateByUrl('/telefones');
+            this.router.navigateByUrl('/telefones/usuario/' + this.idUsuario);
             this.snackBar.open('Telefone atualizado com sucesso!', 'Fechar', {
               duration: 3000,
             });
@@ -104,7 +106,7 @@ export class TelefoneFormComponent {
       if (telefone.id != null) {
         this.telefoneService.delete(telefone).subscribe({
           next: () => {
-            this.router.navigateByUrl('/telefones');
+            this.router.navigateByUrl('/telefones/usuario/' + this.idUsuario);
             this.snackBar.open('Telefone excluido com sucesso!', 'Fechar', {
               duration: 3000,
             });

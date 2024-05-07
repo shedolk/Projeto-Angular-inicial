@@ -80,7 +80,7 @@
 
             <mat-form-field appearance="outline" class="full-width-input">
               <mat-label>Perfil</mat-label>
-              <mat-select formControlName="perfil">
+              <mat-select formControlName="idPerfil">
                 @for (perfil of perfils; track perfil) {
                 <mat-option [value]="perfil.id">{{ perfil.label }}</mat-option>
                 }

@@ -53,7 +53,7 @@ export class TelefoneListComponent implements OnInit {
   excluirTelefone(telefone: Telefone) {
     this.telefoneService.delete(telefone).subscribe({
       next: () => {
-        this.router.navigateByUrl('/telefones');
+        this.router.navigateByUrl('/telefones/usuario/' + this.idUsuario);
         this.ngOnInit();
       },
       error: (err) => {

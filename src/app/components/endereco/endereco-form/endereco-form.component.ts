@@ -44,6 +44,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class EnderecoFormComponent {
   formGroup: FormGroup;
   isMenuOpen = false; // Adicionado para controlar a visibilidade do menu
+  idUsuario: String;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -53,6 +54,7 @@ export class EnderecoFormComponent {
     private snackBar: MatSnackBar
   ) {
     const endereco: Endereco = this.activatedRoute.snapshot.data['endereco'];
+    this.idUsuario = this.activatedRoute.snapshot.params['idUsuario'];
 
     this.formGroup = formBuilder.group({
       id: [endereco && endereco.id ? endereco.id : null],
@@ -61,7 +63,7 @@ export class EnderecoFormComponent {
       cidade: [endereco && endereco.cidade ? endereco.cidade : null],
       estado: [endereco && endereco.estado ? endereco.estado : null],
       cep: [endereco && endereco.cep ? endereco.cep : null],
-      idUsuario: [endereco && endereco.usuario.id ? endereco.usuario.id : null],
+      idUsuario: this.idUsuario,
     });
   }
   salvarEndereco() {
@@ -72,7 +74,7 @@ export class EnderecoFormComponent {
       if (endereco.id == null) {
         this.enderecoService.insert(endereco).subscribe({
           next: (enderecoCadastrado) => {
-            this.router.navigateByUrl('/enderecos');
+            this.router.navigateByUrl('/enderecos/usuario/' + this.idUsuario);
             this.snackBar.open('Endereço adicionado com sucesso!', 'Fechar', {
               duration: 3000,
             });
@@ -84,7 +86,7 @@ export class EnderecoFormComponent {
       } else {
         this.enderecoService.update(endereco).subscribe({
           next: (enderecoAlterado) => {
-            this.router.navigateByUrl('/enderecos');
+            this.router.navigateByUrl('/enderecos/usuario/' + this.idUsuario);
             this.snackBar.open('Endereço atualizado com sucesso!', 'Fechar', {
               duration: 3000,
             });
@@ -103,7 +105,7 @@ export class EnderecoFormComponent {
       if (endereco.id != null) {
         this.enderecoService.delete(endereco).subscribe({
           next: () => {
-            this.router.navigateByUrl('/enderecos');
+            this.router.navigateByUrl('/enderecos/usuario/' + this.idUsuario);
             this.snackBar.open('Endereço excluido com sucesso!', 'Fechar', {
               duration: 3000,
             });

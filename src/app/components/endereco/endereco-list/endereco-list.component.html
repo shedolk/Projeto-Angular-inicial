@@ -15,16 +15,16 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <button
-        mat-icon-button
-        class="back-button"
-        [routerLink]="'/enderecos/new'"
-      >
+      <button mat-icon-button class="back-button" [routerLink]="'/usuarios'">
         <mat-icon>chevron_left</mat-icon>
       </button>
       <div class="flex-container">
         <span class="toolbar-title">Controle de enderecos</span>
-        <button mat-fab color="accent" routerLink="/enderecos/new">
+        <button
+          mat-fab
+          color="accent"
+          routerLink="/enderecos/usuario/{{ idUsuario }}/new"
+        >
           <mat-icon class="add-button-icon">add</mat-icon>
         </button>
       </div>
@@ -74,7 +74,9 @@
           <button
             mat-icon-button
             color="primary"
-            routerLink="/enderecos/edit/{{ element.id }}"
+            routerLink="/enderecos/usuario/{{ idUsuario }}/edit/{{
+              element.id
+            }}"
           >
             <mat-icon>edit</mat-icon>
           </button>

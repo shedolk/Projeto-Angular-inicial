@@ -62,7 +62,17 @@ export const routes: Routes = [
     title: 'Novo endereco',
   },
   {
+    path: 'enderecos/usuario/:idUsuario/new',
+    component: EnderecoFormComponent,
+    title: 'Novo endereco',
+  },
+  {
     path: 'enderecos/edit/:id',
+    component: EnderecoFormComponent,
+    resolve: { endereco: enderecoResolver },
+  },
+  {
+    path: 'enderecos/usuario/:idUsuario/edit/:id',
     component: EnderecoFormComponent,
     resolve: { endereco: enderecoResolver },
   },
@@ -79,12 +89,23 @@ export const routes: Routes = [
     title: 'Lista de telefones',
   },
   {
+    path: 'telefones/usuario/:idUsuario/new',
+    component: TelefoneFormComponent,
+    title: 'Novo Telefone',
+  },
+  {
     path: 'telefones/new',
     component: TelefoneFormComponent,
     title: 'Novo Telefone',
   },
   {
     path: 'telefones/edit/:id',
+    component: TelefoneFormComponent,
+    resolve: { telefone: telefoneResolver },
+  },
+
+  {
+    path: 'telefones/usuario/:idUsuario/edit/:id',
     component: TelefoneFormComponent,
     resolve: { telefone: telefoneResolver },
   },
