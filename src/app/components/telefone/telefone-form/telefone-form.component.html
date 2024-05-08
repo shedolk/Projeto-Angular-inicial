@@ -18,7 +18,7 @@
       </button>
       <span class="toolbar-title">Cadastro de telefones</span>
     </mat-toolbar>
-
+    <p></p>
     <div class="form-container">
       <mat-card>
         <mat-card-content>
@@ -87,7 +87,12 @@
           >
             Excluir
           </button>
-          <button mat-raised-button routerLink="/telefones">Cancelar</button>
+          <button
+            mat-raised-button
+            routerLink="/telefones/usuario/{{ idUsuario }}/"
+          >
+            Cancelar
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>

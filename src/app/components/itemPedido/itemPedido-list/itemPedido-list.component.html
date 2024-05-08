@@ -1,10 +1,9 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" style="height: 100%">
   <mat-sidenav #sidenav mode="over" [opened]="isMenuOpen">
     <mat-nav-list>
-      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/home">Menu</a>
       <a mat-list-item routerLink="/produtos">Produtos</a>
-      <a mat-list-item routerLink="/enderecos">Endereços</a>
-      <a mat-list-item routerLink="/telefones">Telefones</a>
+
       <a mat-list-item routerLink="/usuarios">Meu usuário</a>
       <a mat-list-item routerLink="/pedidos">Pedidos</a>
       <a mat-list-item routerLink="/cupom">Meus cupons</a>
@@ -16,22 +15,18 @@
       <button mat-icon-button class="menu-button" (click)="toggleSidebar()">
         <mat-icon>menu</mat-icon>
       </button>
-      <button
-        mat-icon-button
-        class="back-button"
-        [routerLink]="'/itenspedidos/new'"
-      >
+      <button mat-icon-button class="back-button" [routerLink]="'/pedidos'">
         <mat-icon>chevron_left</mat-icon>
       </button>
       <div class="flex-container">
         <span class="toolbar-title">Controle de itens do pedido</span>
         <button mat-fab color="accent" routerLink="/itenspedidos/new">
-          <mat-icon>add</mat-icon>
+          <mat-icon>add_shopping_cart</mat-icon>
         </button>
       </div>
       <!-- Adicionando o botão de adicionar cupom -->
     </mat-toolbar>
-
+    <p></p>
     <table mat-table [dataSource]="itempedidos" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">

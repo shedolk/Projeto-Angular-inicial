@@ -1,9 +1,9 @@
 <mat-sidenav-container class="sidenav-container" style="height: 100%">
   <mat-sidenav #sidenav mode="over" opened="false">
     <mat-nav-list>
-      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/usuarios">Voltar</a>
       <a mat-list-item routerLink="/produtos">Produtos</a>
-      <a mat-list-item routerLink="/telefones">Telefones</a>
+
       <a mat-list-item routerLink="/pedidos">Pedidos</a>
       <a mat-list-item routerLink="/usuarios">Meu usuario</a>
       <!-- Adicione mais links conforme necessário -->
@@ -25,11 +25,11 @@
           color="accent"
           routerLink="/enderecos/usuario/{{ idUsuario }}/new"
         >
-          <mat-icon class="add-button-icon">add</mat-icon>
+          <mat-icon class="add-button-icon">add_home_work</mat-icon>
         </button>
       </div>
     </mat-toolbar>
-
+    <p></p>
     <table mat-table [dataSource]="enderecos" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">

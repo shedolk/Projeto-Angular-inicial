@@ -1,10 +1,9 @@
 <mat-sidenav-container class="sidenav-container" style="height: 100%">
   <mat-sidenav #sidenav mode="over" opened="false">
     <mat-nav-list>
-      <a mat-list-item routerLink="/home">Inicio</a>
+      <a mat-list-item routerLink="/usuarios">Voltar</a>
       <a mat-list-item routerLink="/produtos">Produtos</a>
-      <a mat-list-item routerLink="/enderecos">Endereços</a>
-      <a mat-list-item routerLink="/telefones">Telefones</a>
+
       <a mat-list-item routerLink="/pedidos">Pedidos</a>
       <a mat-list-item routerLink="/usuarios">Meu usuario</a>
       <!-- Adicione mais links conforme necessário -->
@@ -16,16 +15,18 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <button mat-icon-button class="back-button" [routerLink]="'/cupom/new'">
+      <button mat-icon-button class="back-button" [routerLink]="'/usuarios'">
         <mat-icon>chevron_left</mat-icon>
       </button>
       <div class="flex-container">
         <span class="toolbar-title">Controle de cupons</span>
         <button mat-fab routerLink="/cupom/new">
-          <mat-icon class="add-button-icon">add</mat-icon>
+          <mat-icon class="add-button-icon">local_activity</mat-icon>
         </button>
       </div>
     </mat-toolbar>
+
+    <p></p>
 
     <table mat-table [dataSource]="cupoms" class="mat-elevation-z8">
       <!-- ID Column -->
@@ -36,13 +37,13 @@
 
       <!-- Nome do Cupom Column -->
       <ng-container matColumnDef="nomeCupom">
-        <th mat-header-cell *matHeaderCellDef>Nome do cupom</th>
+        <th mat-header-cell *matHeaderCellDef>Cupom</th>
         <td mat-cell *matCellDef="let element">{{ element.nomeCupom }}</td>
       </ng-container>
 
       <!-- Data Aplicada Column -->
       <ng-container matColumnDef="dataAplicada">
-        <th mat-header-cell *matHeaderCellDef>Data aplicada</th>
+        <th mat-header-cell *matHeaderCellDef>Data</th>
         <td mat-cell *matCellDef="let element">{{ element.dataAplicada }}</td>
       </ng-container>
 
@@ -54,7 +55,7 @@
 
       <!-- Ação Column -->
       <ng-container matColumnDef="acao">
-        <th mat-header-cell *matHeaderCellDef>Ação</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <button
             mat-icon-button
