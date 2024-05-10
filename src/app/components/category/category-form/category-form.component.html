@@ -25,20 +25,60 @@
 
         <!-- espaço -->
         <mat-form-field appearance="outline" class="full-width-input">
-          <mat-label>material</mat-label>
+          <mat-label>compatibilidade</mat-label>
           <mat-icon matPrefix>build</mat-icon>
-          <input matInput type="text" formControlName="material" />
+          <input matInput type="text" formControlName="compatibilidade" />
           <!-- Validação para o campo de senha -->
           <mat-error *ngIf="
-              formGroup.get('material')?.errors &&
-              formGroup.get('material')?.touched
+              formGroup.get('compatibilidade')?.errors &&
+              formGroup.get('compatibilidade')?.touched
             ">
-            @if (formGroup.get('material')?.errors?.['required']) {
-            <span>O material deve ser informado.</span>
-            } @if (formGroup.get('material')?.errors?.['minlength']) {
-            <span>O material deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('material')?.hasError('apiError')) {
-            <span>{{ formGroup.get("material")?.getError("apiError") }}</span>
+            @if (formGroup.get('compatibilidade')?.errors?.['required']) {
+            <span>A compatibilidade deve ser informada.</span>
+            } @if (formGroup.get('compatibilidade')?.errors?.['minlength']) {
+            <span>A compatibilidade deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('compatibilidade')?.hasError('apiError')) {
+            <span>{{ formGroup.get("compatibilidade")?.getError("apiError") }}</span>
+            } >
+          </mat-error>
+        </mat-form-field>
+
+        <!-- espaço -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>mola</mat-label>
+          <mat-icon matPrefix>build</mat-icon>
+          <input matInput type="text" formControlName="mola" />
+          <!-- Validação para o campo de senha -->
+          <mat-error *ngIf="
+              formGroup.get('mola')?.errors &&
+              formGroup.get('mola')?.touched
+            ">
+            @if (formGroup.get('mola')?.errors?.['required']) {
+            <span>O tipo de mola deve ser informado.</span>
+            } @if (formGroup.get('mola')?.errors?.['minlength']) {
+            <span>O tipo de mola deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('mola')?.hasError('apiError')) {
+            <span>{{ formGroup.get("mola")?.getError("apiError") }}</span>
+            } >
+          </mat-error>
+        </mat-form-field>
+
+        <!-- espaço -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>amortecedor</mat-label>
+          <mat-icon matPrefix>build</mat-icon>
+          <input matInput type="text" formControlName="amortecedor" />
+          <!-- Validação para o campo de senha -->
+          <mat-error *ngIf="
+              formGroup.get('amortecedor')?.errors &&
+              formGroup.get('amortecedor')?.touched
+            ">
+            @if (formGroup.get('amortecedor')?.errors?.['required']) {
+            <span>O tipo de amortecedor deve ser informado.</span>
+            } @if (formGroup.get('amortecedor')?.errors?.['minlength']) {
+            <span>O tipo de amortecedor deve possuir ao menos 4 caracteres.</span>
+            } @if (formGroup.get('amortecedor')?.hasError('apiError')) {
+            <span>{{ formGroup.get("amortecedor")?.getError("apiError") }}</span>
             } >
           </mat-error>
         </mat-form-field>

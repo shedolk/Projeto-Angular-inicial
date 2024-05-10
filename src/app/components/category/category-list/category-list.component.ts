@@ -33,7 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class CategoryListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'suspensao', 'material', 'acao'];
+  displayedColumns: string[] = ['id', 'suspensao', 'compatibilidade', 'mola', 'amortecedor',  'acao'];
   categories: Category[] = [];
 
   // totalRegistros = 0;

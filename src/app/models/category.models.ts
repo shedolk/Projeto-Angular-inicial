@@ -1,5 +1,8 @@
 export class Category {
   id!: number;
   category!: string;
-  material!: string;
+  compatibilidade!: string;
+  tipoMola!: string;
+  tipoAmortecedor!: string;
+  //material!: string;
 }

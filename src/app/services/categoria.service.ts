@@ -52,7 +52,10 @@ export class CategoryService {
   update(category: Category): Observable<Category> {
     const data = {
       category: category.category,
-      material: category.material
+      compatibilidade: category.compatibilidade,
+      tipoMola: category.tipoMola,
+      tipoAmortecedor: category.tipoAmortecedor
+     // material: category.material
     }
     return this.httpClient.put<Category>(`${this.baseUrl}/${category.id}`,data);
   }

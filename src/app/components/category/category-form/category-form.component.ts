@@ -53,7 +53,10 @@ export class CategoryFormComponent {
     this.formGroup = this.formBuilder.group({
       id: [category?.id || null],
       category: [category?.category || '', Validators.compose([Validators.required, Validators.minLength(4)])],
-      material: [category?.material || '', Validators.compose([Validators.required, Validators.minLength(4)])],
+      compatibilidade: [category?.compatibilidade || '', Validators.compose([Validators.required, Validators.minLength(4)])],
+      mola: [category?.tipoMola || '', Validators.compose([Validators.required, Validators.minLength(4)])],
+      amortecedor: [category?.tipoAmortecedor || '', Validators.compose([Validators.required, Validators.minLength(4)])],
+     // material: [category?.material || '', Validators.compose([Validators.required, Validators.minLength(4)])],
     });
   }
 
