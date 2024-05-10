@@ -26,6 +26,7 @@ import { CategoryFormComponent } from './components/category/category-form/categ
 import { categoryResolver } from './components/category/resolver/category-resolver';
 import { DadostecnicosListComponent } from './components/dadostecnicos/dadostecnicos-list/dadostecnicos-list.component';
 import { DadostecnicosFormComponent } from './components/dadostecnicos/dadostecnicos-form/dadostecnicos-form.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -213,4 +214,6 @@ export const routes: Routes = [
     component: DadostecnicosFormComponent,
     title: 'Novos dados tecnicos',
   },
+
+  { path: 'login', component: LoginComponent, title: 'Login'},
 ];
