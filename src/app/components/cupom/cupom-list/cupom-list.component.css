@@ -56,3 +56,10 @@
   left: 0px;
   margin: 65px; /* Ajuste conforme necessário */
 }
+.table-container {
+  background-color: #f0f0f0; /* Cinza claro, ajuste conforme necessário */
+  padding: 10px; /* Espaçamento ao redor da tabela */
+}
+.mat-elevation-z8 {
+  border-color: #ccc; /* Cor das bordas */
+}
