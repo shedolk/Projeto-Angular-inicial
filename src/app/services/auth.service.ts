@@ -1,26 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../models/usuario.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { LocalStorageService } from './localstorageservice.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Usuario } from '../models/usuario.model';
+import { LocalStorageService } from './local-storage.service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private baseURL: string = 'http://localhost:8080/auth';
+  private baseURL: string = 'http://localhost:8080/auth-usuario';
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
   private usuarioLogadoSubject = new BehaviorSubject<Usuario | null>(null);
 
-  constructor(private http: HttpClient,
-              private localStorageService: LocalStorageService,
-              private jwtHelper: JwtHelperService) {
-
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService,
+    private jwtHelper: JwtHelperService
+  ) {
     this.initUsuarioLogado();
-
   }
 
   private initUsuarioLogado() {
@@ -33,29 +32,30 @@ export class AuthService {
     }
   }
 
-
   login(email: string, senha: string): Observable<any> {
     const params = {
       login: email,
       senha: senha,
-      perfil: 1 // paciente
-    }
+      perfil: 1, // paciente
+    };
 
     //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
-    return this.http.post(`${this.baseURL}`, params, {observe: 'response'}).pipe(
-      tap((res: any) => {
-        const authToken = res.headers.get('Authorization') ?? '';
-        if (authToken) {
-          this.setToken(authToken);
-          const usuarioLogado = res.body;
-          console.log(usuarioLogado);
-          if (usuarioLogado) {
-            this.setUsuarioLogado(usuarioLogado);
-            this.usuarioLogadoSubject.next(usuarioLogado);
+    return this.http
+      .post(`${this.baseURL}`, params, { observe: 'response' })
+      .pipe(
+        tap((res: any) => {
+          const authToken = res.headers.get('Authorization') ?? '';
+          if (authToken) {
+            this.setToken(authToken);
+            const usuarioLogado = res.body;
+            console.log(usuarioLogado);
+            if (usuarioLogado) {
+              this.setUsuarioLogado(usuarioLogado);
+              this.usuarioLogadoSubject.next(usuarioLogado);
+            }
           }
-        }
-      })
-    );
+        })
+      );
   }
 
   setUsuarioLogado(usuario: Usuario): void {

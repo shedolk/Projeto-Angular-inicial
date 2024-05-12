@@ -215,5 +215,5 @@ export const routes: Routes = [
     title: 'Novos dados tecnicos',
   },
 
-  { path: 'login', component: LoginComponent, title: 'Login'},
+  { path: 'login', component: LoginComponent, title: 'Login' },
 ];
