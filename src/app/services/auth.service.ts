@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -13,12 +13,14 @@ export class AuthService {
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
   private usuarioLogadoSubject = new BehaviorSubject<Usuario | null>(null);
+  private http: HttpClient;
 
   constructor(
-    private http: HttpClient,
+    private handler: HttpBackend,
     private localStorageService: LocalStorageService,
     private jwtHelper: JwtHelperService
   ) {
+    this.http = new HttpClient(handler);
     this.initUsuarioLogado();
   }
 
@@ -32,9 +34,9 @@ export class AuthService {
     }
   }
 
-  login(email: string, senha: string): Observable<any> {
+  login(login: string, senha: string): Observable<any> {
     const params = {
-      login: email,
+      login: login,
       senha: senha,
       perfil: 1, // paciente
     };
