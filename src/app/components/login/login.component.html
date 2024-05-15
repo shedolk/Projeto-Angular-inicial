@@ -1,7 +1,7 @@
 <div class="login-container">
   <div class="login-box">
-    <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey" />
-    <h2 class="login-title">Bem-vindo</h2>
+    <img class="login-icon" src="/assets/icons/userLogin.svg" alt="Passkey" />
+    <h2 class="login-title">Coloque suas credenciais</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="login-input">
         <input matInput placeholder="Login" formControlName="login" required />
@@ -30,5 +30,7 @@
         Login
       </button>
     </form>
+    <p>se não tiver conta clique em cadastrar</p>
+    <a routerLink="/usuarios/new">Cadastrar</a>
   </div>
 </div>
