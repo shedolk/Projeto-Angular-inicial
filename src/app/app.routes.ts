@@ -27,6 +27,10 @@ import { categoryResolver } from './components/category/resolver/category-resolv
 import { DadostecnicosListComponent } from './components/dadostecnicos/dadostecnicos-list/dadostecnicos-list.component';
 import { DadostecnicosFormComponent } from './components/dadostecnicos/dadostecnicos-form/dadostecnicos-form.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserTemplateComponent } from './components/template/user-template/user-template.component';
+import { ProductCardListComponent } from './components/products-card-list/products-card-list.component';
+import { CarrinhoComponent } from './components/carrinho/carrinho.component';
+import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -163,57 +167,91 @@ export const routes: Routes = [
   },
 
   // Rota Produtos
+  // {
+  //   path: 'produtos',
+  //   component: ProductListComponent,
+  //   title: 'Lista de Produtos',
+  // },
+  // {
+  //   path: 'produtos/new',
+  //   component: ProductFormComponent,
+  //   title: 'Novo Produto',
+  // },
+  // {
+  //   path: 'produtos/edit/:id',
+  //   component: ProductFormComponent,
+  //   title: 'Editar Produto',
+  //   resolve: { product: productResolver },
+  // },
+
   {
-    path: 'produtos',
-    component: ProductListComponent,
-    title: 'Lista de Produtos',
+    path: '',
+    component: UserTemplateComponent,
+    title: 'e-commerce',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'produtos' },
+
+      { path: 'produtos', component: ProductCardListComponent, title: 'Produtos à Venda' },
+      { path: 'login', component: LoginComponent, title: 'Login' },
+      { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
+    ]
+
   },
-  {
-    path: 'produtos/new',
-    component: ProductFormComponent,
-    title: 'Novo Produto',
-  },
-  {
-    path: 'produtos/edit/:id',
-    component: ProductFormComponent,
-    title: 'Editar Produto',
-    resolve: { product: productResolver },
-  },
+
+  // {
+  //   path: 'admin',
+  //   component: AdminTemplateComponent,
+  //   title: 'e-commerce',
+  //   children: [
+  //       {path: '', pathMatch: 'full', redirectTo: 'categories'},
+
+  //       { path: 'categories', component: CategoryListComponent, title: 'Lista de Suspensoes',},
+  //       { path: 'categories/new', component: CategoryFormComponent, title: 'Nova Suspensao',},
+  //       { path: 'categories/edit/:id', component: CategoryFormComponent, title: 'Editar Suspensao', resolve: { category: categoryResolver }},
+
+  //       { path: 'produtos',component: ProductListComponent,title: 'Lista de Produtos',},
+  //       {path: 'produtos/new',component: ProductFormComponent,title: 'Novo Produto',},
+  //       {path: 'produtos/edit/:id',component: ProductFormComponent,title: 'Editar Produto',resolve: { product: productResolver }},
+  //   ]
+  //   },
+
 
   // Rota categories
-  {
-    path: 'categories',
-    component: CategoryListComponent,
-    title: 'Lista de Suspensoes',
-  },
-  {
-    path: 'categories/new',
-    component: CategoryFormComponent,
-    title: 'Nova Suspensao',
-  },
-  {
-    path: 'categories/edit/:id',
-    component: CategoryFormComponent,
-    title: 'Editar Suspensao',
-    resolve: { category: categoryResolver },
-  },
+  // {
+  //   path: 'categories',
+  //   component: CategoryListComponent,
+  //   title: 'Lista de Suspensoes',
+  // },
+  // {
+  //   path: 'categories/new',
+  //   component: CategoryFormComponent,
+  //   title: 'Nova Suspensao',
+  // },
+  // {
+  //   path: 'categories/edit/:id',
+  //   component: CategoryFormComponent,
+  //   title: 'Editar Suspensao',
+  //   resolve: { category: categoryResolver },
+  // },
 
-  {
-    path: 'dadostecnicos',
-    component: DadostecnicosListComponent,
-    title: 'Lista de Dados Tecnicos',
-  },
-  {
-    path: 'dadostecnicoss/edit/:id',
-    component: DadostecnicosFormComponent,
-    title: 'Cadastrar Dados Tecnicos da Peças',
-    resolve: { dadosTecnicos: dadosTecnicosResolver },
-  },
-  {
-    path: 'dadostecnicos/new',
-    component: DadostecnicosFormComponent,
-    title: 'Novos dados tecnicos',
-  },
+  // {
+  //   path: 'dadostecnicos',
+  //   component: DadostecnicosListComponent,
+  //   title: 'Lista de Dados Tecnicos',
+  // },
+  // {
+  //   path: 'dadostecnicoss/edit/:id',
+  //   component: DadostecnicosFormComponent,
+  //   title: 'Cadastrar Dados Tecnicos da Peças',
+  //   resolve: { dadosTecnicos: dadosTecnicosResolver },
+  // },
+  // {
+  //   path: 'dadostecnicos/new',
+  //   component: DadostecnicosFormComponent,
+  //   title: 'Novos dados tecnicos',
+  // },
 
   { path: 'login', component: LoginComponent, title: 'Login' },
+
+
 ];

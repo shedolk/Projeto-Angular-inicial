@@ -47,10 +47,14 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadProducts();
+    this.productService.count().subscribe(data => {
+    this.totalRecords = data;
+    console.log(this.totalRecords);
+    });
   }
 
   loadProducts(): void {
@@ -58,20 +62,21 @@ export class ProductListComponent implements OnInit {
       this.products = data;
       console.log(this.products);
     });
-
-    // Removendo a chamada para 'this.productService.count()' que não está definida no serviço
   }
+
 
   paginar(event: PageEvent): void {
     this.page = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadProducts(); // Chamando loadProducts() ao invés de ngOnInit()
   }
-  excluirProduct(product: Product) {
+
+  excluir(product: Product) {
     this.productService.delete(product).subscribe({
       next: () => {
-        this.router.navigateByUrl('/produtos');
-        this.ngOnInit();
+        // this.router.navigateByUrl('/produtos');
+        // this.ngOnInit();
+        this.loadProducts();
       },
       error: (err) => {
         console.log('Erro ao Excluir' + JSON.stringify(err));
@@ -79,3 +84,4 @@ export class ProductListComponent implements OnInit {
     });
   }
 }
+
