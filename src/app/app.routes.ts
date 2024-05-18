@@ -192,29 +192,31 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'produtos' },
 
       { path: 'produtos', component: ProductCardListComponent, title: 'Produtos à Venda' },
-      { path: 'login', component: LoginComponent, title: 'Login' },
+      //{ path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
     ]
 
   },
 
-  // {
-  //   path: 'admin',
-  //   component: AdminTemplateComponent,
-  //   title: 'e-commerce',
-  //   children: [
-  //       {path: '', pathMatch: 'full', redirectTo: 'categories'},
+  {
+    path: 'admin',
+    component: AdminTemplateComponent,
+    title: 'e-commerce',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'categories' },
 
-  //       { path: 'categories', component: CategoryListComponent, title: 'Lista de Suspensoes',},
-  //       { path: 'categories/new', component: CategoryFormComponent, title: 'Nova Suspensao',},
-  //       { path: 'categories/edit/:id', component: CategoryFormComponent, title: 'Editar Suspensao', resolve: { category: categoryResolver }},
+      { path: 'categories', component: CategoryListComponent, title: 'Lista de Suspensoes', },
+      { path: 'categories/new', component: CategoryFormComponent, title: 'Nova Suspensao', },
+      { path: 'categories/edit/:id', component: CategoryFormComponent, title: 'Editar Suspensao', resolve: { category: categoryResolver } },
 
-  //       { path: 'produtos',component: ProductListComponent,title: 'Lista de Produtos',},
-  //       {path: 'produtos/new',component: ProductFormComponent,title: 'Novo Produto',},
-  //       {path: 'produtos/edit/:id',component: ProductFormComponent,title: 'Editar Produto',resolve: { product: productResolver }},
-  //   ]
-  //   },
+      { path: 'produtos', component: ProductListComponent, title: 'Lista de Produtos', },
+      { path: 'produtos/new', component: ProductFormComponent, title: 'Novo Produto', },
+      { path: 'produtos/edit/:id', component: ProductFormComponent, title: 'Editar Produto', resolve: { product: productResolver } },
+    ]
+  },
 
+
+  { path: 'login', component: LoginComponent, title: 'Login' },
 
   // Rota categories
   // {
@@ -250,8 +252,4 @@ export const routes: Routes = [
   //   component: DadostecnicosFormComponent,
   //   title: 'Novos dados tecnicos',
   // },
-
-  { path: 'login', component: LoginComponent, title: 'Login' },
-
-
 ];
