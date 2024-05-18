@@ -12,14 +12,15 @@ import { HttpClient } from '@angular/common/http';
 // export class AppComponent {
 //   title = 'hello-world';
 // }
-export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/todos/1')
-      .subscribe((data) => {
-        console.log(data);
-      });
-  }
+export class AppComponent {
+    title = 'hello-world';
+
+  // ngOnInit() {
+  //   this.http
+  //     .get('https://jsonplaceholder.typicode.com/todos/1')
+  //     .subscribe((data) => {
+  //       console.log(data);
+  //     });
+  // }
 }

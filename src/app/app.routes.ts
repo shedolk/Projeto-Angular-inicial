@@ -194,6 +194,7 @@ export const routes: Routes = [
       { path: 'produtos', component: ProductCardListComponent, title: 'Produtos à Venda' },
       //{ path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
+      {path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario',}
     ]
 
   },
