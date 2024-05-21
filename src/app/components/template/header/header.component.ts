@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Usuario } from '../../../models/usuario.model';
 import { AuthService } from '../../../services/auth.service';
 import { CarrinhoService } from '../../../services/carrinho.service';
-import { LocalStorageService } from '../../../services/local-storage.service.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { SidebarService } from '../../../services/sidebar.service';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';

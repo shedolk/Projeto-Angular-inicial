@@ -9,6 +9,9 @@ export class Usuario {
   senha!: string;
   cpf!: string;
   perfil!: Perfil;
+
+  //idPerfil!: number;
+  
   listaTelefone!: Telefone[];
   listaEndereco!: Endereco[];
 }

@@ -192,13 +192,16 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'produtos' },
 
       { path: 'produtos', component: ProductCardListComponent, title: 'Produtos à Venda' },
-      //{ path: 'login', component: LoginComponent, title: 'Login' },
+      { path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
-      {path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario',}
+      { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario', }
     ]
 
   },
 
+  { path: 'categories', component: CategoryListComponent, title: 'Lista de Suspensoes', },
+  { path: 'categories/new', component: CategoryFormComponent, title: 'Nova Suspensao', },
+  { path: 'categories/edit/:id', component: CategoryFormComponent, title: 'Editar Suspensao', resolve: { category: categoryResolver } },
   {
     path: 'admin',
     component: AdminTemplateComponent,
@@ -215,9 +218,9 @@ export const routes: Routes = [
       { path: 'produtos/edit/:id', component: ProductFormComponent, title: 'Editar Produto', resolve: { product: productResolver } },
     ]
   },
+  // { path: '**', redirectTo: 'login' }
 
-
-  { path: 'login', component: LoginComponent, title: 'Login' },
+  //{ path: 'login', component: LoginComponent, title: 'Login' },
 
   // Rota categories
   // {

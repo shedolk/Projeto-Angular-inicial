@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Usuario } from '../models/usuario.model';
-import { LocalStorageService } from './local-storage.service.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +12,17 @@ export class AuthService {
   private baseURL: string = 'http://localhost:8080/auth-usuario';
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
+
   private usuarioLogadoSubject = new BehaviorSubject<Usuario | null>(null);
-  private http: HttpClient;
+  //private http: HttpClient;
 
   constructor(
     private handler: HttpBackend,
+    private http: HttpClient,
     private localStorageService: LocalStorageService,
     private jwtHelper: JwtHelperService
   ) {
-    this.http = new HttpClient(handler);
+    //this.http = new HttpClient(handler);
     this.initUsuarioLogado();
   }
 
@@ -34,11 +36,12 @@ export class AuthService {
     }
   }
 
-  login(login: string, senha: string): Observable<any> {
+  //login(login: string, senha: string): Observable<any> {
+    login(login: string, senha: string): Observable<any> {
     const params = {
       login: login,
       senha: senha,
-      perfil: 1, // paciente
+      //perfil: 1, // user normal
     };
 
     //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)

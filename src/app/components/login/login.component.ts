@@ -1,3 +1,6 @@
+import { Perfil } from './../../models/perfil.models';
+import { Usuario } from './../../models/usuario.model';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -5,7 +8,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgIf } from '@angular/common';
@@ -14,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { usuarioResolver } from '../usuario/resolver/usuario-resolver';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -56,8 +59,25 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.get('password')!.value;
       this.authService.login(login, password).subscribe({
         next: (resp) => {
+          // const user = resp.body;
+          // if (user.perfil.id === 1) {
+          //   this.router.navigateByUrl('/');
+          // } else if (user.perfil.id === 2) {
+          //   this.router.navigateByUrl('/admin');
+          // } else {
+          //   this.router.navigateByUrl('/login');
+          // }
+
           // redirecionar para a página principal
           //this.router.navigateByUrl('/produtos');
+
+          //implementar a logica p buscar o idPerfil do usuario logado
+          // if (resp.idPerfil == 1) {
+          //   this.router.navigateByUrl('/');
+          // }
+          // else {
+          //   this.router.navigateByUrl('/admin');
+          // }
           this.router.navigateByUrl('/');
         },
         error: (err) => {
