@@ -5,3 +5,7 @@
 .demo-section + .demo-section {
   margin-top: 16px;
 }
+.mat-toolbar {
+  background-color: #1e1e1e;
+  color: white;
+}
