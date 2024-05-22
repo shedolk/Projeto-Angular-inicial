@@ -37,11 +37,11 @@ export class AuthService {
   }
 
   //login(login: string, senha: string): Observable<any> {
-    login(login: string, senha: string): Observable<any> {
+  login(login: string, senha: string): Observable<any> {
     const params = {
       login: login,
       senha: senha,
-      //perfil: 1, // user normal
+      perfil: 2, // user normal
     };
 
     //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
@@ -53,7 +53,7 @@ export class AuthService {
           if (authToken) {
             this.setToken(authToken);
             const usuarioLogado = res.body;
-            console.log(usuarioLogado);
+            // console.log(usuarioLogado);
             if (usuarioLogado) {
               this.setUsuarioLogado(usuarioLogado);
               this.usuarioLogadoSubject.next(usuarioLogado);

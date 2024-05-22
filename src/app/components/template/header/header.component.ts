@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Usuario } from '../../../models/usuario.model';
 import { AuthService } from '../../../services/auth.service';
@@ -14,23 +14,31 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbar, MatIcon, MatBadge, MatButton, MatIconButton, RouterModule],
+  imports: [
+    MatToolbar,
+    MatIcon,
+    MatBadge,
+    MatButton,
+    MatIconButton,
+    RouterModule,
+  ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   usuarioLogado: Usuario | null = null;
   private subscription = new Subscription();
 
   qtdItensCarrinho: number = 0;
+  @Input()
+  tipo: number = 0;
 
-  constructor(private sidebarService: SidebarService,
+  constructor(
+    private sidebarService: SidebarService,
     private carrinhoService: CarrinhoService,
     private authService: AuthService,
-    private localStorageService: LocalStorageService) {
-
-  }
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.obterQtdItensCarrinho();
@@ -46,19 +54,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   obterQtdItensCarrinho() {
-    this.carrinhoService.carrinho$.subscribe(itens => {
-      this.qtdItensCarrinho = itens.length
+    this.carrinhoService.carrinho$.subscribe((itens) => {
+      this.qtdItensCarrinho = itens.length;
     });
   }
 
   obterUsuarioLogado() {
-    this.subscription.add(this.authService.getUsuarioLogado().subscribe(
-      usuario => this.usuarioLogado = usuario
-    ));
+    this.subscription.add(
+      this.authService
+        .getUsuarioLogado()
+        .subscribe((usuario) => (this.usuarioLogado = usuario))
+    );
   }
 
   deslogar() {
-    this.authService.removeToken()
+    this.authService.removeToken();
     this.authService.removeUsuarioLogado();
   }
 }

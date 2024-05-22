@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.get('password')!.value;
       this.authService.login(login, password).subscribe({
         next: (resp) => {
-          // const user = resp.body;
+          const user = resp.body;
           // if (user.perfil.id === 1) {
           //   this.router.navigateByUrl('/');
           // } else if (user.perfil.id === 2) {
@@ -67,18 +67,21 @@ export class LoginComponent implements OnInit {
           // } else {
           //   this.router.navigateByUrl('/login');
           // }
+          console.log(user);
 
           // redirecionar para a página principal
-          //this.router.navigateByUrl('/produtos');
+          user.perfil.id === 1
+            ? this.router.navigateByUrl('/produtos')
+            : this.router.navigateByUrl('/admin/produtos');
+          // this.router.navigateByUrl('/produtos');
 
-          //implementar a logica p buscar o idPerfil do usuario logado
+          // // implementar a logica p buscar o idPerfil do usuario logado
           // if (resp.idPerfil == 1) {
           //   this.router.navigateByUrl('/');
-          // }
-          // else {
+          // } else {
           //   this.router.navigateByUrl('/admin');
           // }
-          this.router.navigateByUrl('/');
+          // this.router.navigateByUrl('/');
         },
         error: (err) => {
           console.log(err);
