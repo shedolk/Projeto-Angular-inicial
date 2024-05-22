@@ -266,6 +266,86 @@ export const routes: Routes = [
         title: 'Editar Produto',
         resolve: { product: productResolver },
       },
+      {
+        path: 'usuarios',
+        component: UsuarioListComponent,
+        title: 'Lista de Usuarios',
+      },
+      {
+        path: 'usuarios/new',
+        component: UsuarioFormComponent,
+        title: 'Novo usuario',
+      },
+      {
+        path: 'usuarios/edit/:id',
+        component: UsuarioFormComponent,
+        resolve: { usuario: usuarioResolver },
+      },
+
+      // Rota enderecos
+      {
+        path: 'enderecos',
+        component: EnderecoListComponent,
+        title: 'Lista de Enderecos',
+      },
+      {
+        path: 'enderecos/usuario/:id',
+        component: EnderecoListComponent,
+        title: 'Lista de Enderecos',
+      },
+      {
+        path: 'enderecos/new',
+        component: EnderecoFormComponent,
+        title: 'Novo endereco',
+      },
+      {
+        path: 'enderecos/usuario/:idUsuario/new',
+        component: EnderecoFormComponent,
+        title: 'Novo endereco',
+      },
+      {
+        path: 'enderecos/edit/:id',
+        component: EnderecoFormComponent,
+        resolve: { endereco: enderecoResolver },
+      },
+      {
+        path: 'enderecos/usuario/:idUsuario/edit/:id',
+        component: EnderecoFormComponent,
+        resolve: { endereco: enderecoResolver },
+      },
+
+      // Rota telefones
+      {
+        path: 'telefones',
+        component: TelefoneListComponent,
+        title: 'Lista de telefones',
+      },
+      {
+        path: 'telefones/usuario/:id',
+        component: TelefoneListComponent,
+        title: 'Lista de telefones',
+      },
+      {
+        path: 'telefones/usuario/:idUsuario/new',
+        component: TelefoneFormComponent,
+        title: 'Novo Telefone',
+      },
+      {
+        path: 'telefones/new',
+        component: TelefoneFormComponent,
+        title: 'Novo Telefone',
+      },
+      {
+        path: 'telefones/edit/:id',
+        component: TelefoneFormComponent,
+        resolve: { telefone: telefoneResolver },
+      },
+
+      {
+        path: 'telefones/usuario/:idUsuario/edit/:id',
+        component: TelefoneFormComponent,
+        resolve: { telefone: telefoneResolver },
+      },
     ],
   },
   // { path: '**', redirectTo: 'login' }
