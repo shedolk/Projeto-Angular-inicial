@@ -53,4 +53,20 @@ export class ProductService {
   delete(product: Product): Observable<any> {
     return this.httpClient.delete<any>(`${this.baseUrl}/${product.id}`);
   }
+
+  getUrlImagem(nomeImagem: string): string {
+    return `${this.baseUrl}/download/imagem/${nomeImagem}`;
+  }
+
+  // uploadImagem(id: number, nomeImagem: string, imagem: File): Observable<any> {
+  uploadImagem(id: number, imagem: File): Observable<any> {
+    const formData: FormData = new FormData();
+    //formData.append('id', id.toString());
+    formData.append('nomeImagem', imagem.name);
+    formData.append('imagem', imagem, imagem.name);
+
+    //formData.append('imagem', imagem, imagem.name);
+
+    return this.httpClient.patch<Product>(`${this.baseUrl}/upload/imagem${id}`, formData);
+  }
 }

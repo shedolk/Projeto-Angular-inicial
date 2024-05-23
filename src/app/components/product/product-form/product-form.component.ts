@@ -43,6 +43,9 @@ export class ProductFormComponent {
   formGroup: FormGroup;
   categories: Category[] = [];
 
+  selectedFile: File | null = null;
+  imageUrl: string | null = null;
+
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
@@ -69,6 +72,11 @@ export class ProductFormComponent {
       nomeImagem: [product && product.nomeImagem ? product.nomeImagem : null],
       //idCategory: [product && product.category.id ? product.category.id : ''],
     });
+
+    if (product && product.nomeImagem) {
+      this.imageUrl = this.productService.getUrlImagem(product.nomeImagem);
+    }
+
   }
 
   ngOnInit(): void {
@@ -98,6 +106,27 @@ export class ProductFormComponent {
   // }
 
 
+  onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      this.selectedFile = target.files[0];
+      this.formGroup.patchValue({ nomeImagem: this.selectedFile.name });
+    }
+  }
+
+  onUpload() {
+    const productId = this.formGroup.get('id')?.value;
+    if (this.selectedFile && productId) {
+      this.productService.uploadImagem(productId, this.selectedFile).subscribe(
+        (response) => {
+          console.log('Upload successful', response);
+          this.imageUrl = this.productService.getUrlImagem(this.selectedFile!.name);
+        },
+        (error) => console.error('Upload error', error)
+      );
+    }
+  }
+
   salvarProduct() {
     // marca todos os campos do formulario como 'touched'
     this.formGroup.markAllAsTouched();
@@ -113,7 +142,7 @@ export class ProductFormComponent {
 
       // realiza a operacao e trata a resposta.
       operacao.subscribe({
-        next: () => this.router.navigateByUrl('/produtos'),
+        next: () => this.router.navigateByUrl('/admin/produtos'),
         error: (error: HttpErrorResponse) => {
           console.log('Erro ao salvar' + JSON.stringify(error));
           this.tratarErros(error);

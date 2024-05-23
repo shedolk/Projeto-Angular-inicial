@@ -1,4 +1,5 @@
-<mat-toolbar color="primary" class="toolbar-title"><mat-icon class="white-icon">directions_car</mat-icon>Cadastro de Peça</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar-title"><mat-icon class="white-icon">directions_car</mat-icon>Cadastro de
+  Peça</mat-toolbar>
 
 <div class="form-container">
   <mat-card>
@@ -41,27 +42,24 @@
         <!-- espaço -->
 
         <mat-form-field appearance="outline" class="full-width-input">
-        <mat-label><mat-icon>category</mat-icon>Tipo de Suspensao</mat-label>
-        <mat-select formControlName="idCategory">
-        @for (category of categories; track category) {
-        <mat-option [value]="category.id">{{
-         category.category
-         }}</mat-option>
-        }
-        </mat-select>
+          <mat-label><mat-icon>category</mat-icon>Tipo de Suspensao</mat-label>
+          <mat-select formControlName="idCategory">
+            @for (category of categories; track category) {
+            <mat-option [value]="category.id">{{
+              category.category
+              }}</mat-option>
+            }
+          </mat-select>
 
-         <!-- Validação para o campo de senha -->
-        <mat-error -
-        *ngIf="
+          <!-- Validação para o campo de senha -->
+          <mat-error - *ngIf="
          formGroup.get('idCategory') &&
          formGroup.get('idCategory')?.invalid &&
          formGroup.get('idCategory')?.touched
-         "
-         >a categoria é obrigatória.</mat-error
-         >
-         </mat-form-field>
+         ">a categoria é obrigatória.</mat-error>
+        </mat-form-field>
 
-         <!-- <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Categoria</mat-label>
           <mat-select formControlName="category">
             @for (category of categories; track category.id) {
@@ -111,7 +109,7 @@
         <!-- espaço -->
 
         <!-- espaço -->
-        <mat-form-field appearance="outline" class="full-width-input">
+        <!-- <mat-form-field appearance="outline" class="full-width-input">
           <mat-label><mat-icon>image</mat-icon>Imagem da Peca</mat-label>
           <input matInput type="text" formControlName="nomeImagem" />
           <mat-error *ngIf="
@@ -119,7 +117,27 @@
               formGroup.get('nomeImagem')?.invalid &&
               formGroup.get('nomeImagem')?.touched
             ">O nomeImagem é obrigatório.</mat-error>
+        </mat-form-field> -->
+
+        <div appearance="outline" div class="full-width-input">
+          <label for="file-input"><mat-icon>image</mat-icon> Imagem da Peça</label>
+          <input type="file" id="file-input" (change)="onFileSelected($event)">
+        </div>
+
+        <!-- Campo Nome da Imagem (somente leitura) -->
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Nome da Imagem</mat-label>
+          <input matInput type="text" formControlName="nomeImagem" readonly>
         </mat-form-field>
+
+        <!-- Botão de Upload de Imagem -->
+        <button mat-raised-button color="primary" (click)="onUpload()" [disabled]="!selectedFile">
+          Upload Imagem
+        </button>
+
+        <!-- Exibição da Imagem -->
+        <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem do Produto" width="200">
+
       </form>
 
       <!-- espaço -->

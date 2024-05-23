@@ -1,5 +1,5 @@
 import { ProductService } from '../../../services/product.service';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { MatTableModule } from '@angular/material/table';
@@ -21,6 +21,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     MatButtonModule,
     RouterModule,
     MatPaginatorModule,
+    CommonModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
@@ -64,6 +65,9 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  getUrlImagem(nomeImagem: string): string {
+    return this.productService.getUrlImagem(nomeImagem);
+}
 
   paginar(event: PageEvent): void {
     this.page = event.pageIndex;
