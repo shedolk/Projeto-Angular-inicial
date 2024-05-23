@@ -3,7 +3,7 @@ import { CarrinhoService } from '../../services/carrinho.service';
 import { ProductService } from '../../services/product.service';
 import { Product } from './../../models/product.models';
 import { Component, OnInit, signal } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter } from '@angular/material/card';
 
@@ -12,12 +12,13 @@ type Card = {
   idProduct: number;
   nome: string;
   preco: number;
+  nomeImagem?: string;
 }
 
 @Component({
   selector: 'app-products-card-list',
   standalone: true,
-  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton],
+  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton, CommonModule],
   templateUrl: './products-card-list.component.html',
   styleUrl: './products-card-list.component.css'
 })
@@ -26,7 +27,8 @@ export class ProductCardListComponent implements OnInit {
   cards = signal<Card[]> ([]);
   products: Product[] = [];
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private carrinhoService: CarrinhoService,
     private snackBar: MatSnackBar) {}
 
@@ -48,10 +50,15 @@ export class ProductCardListComponent implements OnInit {
         cards.push({
           idProduct: product.id,
           nome: product.nome,
-          preco: product.preco
+          preco: product.preco,
+          nomeImagem: product.nomeImagem
         });
       });
       this.cards.set(cards);
+    }
+
+    getUrlImagem(nomeImagem: string | undefined): string {
+      return nomeImagem ? this.productService.getUrlImagem(nomeImagem) : '';
     }
 
     adicionarAoCarrinho(card: Card) {

@@ -3,6 +3,7 @@
 
       <!-- <img mat-card-image [src]="card.urlImagem" > -->
 
+      <img *ngIf="card.nomeImagem" mat-card-image [src]="getUrlImagem(card.nomeImagem)" alt="Imagem do Produto">
       <mat-card-title class="centered-text"> {{card.nome}} </mat-card-title>
 
       <!-- <mat-card-content class="centered-text"> {{card.modalidade}} </mat-card-content> -->
