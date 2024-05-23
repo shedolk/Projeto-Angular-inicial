@@ -1,0 +1,33 @@
+.carrinho-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.carrinho-item {
+  margin-bottom: 20px;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-card-content p {
+  margin: 5px 0;
+}
+
+.carrinho-total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.carrinho-total p {
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 10px;
+}

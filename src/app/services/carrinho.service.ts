@@ -4,51 +4,46 @@ import { ItemCarrinho } from '../models/itemcarrinho.models';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarrinhoService {
-
   private carrinhoSubject = new BehaviorSubject<ItemCarrinho[]>([]);
   carrinho$ = this.carrinhoSubject.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
-    const carrinhoArmazenado = localStorageService.getItem('carrinho') || [];
+    const carrinhoArmazenado =
+      this.localStorageService.getItem('carrinho') || [];
     this.carrinhoSubject.next(carrinhoArmazenado);
   }
 
-  adicionar(consulta: ItemCarrinho): void {
+  adicionar(item: ItemCarrinho): void {
     const carrinhoAtual = this.carrinhoSubject.value;
-    const itemExistente = carrinhoAtual.find(item => item.id === consulta.id);
+    const itemExistente = carrinhoAtual.find((i) => i.id === item.id);
 
     if (itemExistente) {
-      itemExistente.quantidade += consulta.quantidade || 1;
+      itemExistente.quantidade += item.quantidade || 1;
     } else {
-      carrinhoAtual.push({ ...consulta });
+      carrinhoAtual.push({ ...item });
     }
 
     this.carrinhoSubject.next(carrinhoAtual);
     this.atualizarArmazenamentoLocal();
   }
 
-  removerTudo(): void {
-    this.localStorageService.removeItem('carrinho');
-    window.location.reload(); // reload na página
-  }
-
   remover(item: ItemCarrinho): void {
     const carrinhoAtual = this.carrinhoSubject.value;
-    const carrinhoAtualizado = carrinhoAtual.filter(itemCarrinho => itemCarrinho !== item);
+    const carrinhoAtualizado = carrinhoAtual.filter((i) => i !== item);
 
     this.carrinhoSubject.next(carrinhoAtualizado);
     this.atualizarArmazenamentoLocal();
   }
 
-  obter(): ItemCarrinho[] {
-    return this.carrinhoSubject.value;
-
+  limparCarrinho(): void {
+    this.carrinhoSubject.next([]);
+    this.localStorageService.removeItem('carrinho');
   }
 
   private atualizarArmazenamentoLocal(): void {
-    localStorage.setItem('carrinho', JSON.stringify(this.carrinhoSubject.value));
+    this.localStorageService.setItem('carrinho', this.carrinhoSubject.value);
   }
 }
