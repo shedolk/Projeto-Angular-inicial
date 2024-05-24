@@ -1,5 +1,6 @@
 <mat-toolbar>
   <button
+    [ngClass]="{ 'hidden': tipo !== 2 }"
     (click)="clickMenu()"
     mat-icon-button
     class="example-icon"
@@ -7,26 +8,33 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span >Suspensoes-JhonnyBoy</span>
+
+  
 
   <span class="example-spacer"></span>
+
+  <span class="toolbar-title">Suspensoes-JhonnyBoy</span>
+
+  <span class="example-spacer"></span>
+
   <button
     routerLink="/carrinho"
     mat-icon-button
     class="demo-section example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
+    aria-label="Example icon-button com ícone de carrinho"
   >
     <mat-icon
       [matBadge]="qtdItensCarrinho"
       matBadgeColor="warn"
       matBadgePosition="after"
       matBadgeOverlap="false"
-      >shopping_cart</mat-icon
-    >
+      aria-hidden="false"
+    >shopping_cart</mat-icon>
   </button>
 
   <button mat-icon-button (click)="deslogar()">
     <mat-icon>exit_to_app</mat-icon>
   </button>
+
   <span>{{ usuarioLogado?.nome }}</span>
 </mat-toolbar>

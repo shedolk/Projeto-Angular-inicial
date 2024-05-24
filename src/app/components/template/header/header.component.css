@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -5,9 +9,18 @@
 .demo-section + .demo-section {
   margin-top: 16px;
 }
+
 .mat-toolbar {
   background-color: #1e1e1e;
   color: white;
-  text-align: justify;
+  
+  display: flex;
+  justify-content: space-between;
 }
 
+.toolbar-title {
+  flex: 0 1 auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

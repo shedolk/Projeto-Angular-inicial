@@ -10,6 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadge } from '@angular/material/badge';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +23,7 @@ import { Router, RouterModule } from '@angular/router';
     MatIconButton,
     RouterModule,
     RouterModule,
+    CommonModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -31,8 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   qtdItensCarrinho: number = 0;
-  @Input()
-  tipo: number = 0;
+  @Input() tipo: number = 0;
 
   constructor(
     private sidebarService: SidebarService,
