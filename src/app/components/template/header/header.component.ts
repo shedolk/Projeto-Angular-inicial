@@ -9,7 +9,7 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadge } from '@angular/material/badge';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
     MatBadge,
     MatButton,
     MatIconButton,
+    RouterModule,
     RouterModule,
   ],
   templateUrl: './header.component.html',
@@ -37,7 +38,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private sidebarService: SidebarService,
     private carrinhoService: CarrinhoService,
     private authService: AuthService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,5 +72,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   deslogar() {
     this.authService.removeToken();
     this.authService.removeUsuarioLogado();
+    this.router.navigateByUrl('/login');
   }
 }
