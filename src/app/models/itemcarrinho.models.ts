@@ -3,4 +3,5 @@ export class ItemCarrinho {
   nome!: string;
   quantidade!: number;
   preco!: number;
+  imagemUrl!: string;
 }

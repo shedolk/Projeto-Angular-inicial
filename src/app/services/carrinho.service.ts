@@ -46,4 +46,15 @@ export class CarrinhoService {
   private atualizarArmazenamentoLocal(): void {
     this.localStorageService.setItem('carrinho', this.carrinhoSubject.value);
   }
+
+  atualizarItem(item: ItemCarrinho): void {
+    const carrinhoAtual = this.carrinhoSubject.value;
+    const itemIndex = carrinhoAtual.findIndex((i) => i.id === item.id);
+
+    if (itemIndex > -1) {
+      carrinhoAtual[itemIndex] = item;
+      this.carrinhoSubject.next(carrinhoAtual);
+      this.atualizarArmazenamentoLocal();
+    }
+  }
 }

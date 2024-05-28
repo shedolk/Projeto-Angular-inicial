@@ -62,12 +62,14 @@ export class ProductCardListComponent implements OnInit {
     }
 
     adicionarAoCarrinho(card: Card) {
+      const imagemUrl = this.getUrlImagem(card.nomeImagem);
       this.showSnackbarTopPosition('Produto adicionado ao carrinho!', 'Fechar');
       this.carrinhoService.adicionar({
         id: card.idProduct,
         nome: card.nome,
         preco: card.preco,
-        quantidade: 1
+        quantidade: 1,
+        imagemUrl: imagemUrl
       })
 
     }
