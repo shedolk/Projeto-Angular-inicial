@@ -69,4 +69,8 @@ export class CarrinhoComponent {
   continuarComprando(): void {
     this.router.navigate(['/produtos']);
   }
+
+  irParaCheckout() {
+    this.router.navigate(['/checkout']);
+  }
 }

@@ -1,0 +1,130 @@
+.checkout-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.checkout-container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #6200ea;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  background-color: #3700b3;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.empty-cart-message {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.checkout-item:last-child {
+  border-bottom: none;
+}
+
+.checkout-item-name {
+  font-weight: bold;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+}
+
+.checkout-item-quantity,
+.checkout-item-price {
+  font-size: 14px;
+  color: #555;
+  font-family: 'Roboto', sans-serif;
+}
+
+.payment-section {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #6200ea;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #6200ea;
+}
+
+.mat-form-field-label {
+  color: #6200ea !important;
+}
+
+.payment-method {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.total-label {
+  color: #333;
+}
+
+.total-value {
+  color: #6200ea;
+}

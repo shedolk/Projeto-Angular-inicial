@@ -31,6 +31,7 @@ import { UserTemplateComponent } from './components/template/user-template/user-
 import { ProductCardListComponent } from './components/products-card-list/products-card-list.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
+import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -201,6 +202,11 @@ export const routes: Routes = [
         path: 'carrinho',
         component: CarrinhoComponent,
         title: 'Carrinho de pedidos',
+      },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        title: 'Finalizar Compra',
       },
       {
         path: 'usuarios/new',

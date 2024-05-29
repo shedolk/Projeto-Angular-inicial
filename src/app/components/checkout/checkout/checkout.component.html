@@ -1,0 +1,139 @@
+<!-- <div class="checkout-container">
+  <h1>Finalizar Pedido</h1>
+  <div *ngIf="carrinhoItems.length > 0; else emptyCart">
+    <div *ngFor="let item of carrinhoItems" class="checkout-item">
+      <p class="checkout-item-name">{{ item.nome }}</p>
+      <p class="checkout-item-quantity">{{ item.quantidade }} x</p>
+      <p class="checkout-item-price">{{ item.preco | currency:'BRL' }}</p>
+    </div>
+
+    <form [formGroup]="paymentForm" (ngSubmit)="onCheckout()">
+      <div class="payment-section">
+        <h2>Informações de Pagamento</h2>
+        <mat-form-field appearance="fill">
+          <mat-label>Número do Cartão</mat-label>
+          <input matInput formControlName="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Nome no Cartão</mat-label>
+          <input matInput formControlName="cardName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Data de Validade</mat-label>
+          <input matInput formControlName="expiryDate" placeholder="MM/AA">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>CVV</mat-label>
+          <input matInput formControlName="cvv" type="password">
+        </mat-form-field>
+      </div>
+      <button mat-button color="primary" type="submit">Finalizar Compra</button>
+    </form>
+  </div>
+  <ng-template #emptyCart>
+    <p class="empty-cart-message">Seu carrinho está vazio.</p>
+  </ng-template>
+</div> -->
+
+<!-- <div class="checkout-container">
+  <h1>Finalizar Pedido</h1>
+  <div *ngIf="carrinhoItems.length > 0; else emptyCart">
+    <div *ngFor="let item of carrinhoItems" class="checkout-item">
+      <p class="checkout-item-name">{{ item.nome }}</p>
+      <p class="checkout-item-quantity">{{ item.quantidade }} x</p>
+      <p class="checkout-item-price">{{ item.preco | currency:'BRL' }}</p>
+    </div>
+
+    <form [formGroup]="paymentForm" (ngSubmit)="onCheckout()" class="payment-form">
+      <div class="payment-section">
+        <h2>Informações de Pagamento</h2>
+
+        <mat-radio-group formControlName="paymentMethod" class="payment-method">
+          <mat-radio-button value="card">Cartão de Crédito</mat-radio-button>
+          <mat-radio-button value="pix">Pix</mat-radio-button>
+        </mat-radio-group>
+
+        <ng-container *ngIf="paymentForm.get('paymentMethod')?.value === 'card'">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Número do Cartão</mat-label>
+            <input matInput formControlName="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Nome no Cartão</mat-label>
+            <input matInput formControlName="cardName">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Data de Validade</mat-label>
+            <input matInput formControlName="expiryDate" placeholder="MM/AA">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>CVV</mat-label>
+            <input matInput formControlName="cvv" type="password">
+          </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="paymentForm.get('paymentMethod')?.value === 'pix'">
+          <p>Pagamento via Pix selecionado.</p>
+          <p>Usuário: {{ usuarioLogado?.nome || usuarioLogado?.login }}</p>
+        </ng-container>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Finalizar Compra</button>
+    </form>
+  </div>
+  <ng-template #emptyCart>
+    <p class="empty-cart-message">Seu carrinho está vazio.</p>
+  </ng-template>
+</div> -->
+
+<div class="checkout-container">
+  <h1>Finalizar Pedido</h1>
+  <div *ngIf="carrinhoItems.length > 0; else emptyCart">
+    <div *ngFor="let item of carrinhoItems" class="checkout-item">
+      <p class="checkout-item-name">{{ item.nome }}</p>
+      <p class="checkout-item-quantity">{{ item.quantidade }} x</p>
+      <p class="checkout-item-price">{{ item.preco | currency:'BRL' }}</p>
+    </div>
+    <div class="total-section">
+      <p class="total-label">Total:</p>
+      <p class="total-value">{{ totalCarrinho | currency:'BRL' }}</p>
+    </div>
+    <form [formGroup]="paymentForm" (ngSubmit)="onCheckout()" class="payment-form">
+      <div class="payment-section">
+        <h2>Informações de Pagamento</h2>
+
+        <mat-radio-group formControlName="paymentMethod" class="payment-method">
+          <mat-radio-button value="card">Cartão de Crédito</mat-radio-button>
+          <mat-radio-button value="pix">Pix</mat-radio-button>
+        </mat-radio-group>
+
+        <ng-container *ngIf="paymentForm.get('paymentMethod')?.value === 'card'">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Número do Cartão</mat-label>
+            <input matInput formControlName="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Nome no Cartão</mat-label>
+            <input matInput formControlName="cardName">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Data de Validade</mat-label>
+            <input matInput formControlName="expiryDate" placeholder="MM/AA">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>CVV</mat-label>
+            <input matInput formControlName="cvv" type="password">
+          </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="paymentForm.get('paymentMethod')?.value === 'pix'">
+          <p>Pagamento via Pix selecionado.</p>
+          <p>Usuário: {{ usuarioLogado?.nome || usuarioLogado?.login }}</p>
+        </ng-container>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Finalizar Compra</button>
+    </form>
+  </div>
+  <ng-template #emptyCart>
+    <p class="empty-cart-message">Seu carrinho está vazio.</p>
+  </ng-template>
+</div>
