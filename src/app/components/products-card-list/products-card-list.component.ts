@@ -6,6 +6,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // tipo personalizado de dados, como classes e interfaces, porém mais simples.
 type Card = {
@@ -13,12 +14,20 @@ type Card = {
   nome: string;
   preco: number;
   nomeImagem?: string;
+  category: {
+    id: number;
+    category: string;
+    compatibilidade: string;
+    tipoMola: string;
+    tipoAmortecedor: string;
+};
+  showDetails: boolean; // Nova propriedade
 }
 
 @Component({
   selector: 'app-products-card-list',
   standalone: true,
-  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton, CommonModule],
+  imports: [MatCard, MatCardActions, MatCardContent, MatCardTitle, MatCardFooter, NgFor, MatButton, CommonModule, MatExpansionModule],
   templateUrl: './products-card-list.component.html',
   styleUrl: './products-card-list.component.css'
 })
@@ -51,7 +60,15 @@ export class ProductCardListComponent implements OnInit {
           idProduct: product.id,
           nome: product.nome,
           preco: product.preco,
-          nomeImagem: product.nomeImagem
+          nomeImagem: product.nomeImagem,
+          category: {
+            id: product.category.id,
+            category: product.category.category,
+            compatibilidade: product.category.compatibilidade,
+            tipoMola: product.category.tipoMola,
+            tipoAmortecedor: product.category.tipoAmortecedor
+          },
+          showDetails: false // Inicializa como false
         });
       });
       this.cards.set(cards);
@@ -69,9 +86,14 @@ export class ProductCardListComponent implements OnInit {
         nome: card.nome,
         preco: card.preco,
         quantidade: 1,
-        imagemUrl: imagemUrl
+        imagemUrl: imagemUrl,
+        category: card.category
       })
 
+    }
+
+    toggleDetails(card: Card) {
+      card.showDetails = !card.showDetails;
     }
 
     showSnackbarTopPosition(content:any, action:any) {

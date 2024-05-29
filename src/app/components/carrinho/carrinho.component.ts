@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-carrinho',
@@ -21,6 +22,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatExpansionModule
   ],
   templateUrl: './carrinho.component.html',
   styleUrl: './carrinho.component.css',
@@ -65,6 +67,6 @@ export class CarrinhoComponent {
   }
 
   continuarComprando(): void {
-    this.router.navigate(['/produtos']);  
+    this.router.navigate(['/produtos']);
   }
 }

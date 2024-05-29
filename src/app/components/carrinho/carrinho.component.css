@@ -39,6 +39,85 @@ button {
   object-fit: contain;
 } */
 
+/* .carrinho-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.carrinho-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.carrinho-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.carrinho-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.carrinho-imagem {
+  width: 150px;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.botoes-controle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.botoes-controle button {
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.botoes-controle .botao-excluir {
+  margin-left: 20px;
+  background-color: #ffcccc;
+}
+
+.mat-card-content p {
+  margin: 5px 0;
+}
+
+.carrinho-total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.carrinho-total p {
+  margin: 10px 0;
+}
+
+.carrinho-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button {
+  margin-top: 10px;
+} */
+
+
 .carrinho-container {
   padding: 20px;
   max-width: 800px;
