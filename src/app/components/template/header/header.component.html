@@ -9,13 +9,37 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  
+  <!-- <span class="example-spacer"></span> -->
+
+  <span class="toolbar-title">Johnny Boy - Suspensões Automotivas</span>
 
   <span class="example-spacer"></span>
 
-  <span class="toolbar-title">Suspensoes-JhonnyBoy</span>
+  <span>{{ usuarioLogado?.nome }}</span>
 
-  <span class="example-spacer"></span>
+  <button
+    *ngIf="usuarioLogado"
+    mat-icon-button
+    [matMenuTriggerFor]="perfilMenu"
+    aria-label="Example icon-button com ícone de perfil"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <mat-menu #perfilMenu="matMenu">
+    <button mat-menu-item [routerLink]="'/perfil'">
+      <mat-icon>person</mat-icon>
+      <span>Perfil</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/perfil/edit'">
+      <mat-icon>edit</mat-icon>
+      <span>Editar Dados</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/perfil/pedidos'">
+      <mat-icon>list_alt</mat-icon>
+      <span>Pedidos Realizados</span>
+    </button>
+  </mat-menu>
 
   <button
     routerLink="/carrinho"
@@ -29,12 +53,12 @@
       matBadgePosition="after"
       matBadgeOverlap="false"
       aria-hidden="false"
-    >shopping_cart</mat-icon>
+    >
+      shopping_cart
+    </mat-icon>
   </button>
 
   <button mat-icon-button (click)="deslogar()">
     <mat-icon>exit_to_app</mat-icon>
   </button>
-
-  <span>{{ usuarioLogado?.nome }}</span>
 </mat-toolbar>

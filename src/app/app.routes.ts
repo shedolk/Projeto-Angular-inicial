@@ -32,6 +32,9 @@ import { ProductCardListComponent } from './components/products-card-list/produc
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
 import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
+import { UsuarioPerfilComponent } from './components/usuario/usuario-perfil/usuario-perfil.component';
+import { UsuarioOrdersComponent } from './components/usuario/usuario-orders/usuario-orders.component';
+import { UsuarioOrdersDetalhesComponent } from './components/usuario/usuario-orders-detalhes/usuario-orders-detalhes.component';
 
 export const routes: Routes = [
   // Rota usuarios
@@ -116,56 +119,56 @@ export const routes: Routes = [
     resolve: { telefone: telefoneResolver },
   },
   // Rota pedidos
-  {
-    path: 'pedidos',
-    component: PedidoListComponent,
-    title: 'Lista de Pedidos',
-  },
-  {
-    path: 'pedidos/new',
-    component: PedidoFormComponent,
-    title: 'Novo Pedido',
-  },
-  {
-    path: 'pedidos/edit/:id',
-    component: PedidoFormComponent,
-    title: 'Editar Pedido',
-    resolve: { pedido: pedidoResolver },
-  },
-  // Rota cupom
-  {
-    path: 'cupom',
-    component: CupomListComponent,
-    title: 'Lista de Cupons',
-  },
-  {
-    path: 'cupom/new',
-    component: CupomFormComponent,
-    title: 'Novo Cupom',
-  },
-  {
-    path: 'cupom/edit/:id',
-    component: CupomFormComponent,
-    title: 'Editar Cupom',
-    resolve: { cupom: cupomResolver },
-  },
-  // rota ItemPedido
-  {
-    path: 'itenspedidos',
-    component: ItemPedidoListComponent,
-    title: 'Lista de Itens do Pedido',
-  },
-  {
-    path: 'itenspedidos/new',
-    component: ItemPedidoFormComponent,
-    title: 'Novo Item do Pedido',
-  },
-  {
-    path: 'itenspedidos/edit/:id',
-    component: ItemPedidoFormComponent,
-    title: 'Editar Item do Pedido',
-    resolve: { itempedido: itempedidoResolver },
-  },
+  // {
+  //   path: 'pedidos',
+  //   component: PedidoListComponent,
+  //   title: 'Lista de Pedidos',
+  // },
+  // {
+  //   path: 'pedidos/new',
+  //   component: PedidoFormComponent,
+  //   title: 'Novo Pedido',
+  // },
+  // {
+  //   path: 'pedidos/edit/:id',
+  //   component: PedidoFormComponent,
+  //   title: 'Editar Pedido',
+  //   resolve: { pedido: pedidoResolver },
+  // },
+  // // Rota cupom
+  // {
+  //   path: 'cupom',
+  //   component: CupomListComponent,
+  //   title: 'Lista de Cupons',
+  // },
+  // {
+  //   path: 'cupom/new',
+  //   component: CupomFormComponent,
+  //   title: 'Novo Cupom',
+  // },
+  // {
+  //   path: 'cupom/edit/:id',
+  //   component: CupomFormComponent,
+  //   title: 'Editar Cupom',
+  //   resolve: { cupom: cupomResolver },
+  // },
+  // // rota ItemPedido
+  // {
+  //   path: 'itenspedidos',
+  //   component: ItemPedidoListComponent,
+  //   title: 'Lista de Itens do Pedido',
+  // },
+  // {
+  //   path: 'itenspedidos/new',
+  //   component: ItemPedidoFormComponent,
+  //   title: 'Novo Item do Pedido',
+  // },
+  // {
+  //   path: 'itenspedidos/edit/:id',
+  //   component: ItemPedidoFormComponent,
+  //   title: 'Editar Item do Pedido',
+  //   resolve: { itempedido: itempedidoResolver },
+  // },
 
   // Rota Produtos
   // {
@@ -198,6 +201,13 @@ export const routes: Routes = [
         title: 'Produtos à Venda',
       },
 
+      { path: 'perfil', component: UsuarioPerfilComponent },
+
+      { path: 'perfil/edit', component: UsuarioFormComponent },
+
+      { path: 'perfil/pedidos', component: UsuarioOrdersComponent },
+
+      // { path: 'perfil/pedidos/:id', component: UsuarioOrdersDetalhesComponent },
       {
         path: 'carrinho',
         component: CarrinhoComponent,

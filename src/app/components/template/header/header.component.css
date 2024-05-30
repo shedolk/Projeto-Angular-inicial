@@ -13,9 +13,9 @@
 .mat-toolbar {
   background-color: #1e1e1e;
   color: white;
-  
   display: flex;
   justify-content: space-between;
+  align-items: center;  /* Adiciona alinhamento ao centro dos itens */
 }
 
 .toolbar-title {
@@ -23,4 +23,22 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.mat-menu {
+  background-color: #2e2e2e;  /* Define a cor de fundo do menu */
+  color: white;  /* Define a cor do texto do menu */
+}
+
+.mat-menu-item {
+  display: flex;
+  align-items: center;
+}
+
+.mat-menu-item mat-icon {
+  margin-right: 8px;  /* Espaçamento entre o ícone e o texto */
+}
+
+.mat-menu-item:hover {
+  background-color: #555555;  /* Cor de fundo ao passar o mouse */
 }

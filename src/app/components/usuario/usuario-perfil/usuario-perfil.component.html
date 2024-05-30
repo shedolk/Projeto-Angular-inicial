@@ -1,0 +1,23 @@
+<div class="perfil-container">
+  <h1>Perfil do Usuário</h1>
+  <div *ngIf="usuario">
+    <h2>Dados Pessoais</h2>
+    <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+
+    <p><strong>Login:</strong> {{ usuario.login }}</p>
+    <!-- Adicione mais campos conforme necessário -->
+    <button mat-button (click)="editarDados()">Editar Dados</button>
+  </div>
+
+  <h2>Meus Pedidos</h2>
+  <div *ngFor="let pedido of pedidos" class="pedido-item">
+    <!-- <p><strong>Pedido #{{ pedido.id }}</strong></p>
+    <p><strong>Data:</strong> {{ pedido.dataHora | date }}</p>
+    <p><strong>Total:</strong> {{ pedido.totalPedido | currency:'BRL' }}</p>
+    <button mat-button (click)="verDetalhes(pedido.id)">Ver Detalhes</button> -->
+    <p><strong>Pedido #{{ pedido.id }}</strong></p>
+    <p><strong>Data:</strong> {{ pedido.dataHora | date }}</p>
+    <p><strong>Total:</strong> {{ pedido.totalPedido | currency:'BRL' }}</p>
+    <button mat-button [routerLink]="['/perfil/pedidos', pedido.id]">Ver Detalhes</button>
+  </div>
+</div>

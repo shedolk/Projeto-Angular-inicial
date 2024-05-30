@@ -11,6 +11,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadge } from '@angular/material/badge';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ import { CommonModule } from '@angular/common';
     MatBadge,
     MatButton,
     MatIconButton,
+    MatMenuModule,
     RouterModule,
     RouterModule,
     CommonModule
