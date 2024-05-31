@@ -12,6 +12,9 @@ import { MatBadge } from '@angular/material/badge';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     RouterModule,
     RouterModule,
-    CommonModule
+    CommonModule, 
+    MatTooltipModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
