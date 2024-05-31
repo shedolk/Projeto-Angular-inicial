@@ -28,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     RouterModule,
     RouterModule,
-    CommonModule, 
+    CommonModule,
     MatTooltipModule,
   ],
   templateUrl: './header.component.html',
@@ -79,6 +79,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   deslogar() {
     this.authService.removeToken();
     this.authService.removeUsuarioLogado();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/produtos');
   }
 }

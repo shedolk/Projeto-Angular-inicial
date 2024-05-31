@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -29,13 +30,22 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class CarrinhoComponent {
   carrinhoItens: ItemCarrinho[] = [];
+  usuarioLogado: boolean = false;
+  showLoginPanel: boolean = false;
 
-  constructor(private carrinhoService: CarrinhoService, private router: Router) { }
+  constructor(private carrinhoService: CarrinhoService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.getUsuarioLogado().subscribe((usuario) => {
+      this.usuarioLogado = !!usuario;
+    });
     this.carrinhoService.carrinho$.subscribe((itens) => {
       this.carrinhoItens = itens;
     });
+  }
+
+  toggleLoginPanel(): void {
+    this.showLoginPanel = !this.showLoginPanel;
   }
 
   removerItem(item: ItemCarrinho): void {
@@ -72,5 +82,9 @@ export class CarrinhoComponent {
 
   irParaCheckout() {
     this.router.navigate(['/checkout']);
+  }
+
+  irParaLogin(): void {
+    this.router.navigate(['/login']);
   }
 }
