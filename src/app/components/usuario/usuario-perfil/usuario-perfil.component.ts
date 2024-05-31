@@ -6,13 +6,18 @@ import { AuthService } from '../../../services/auth.service';
 import { OrderService } from '../../../services/order.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-usuario-perfil',
   standalone: true,
-  imports: [CommonModule, // Adicionar CommonModule
-  MatButtonModule,
-RouterModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    RouterModule,
+    MatIconModule,
+    MatTooltip],
   templateUrl: './usuario-perfil.component.html',
   styleUrl: './usuario-perfil.component.css'
 })
@@ -24,7 +29,7 @@ export class UsuarioPerfilComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrderService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.authService.getUsuarioLogado().subscribe(usuario => {
@@ -47,5 +52,9 @@ export class UsuarioPerfilComponent implements OnInit {
 
   verDetalhes(pedidoId: number): void {
     this.router.navigate(['/pedidos', pedidoId]);
+  }
+
+  voltarParaPrincipal(): void {
+    this.router.navigate(['/']);
   }
 }

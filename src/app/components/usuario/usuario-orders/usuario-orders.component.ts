@@ -6,7 +6,9 @@ import { Order } from '../../../models/order.models';
 import { OrderService } from '../../../services/order.service';
 import { Usuario } from '../../../models/usuario.model';
 import { AuthService } from '../../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-usuario-orders',
@@ -15,6 +17,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatTableModule,
     MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
     RouterModule
   ],
   templateUrl: './usuario-orders.component.html',
@@ -26,7 +30,7 @@ export class UsuarioOrdersComponent implements OnInit {
   displayedColumns: string[] = ['id', 'dataHora', 'totalPedido'];
   usuario: Usuario | null = null;
 
-  constructor(private orderService: OrderService, private authService: AuthService) {}
+  constructor(private orderService: OrderService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     // this.carregarPedidos();
@@ -51,5 +55,9 @@ export class UsuarioOrdersComponent implements OnInit {
     } else {
       console.error("Usuário não está logado ou login não encontrado.");
     }
+  }
+
+  voltarParaPrincipal(): void {
+    this.router.navigate(['/']);
   }
 }

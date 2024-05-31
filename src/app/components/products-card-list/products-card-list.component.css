@@ -1,19 +1,25 @@
+/* Estilo para imagens */
 img {
   width: 100%;
   height: 240px;
   object-fit: cover;
+  border-top-left-radius: 12px; /* Bordas arredondadas para a imagem */
+  border-top-right-radius: 12px;
 }
 
+/* Estilo para o container */
 .container {
   padding: 20px;
 }
 
+/* Estilo para o grid responsivo */
 .responsive-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* Estilo para centralizar texto */
 .centered-text {
   text-align: center;
   display: flex;
@@ -21,7 +27,37 @@ img {
   justify-content: center;
 }
 
+/* Estilo para imagens de produto */
 .product-image {
   width: 100%;
   height: auto;
+}
+
+/* Estilo para os botões personalizados */
+.custom-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #6200ea;
+  color: #ffffff;
+  border: none; /* Remover a borda */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adicionar sombra */
+  transition: background-color 0.3s ease; /* Adicionar transição para a cor de fundo */
+}
+
+.custom-button:hover {
+  background-color: #3700b3; /* Cor ao passar o mouse */
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para os cards de produto */
+.product-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de destaque ao passar o mouse */
+.product-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

@@ -3,3 +3,8 @@
   text-align: center;
   font-size: small;
 }
+
+.toolbar-color {
+  background-color: #6200ea; /* Cor de fundo personalizada */
+  color: #ffffff; /* Cor do texto */
+}

@@ -1,49 +1,16 @@
-<!-- <div class="container responsive-grid">
-  <mat-card *ngFor="let card of cards()"> -->
-
-      <!-- <img mat-card-image [src]="card.urlImagem" > -->
-
-      <!-- <img *ngIf="card.nomeImagem" mat-card-image [src]="getUrlImagem(card.nomeImagem)" alt="Imagem do Produto">
-      <mat-card-title class="centered-text"> {{card.nome}} </mat-card-title> -->
-
-      <!-- <mat-card-content class="centered-text"> {{card.modalidade}} </mat-card-content> -->
-      <!-- <br/>
-      <mat-card-content class="centered-text"> {{card.preco}} </mat-card-content>
-
-      <mat-card-actions class="centered-text">
-          <button mat-button color="primary">Ver mais ...</button>
-      </mat-card-actions>
-
-      <mat-card-footer>
-          <button mat-flat-button color="accent"
-              (click)="adicionarAoCarrinho(card)"
-              style="width: 100%; padding: 16px;">Adicionar ao carrinho</button>
-      </mat-card-footer>
-  </mat-card>
-</div> -->
-
 <div class="container responsive-grid">
-  <mat-card *ngFor="let card of cards()">
-    <img *ngIf="card.nomeImagem" mat-card-image [src]="getUrlImagem(card.nomeImagem)" alt="Imagem do Produto">
+  <mat-card *ngFor="let card of cards()" class="product-card">
+    <img *ngIf="card.nomeImagem" mat-card-image [src]="getUrlImagem(card.nomeImagem)" alt="Imagem do Produto" class="product-image">
     <mat-card-title class="centered-text"> {{card.nome}} </mat-card-title>
     <br/>
     <mat-card-content class="centered-text"> {{card.preco}} </mat-card-content>
 
     <mat-card-actions class="centered-text">
-      <button mat-button color="primary" (click)="toggleDetails(card)">
+      <button mat-flat-button (click)="toggleDetails(card)"
+      class="custom-button">
         {{ card.showDetails ? 'Ver menos ...' : 'Ver mais ...' }}
       </button>
     </mat-card-actions>
-
-    <!-- <div *ngIf="card.showDetails">
-      <mat-card-content class="centered-text">
-        <p><strong>Descrição:</strong> {{card.descricao}}</p>
-        <p><strong>Categoria:</strong> {{card.category.category}}</p>
-        <p><strong>Compatibilidade:</strong> {{card.category.compatibilidade}}</p>
-        <p><strong>Tipo de Mola:</strong> {{card.category.tipoMola}}</p>
-        <p><strong>Tipo de Amortecedor:</strong> {{card.category.tipoAmortecedor}}</p>
-      </mat-card-content>
-    </div> -->
 
     <mat-expansion-panel *ngIf="card.showDetails" expanded>
       <mat-expansion-panel-header>
@@ -52,7 +19,6 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-card-content>
-        <!-- <p><strong>Descrição:</strong> {{card.descricao}}</p> -->
         <p><strong>Categoria:</strong> {{card.category.category}}</p>
         <p><strong>Compatibilidade:</strong> {{card.category.compatibilidade}}</p>
         <p><strong>Tipo de Mola:</strong> {{card.category.tipoMola}}</p>
@@ -60,9 +26,9 @@
       </mat-card-content>
     </mat-expansion-panel>
     <mat-card-footer>
-      <button mat-flat-button color="accent"
-              (click)="adicionarAoCarrinho(card)"
-              style="width: 100%; padding: 16px;">Adicionar ao carrinho</button>
+      <button mat-flat-button
+      (click)="adicionarAoCarrinho(card)"
+      class="custom-button">Adicionar ao carrinho</button>
     </mat-card-footer>
   </mat-card>
 </div>
