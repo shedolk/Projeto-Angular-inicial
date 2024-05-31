@@ -16,13 +16,51 @@
   display: flex;
   justify-content: space-between;
   align-items: center;  /* Adiciona alinhamento ao centro dos itens */
+  position: relative; /* Adicionar posição relativa para o contexto do absolute */
+  overflow: visible; /* Garantir que os elementos filhos possam transbordar */
+}
+
+.toolbar-title-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative; /* Para conter a posição absoluta da imagem */
+}
+
+.toolbar-title-button:hover .toolbar-title {
+  color: #f1da0a; /* Cor amarela para destaque */
+  transform: scale(1.05); /* Leve aumento no tamanho */
 }
 
 .toolbar-title {
-  flex: 0 1 auto;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-left: 16px;
+}
+
+.logo {
+  height: 50px; /* Tamanho normal da logo */
+  width: 150px;
+  transition: transform 0.3s ease; /* Transição suave para o efeito */
+  position: left; /* Permitir que a imagem expanda para fora */
+  top: 0;
+  left: 50%; /* Centralizar horizontalmente */
+  transform: translateX(0, 0); /* Ajustar a centralização */
+  z-index: 1; /* Garantir que a imagem fique sobreposta */
+}
+
+.toolbar-title-button:hover .logo {
+  transform: scale(1.8); /* Aumenta o tamanho da logo ao passar o mouse */
+  z-index: 1000;
 }
 
 .mat-menu {
@@ -41,4 +79,10 @@
 
 .mat-menu-item:hover {
   background-color: #555555;  /* Cor de fundo ao passar o mouse */
+}
+
+@media (max-width: 600px) {
+  .toolbar-title {
+    font-size: 1rem;
+  }
 }

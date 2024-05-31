@@ -195,3 +195,19 @@ button {
 button {
   margin-top: 10px;
 }
+
+/* Estilo para os botões personalizados */
+.custom-button {
+  background-color: #6200ea;
+  color: #ffffff;
+  border: none; /* Remover a borda */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adicionar sombra */
+  transition: background-color 0.3s ease, transform 0.3s, box-shadow 0.3s; /* Adicionar transição para a cor de fundo */
+}
+
+
+.custom-button:hover {
+  background-color: #3700b3; /* Cor ao passar o mouse */
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

@@ -3,7 +3,7 @@
     <img *ngIf="card.nomeImagem" mat-card-image [src]="getUrlImagem(card.nomeImagem)" alt="Imagem do Produto" class="product-image">
     <mat-card-title class="centered-text"> {{card.nome}} </mat-card-title>
     <br/>
-    <mat-card-content class="centered-text"> {{card.preco}} </mat-card-content>
+    <mat-card-content class="centered-text"> {{card.preco | currency : 'BRL'}} </mat-card-content>
 
     <mat-card-actions class="centered-text">
       <button mat-flat-button (click)="toggleDetails(card)"
