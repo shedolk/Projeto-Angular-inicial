@@ -40,22 +40,12 @@ export class CategoryFormComponent {
   ) {
     const category: Category = this.activatedRoute.snapshot.data['category'];
 
-    // this.formGroup = this.formBuilder.group({
-    //   id: [category && category.id ? category.id : null],
-    //   category: [category && category.category ? category.category : '',
-    //   Validators.compose([Validators.required, Validators.minLength(4)]),
-    //   ],
-    //   material: [category.material && category.material ? category.material : '',
-    //   Validators.compose([Validators.required, Validators.minLength(4)]),
-    //   ],
-    // });
-
     this.formGroup = this.formBuilder.group({
       id: [category?.id || null],
       category: [category?.category || '', Validators.compose([Validators.required, Validators.minLength(4)])],
       compatibilidade: [category?.compatibilidade || '', Validators.compose([Validators.required, Validators.minLength(4)])],
-      mola: [category?.tipoMola || '', Validators.compose([Validators.required, Validators.minLength(4)])],
-      amortecedor: [category?.tipoAmortecedor || '', Validators.compose([Validators.required, Validators.minLength(4)])],
+      tipoMola: [category?.tipoMola || '', Validators.compose([Validators.required, Validators.minLength(4)])],
+      tipoAmortecedor: [category?.tipoAmortecedor || '', Validators.compose([Validators.required, Validators.minLength(4)])],
      // material: [category?.material || '', Validators.compose([Validators.required, Validators.minLength(4)])],
     });
   }
@@ -74,7 +64,7 @@ export class CategoryFormComponent {
 
       // realiza a operacao e trata a resposta.
       operacao.subscribe({
-        next: () => this.router.navigateByUrl('/categories'),
+        next: () => this.router.navigateByUrl('/admin/categories'),
         error: (error: HttpErrorResponse) => {
           console.log('Erro ao salvar' + JSON.stringify(error));
           this.tratarErros(error);
@@ -89,7 +79,7 @@ export class CategoryFormComponent {
       if (category.id != null) {
         this.categoryService.delete(category).subscribe({
           next: () => {
-            this.router.navigateByUrl('/categories');
+            this.router.navigateByUrl('/admin/categories');
           },
           error: (err) => {
             console.log('Erro ao Excluir' + JSON.stringify(err));

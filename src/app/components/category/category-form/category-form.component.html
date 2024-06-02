@@ -47,18 +47,18 @@
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>mola</mat-label>
           <mat-icon matPrefix>build</mat-icon>
-          <input matInput type="text" formControlName="mola" />
+          <input matInput type="text" formControlName="tipoMola" />
           <!-- Validação para o campo de senha -->
           <mat-error *ngIf="
-              formGroup.get('mola')?.errors &&
-              formGroup.get('mola')?.touched
+              formGroup.get('tipoMola')?.errors &&
+              formGroup.get('tipoMola')?.touched
             ">
-            @if (formGroup.get('mola')?.errors?.['required']) {
+            @if (formGroup.get('tipoMola')?.errors?.['required']) {
             <span>O tipo de mola deve ser informado.</span>
-            } @if (formGroup.get('mola')?.errors?.['minlength']) {
+            } @if (formGroup.get('tipoMola')?.errors?.['minlength']) {
             <span>O tipo de mola deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('mola')?.hasError('apiError')) {
-            <span>{{ formGroup.get("mola")?.getError("apiError") }}</span>
+            } @if (formGroup.get('tipoMola')?.hasError('apiError')) {
+            <span>{{ formGroup.get("tipoMola")?.getError("apiError") }}</span>
             } >
           </mat-error>
         </mat-form-field>
@@ -67,18 +67,18 @@
         <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>amortecedor</mat-label>
           <mat-icon matPrefix>build</mat-icon>
-          <input matInput type="text" formControlName="amortecedor" />
+          <input matInput type="text" formControlName="tipoAmortecedor" />
           <!-- Validação para o campo de senha -->
           <mat-error *ngIf="
-              formGroup.get('amortecedor')?.errors &&
-              formGroup.get('amortecedor')?.touched
+              formGroup.get('tipoAmortecedor')?.errors &&
+              formGroup.get('tipoAmortecedor')?.touched
             ">
-            @if (formGroup.get('amortecedor')?.errors?.['required']) {
+            @if (formGroup.get('tipoAmortecedor')?.errors?.['required']) {
             <span>O tipo de amortecedor deve ser informado.</span>
-            } @if (formGroup.get('amortecedor')?.errors?.['minlength']) {
+            } @if (formGroup.get('tipoAmortecedor')?.errors?.['minlength']) {
             <span>O tipo de amortecedor deve possuir ao menos 4 caracteres.</span>
-            } @if (formGroup.get('amortecedor')?.hasError('apiError')) {
-            <span>{{ formGroup.get("amortecedor")?.getError("apiError") }}</span>
+            } @if (formGroup.get('tipoAmortecedor')?.hasError('apiError')) {
+            <span>{{ formGroup.get("tipoAmortecedor")?.getError("apiError") }}</span>
             } >
           </mat-error>
         </mat-form-field>

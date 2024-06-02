@@ -46,50 +46,54 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      // email: ['', [Validators.required, Validators.minLength(3)]],
-      // password: ['', [Validators.required, Validators.minLength(3)]],
       login: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
+  // onSubmit() {
+  //   if (this.loginForm.valid) {
+  //     const login = this.loginForm.get('login')!.value;
+  //     const password = this.loginForm.get('password')!.value;
+  //     this.authService.login(login, password).subscribe({
+  //       next: (resp) => {
+  //         const user = resp.body;
+
+  //         console.log(user);
+
+
+  //         user.perfil.id === 1
+  //           ? this.router.navigateByUrl('/produtos')
+  //           : this.router.navigateByUrl('/admin/produtos');
+
+  //       },
+  //       error: (err) => {
+  //         console.log(err);
+  //         this.showSnackbarTopPosition(
+  //           'Usuário ou senha Inválidos',
+  //           'Fechar',
+  //           2000
+  //         );
+  //       },
+  //     });
+  //   } else {
+  //     this.showSnackbarTopPosition('Dados inválidos', 'Fechar', 2000);
+  //   }
+  // }
+
   onSubmit() {
     if (this.loginForm.valid) {
-      const login = this.loginForm.get('login')!.value;
-      const password = this.loginForm.get('password')!.value;
+      const { login, password } = this.loginForm.value;
       this.authService.login(login, password).subscribe({
         next: (resp) => {
           const user = resp.body;
-          // if (user.perfil.id === 1) {
-          //   this.router.navigateByUrl('/');
-          // } else if (user.perfil.id === 2) {
-          //   this.router.navigateByUrl('/admin');
-          // } else {
-          //   this.router.navigateByUrl('/login');
-          // }
-          console.log(user);
-
-          // redirecionar para a página principal
-          user.perfil.id === 1
-            ? this.router.navigateByUrl('/produtos')
-            : this.router.navigateByUrl('/admin/produtos');
-          // this.router.navigateByUrl('/produtos');
-
-          // // implementar a logica p buscar o idPerfil do usuario logado
-          // if (resp.idPerfil == 1) {
-          //   this.router.navigateByUrl('/');
-          // } else {
-          //   this.router.navigateByUrl('/admin');
-          // }
-          // this.router.navigateByUrl('/');
+          if (user) {
+            const route = user.perfil.id === 1 ? '/produtos' : '/admin/produtos';
+            this.router.navigateByUrl(route);
+          }
         },
-        error: (err) => {
-          console.log(err);
-          this.showSnackbarTopPosition(
-            'Usuário ou senha Inválidos',
-            'Fechar',
-            2000
-          );
+        error: () => {
+          this.showSnackbarTopPosition('Usuário ou senha Inválidos', 'Fechar', 2000);
         },
       });
     } else {

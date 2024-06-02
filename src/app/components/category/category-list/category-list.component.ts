@@ -55,49 +55,7 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSuspensoes();
-    //this.carregarSuspensoes();
-    //this.carregarTotalRegistros();
   }
-
-  // carregarSuspensoes() {
-  //   // se existe dados no filtro
-  //   if (this.filtro) {
-  //     this.categoryService.findByNome(this.filtro, this.pagina, this.pageSize).subscribe(data => {
-  //       this.categories = data;
-  //     });
-  //   } else {
-  //     // buscando todas categories
-  //     this.categoryService.findAll(this.pagina, this.pageSize).subscribe(data => {
-  //       this.categories = data;
-  //     });
-  //   }
-  // }
-
-  // carregarTotalRegistros() {
-  //   // se o filtro acha algo
-  //   if (this.filtro) {
-  //     this.categoryService.countByNome(this.filtro).subscribe(data => {
-  //       this.totalRegistros = data;
-  //     });
-  //   } else {
-  //     this.categoryService.count().subscribe(data => {
-  //       this.totalRegistros = data;
-  //     });
-  //   }
-  // }
-
-  // // paginar os resultados
-  // paginar(event: PageEvent): void {
-  //   this.pagina = event.pageIndex;
-  //   this.pageSize = event.pageSize;
-  //   this.carregarSuspensoes();
-  // }
-
-  // aplicarFiltro() {
-  //   this.carregarSuspensoes();
-  //   this.carregarTotalRegistros();
-  // }
-
 
   loadSuspensoes(): void {
     this.categoryService.findAll(this.page, this.pageSize).subscribe((data) => {

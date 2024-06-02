@@ -37,338 +37,127 @@ import { UsuarioOrdersComponent } from './components/usuario/usuario-orders/usua
 import { UsuarioOrdersDetalhesComponent } from './components/usuario/usuario-orders-detalhes/usuario-orders-detalhes.component';
 
 export const routes: Routes = [
-  // Rota usuarios
-  {
-    path: 'usuarios',
-    component: UsuarioListComponent,
-    title: 'Lista de Usuarios',
-  },
-  {
-    path: 'usuarios/new',
-    component: UsuarioFormComponent,
-    title: 'Novo usuario',
-  },
-  {
-    path: 'usuarios/edit/:id',
-    component: UsuarioFormComponent,
-    resolve: { usuario: usuarioResolver },
-  },
 
-  // Rota enderecos
-  {
-    path: 'enderecos',
-    component: EnderecoListComponent,
-    title: 'Lista de Enderecos',
-  },
-  {
-    path: 'enderecos/usuario/:id',
-    component: EnderecoListComponent,
-    title: 'Lista de Enderecos',
-  },
-  {
-    path: 'enderecos/new',
-    component: EnderecoFormComponent,
-    title: 'Novo endereco',
-  },
-  {
-    path: 'enderecos/usuario/:idUsuario/new',
-    component: EnderecoFormComponent,
-    title: 'Novo endereco',
-  },
-  {
-    path: 'enderecos/edit/:id',
-    component: EnderecoFormComponent,
-    resolve: { endereco: enderecoResolver },
-  },
-  {
-    path: 'enderecos/usuario/:idUsuario/edit/:id',
-    component: EnderecoFormComponent,
-    resolve: { endereco: enderecoResolver },
-  },
-
-  // Rota telefones
-  {
-    path: 'telefones',
-    component: TelefoneListComponent,
-    title: 'Lista de telefones',
-  },
-  {
-    path: 'telefones/usuario/:id',
-    component: TelefoneListComponent,
-    title: 'Lista de telefones',
-  },
-  {
-    path: 'telefones/usuario/:idUsuario/new',
-    component: TelefoneFormComponent,
-    title: 'Novo Telefone',
-  },
-  {
-    path: 'telefones/new',
-    component: TelefoneFormComponent,
-    title: 'Novo Telefone',
-  },
-  {
-    path: 'telefones/edit/:id',
-    component: TelefoneFormComponent,
-    resolve: { telefone: telefoneResolver },
-  },
-
-  {
-    path: 'telefones/usuario/:idUsuario/edit/:id',
-    component: TelefoneFormComponent,
-    resolve: { telefone: telefoneResolver },
-  },
-  // Rota pedidos
   // {
-  //   path: 'pedidos',
-  //   component: PedidoListComponent,
-  //   title: 'Lista de Pedidos',
+  //   path: 'usuarios',
+  //   component: UsuarioListComponent,
+  //   title: 'Lista de Usuarios',
   // },
   // {
-  //   path: 'pedidos/new',
-  //   component: PedidoFormComponent,
-  //   title: 'Novo Pedido',
+  //   path: 'usuarios/new',
+  //   component: UsuarioFormComponent,
+  //   title: 'Novo usuario',
   // },
   // {
-  //   path: 'pedidos/edit/:id',
-  //   component: PedidoFormComponent,
-  //   title: 'Editar Pedido',
-  //   resolve: { pedido: pedidoResolver },
+  //   path: 'usuarios/edit/:id',
+  //   component: UsuarioFormComponent,
+  //   resolve: { usuario: usuarioResolver },
   // },
-  // // Rota cupom
+
+
   // {
-  //   path: 'cupom',
-  //   component: CupomListComponent,
-  //   title: 'Lista de Cupons',
-  // },
-  // {
-  //   path: 'cupom/new',
-  //   component: CupomFormComponent,
-  //   title: 'Novo Cupom',
+  //   path: 'enderecos',
+  //   component: EnderecoListComponent,
+  //   title: 'Lista de Enderecos',
   // },
   // {
-  //   path: 'cupom/edit/:id',
-  //   component: CupomFormComponent,
-  //   title: 'Editar Cupom',
-  //   resolve: { cupom: cupomResolver },
-  // },
-  // // rota ItemPedido
-  // {
-  //   path: 'itenspedidos',
-  //   component: ItemPedidoListComponent,
-  //   title: 'Lista de Itens do Pedido',
+  //   path: 'enderecos/usuario/:id',
+  //   component: EnderecoListComponent,
+  //   title: 'Lista de Enderecos',
   // },
   // {
-  //   path: 'itenspedidos/new',
-  //   component: ItemPedidoFormComponent,
-  //   title: 'Novo Item do Pedido',
+  //   path: 'enderecos/new',
+  //   component: EnderecoFormComponent,
+  //   title: 'Novo endereco',
   // },
   // {
-  //   path: 'itenspedidos/edit/:id',
-  //   component: ItemPedidoFormComponent,
-  //   title: 'Editar Item do Pedido',
-  //   resolve: { itempedido: itempedidoResolver },
-  // },
-
-  // Rota Produtos
-  // {
-  //   path: 'produtos',
-  //   component: ProductListComponent,
-  //   title: 'Lista de Produtos',
+  //   path: 'enderecos/usuario/:idUsuario/new',
+  //   component: EnderecoFormComponent,
+  //   title: 'Novo endereco',
   // },
   // {
-  //   path: 'produtos/new',
-  //   component: ProductFormComponent,
-  //   title: 'Novo Produto',
+  //   path: 'enderecos/edit/:id',
+  //   component: EnderecoFormComponent,
+  //   resolve: { endereco: enderecoResolver },
   // },
   // {
-  //   path: 'produtos/edit/:id',
-  //   component: ProductFormComponent,
-  //   title: 'Editar Produto',
-  //   resolve: { product: productResolver },
+  //   path: 'enderecos/usuario/:idUsuario/edit/:id',
+  //   component: EnderecoFormComponent,
+  //   resolve: { endereco: enderecoResolver },
   // },
-  { path: 'login', component: LoginComponent, title: 'Login' },
-  {
-    path: '',
-    component: UserTemplateComponent,
-    title: 'e-commerce',
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: 'produtos' },
 
-      {
-        path: 'produtos',
-        component: ProductCardListComponent,
-        title: 'Produtos à Venda',
-      },
 
-      { path: 'perfil', component: UsuarioPerfilComponent },
+  // {
+  //   path: 'telefones',
+  //   component: TelefoneListComponent,
+  //   title: 'Lista de telefones',
+  // },
+  // {
+  //   path: 'telefones/usuario/:id',
+  //   component: TelefoneListComponent,
+  //   title: 'Lista de telefones',
+  // },
+  // {
+  //   path: 'telefones/usuario/:idUsuario/new',
+  //   component: TelefoneFormComponent,
+  //   title: 'Novo Telefone',
+  // },
+  // {
+  //   path: 'telefones/new',
+  //   component: TelefoneFormComponent,
+  //   title: 'Novo Telefone',
+  // },
+  // {
+  //   path: 'telefones/edit/:id',
+  //   component: TelefoneFormComponent,
+  //   resolve: { telefone: telefoneResolver },
+  // },
 
-      { path: 'perfil/edit', component: UsuarioFormComponent },
+  // {
+  //   path: 'telefones/usuario/:idUsuario/edit/:id',
+  //   component: TelefoneFormComponent,
+  //   resolve: { telefone: telefoneResolver },
+  // },
 
-      { path: 'perfil/pedidos', component: UsuarioOrdersComponent },
+  // { path: 'login', component: LoginComponent, title: 'Login' },
+  // {
+  //   path: '',
+  //   component: UserTemplateComponent,
+  //   title: 'e-commerce',
+  //   children: [
+  //     { path: '', pathMatch: 'full', redirectTo: 'produtos' },
 
-      // { path: 'perfil/pedidos/:id', component: UsuarioOrdersDetalhesComponent },
-      {
-        path: 'carrinho',
-        component: CarrinhoComponent,
-        title: 'Carrinho de pedidos',
-      },
-      {
-        path: 'checkout',
-        component: CheckoutComponent,
-        title: 'Finalizar Compra',
-      },
-      {
-        path: 'usuarios/new',
-        component: UsuarioFormComponent,
-        title: 'Novo usuario',
-      },
-    ],
-  },
+  //     {
+  //       path: 'produtos',
+  //       component: ProductCardListComponent,
+  //       title: 'Produtos à Venda',
+  //     },
 
-  {
-    path: 'categories',
-    component: CategoryListComponent,
-    title: 'Lista de Suspensoes',
-  },
-  {
-    path: 'categories/new',
-    component: CategoryFormComponent,
-    title: 'Nova Suspensao',
-  },
-  {
-    path: 'categories/edit/:id',
-    component: CategoryFormComponent,
-    title: 'Editar Suspensao',
-    resolve: { category: categoryResolver },
-  },
-  {
-    path: 'admin',
-    component: AdminTemplateComponent,
-    title: 'e-commerce',
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: 'categories' },
+  //     { path: 'perfil', component: UsuarioPerfilComponent },
 
-      {
-        path: 'categories',
-        component: CategoryListComponent,
-        title: 'Lista de Suspensoes',
-      },
-      {
-        path: 'categories/new',
-        component: CategoryFormComponent,
-        title: 'Nova Suspensao',
-      },
-      {
-        path: 'categories/edit/:id',
-        component: CategoryFormComponent,
-        title: 'Editar Suspensao',
-        resolve: { category: categoryResolver },
-      },
+  //     { path: 'perfil/edit', component: UsuarioFormComponent },
 
-      {
-        path: 'produtos',
-        component: ProductListComponent,
-        title: 'Lista de Produtos',
-      },
-      {
-        path: 'produtos/new',
-        component: ProductFormComponent,
-        title: 'Novo Produto',
-      },
-      {
-        path: 'produtos/edit/:id',
-        component: ProductFormComponent,
-        title: 'Editar Produto',
-        resolve: { product: productResolver },
-      },
-      {
-        path: 'usuarios',
-        component: UsuarioListComponent,
-        title: 'Lista de Usuarios',
-      },
-      {
-        path: 'usuarios/new',
-        component: UsuarioFormComponent,
-        title: 'Novo usuario',
-      },
-      {
-        path: 'usuarios/edit/:id',
-        component: UsuarioFormComponent,
-        resolve: { usuario: usuarioResolver },
-      },
+  //     { path: 'perfil/pedidos', component: UsuarioOrdersComponent },
 
-      // Rota enderecos
-      {
-        path: 'enderecos',
-        component: EnderecoListComponent,
-        title: 'Lista de Enderecos',
-      },
-      {
-        path: 'enderecos/usuario/:id',
-        component: EnderecoListComponent,
-        title: 'Lista de Enderecos',
-      },
-      {
-        path: 'enderecos/new',
-        component: EnderecoFormComponent,
-        title: 'Novo endereco',
-      },
-      {
-        path: 'enderecos/usuario/:idUsuario/new',
-        component: EnderecoFormComponent,
-        title: 'Novo endereco',
-      },
-      {
-        path: 'enderecos/edit/:id',
-        component: EnderecoFormComponent,
-        resolve: { endereco: enderecoResolver },
-      },
-      {
-        path: 'enderecos/usuario/:idUsuario/edit/:id',
-        component: EnderecoFormComponent,
-        resolve: { endereco: enderecoResolver },
-      },
 
-      // Rota telefones
-      {
-        path: 'telefones',
-        component: TelefoneListComponent,
-        title: 'Lista de telefones',
-      },
-      {
-        path: 'telefones/usuario/:id',
-        component: TelefoneListComponent,
-        title: 'Lista de telefones',
-      },
-      {
-        path: 'telefones/usuario/:idUsuario/new',
-        component: TelefoneFormComponent,
-        title: 'Novo Telefone',
-      },
-      {
-        path: 'telefones/new',
-        component: TelefoneFormComponent,
-        title: 'Novo Telefone',
-      },
-      {
-        path: 'telefones/edit/:id',
-        component: TelefoneFormComponent,
-        resolve: { telefone: telefoneResolver },
-      },
+  //     {
+  //       path: 'carrinho',
+  //       component: CarrinhoComponent,
+  //       title: 'Carrinho de pedidos',
+  //     },
+  //     {
+  //       path: 'checkout',
+  //       component: CheckoutComponent,
+  //       title: 'Finalizar Compra',
+  //     },
+  //     {
+  //       path: 'usuarios/new',
+  //       component: UsuarioFormComponent,
+  //       title: 'Novo usuario',
+  //     },
+  //   ],
+  // },
 
-      {
-        path: 'telefones/usuario/:idUsuario/edit/:id',
-        component: TelefoneFormComponent,
-        resolve: { telefone: telefoneResolver },
-      },
-    ],
-  },
-  // { path: '**', redirectTo: 'login' }
-
-  //{ path: 'login', component: LoginComponent, title: 'Login' },
-
-  // Rota categories
   // {
   //   path: 'categories',
   //   component: CategoryListComponent,
@@ -385,21 +174,180 @@ export const routes: Routes = [
   //   title: 'Editar Suspensao',
   //   resolve: { category: categoryResolver },
   // },
+  // {
+  //   path: 'admin',
+  //   component: AdminTemplateComponent,
+  //   title: 'e-commerce',
+  //   children: [
+  //     { path: '', pathMatch: 'full', redirectTo: 'categories' },
 
-  // {
-  //   path: 'dadostecnicos',
-  //   component: DadostecnicosListComponent,
-  //   title: 'Lista de Dados Tecnicos',
+  //     {
+  //       path: 'categories',
+  //       component: CategoryListComponent,
+  //       title: 'Lista de Suspensoes',
+  //     },
+  //     {
+  //       path: 'categories/new',
+  //       component: CategoryFormComponent,
+  //       title: 'Nova Suspensao',
+  //     },
+  //     {
+  //       path: 'categories/edit/:id',
+  //       component: CategoryFormComponent,
+  //       title: 'Editar Suspensao',
+  //       resolve: { category: categoryResolver },
+  //     },
+
+  //     {
+  //       path: 'produtos',
+  //       component: ProductListComponent,
+  //       title: 'Lista de Produtos',
+  //     },
+  //     {
+  //       path: 'produtos/new',
+  //       component: ProductFormComponent,
+  //       title: 'Novo Produto',
+  //     },
+  //     {
+  //       path: 'produtos/edit/:id',
+  //       component: ProductFormComponent,
+  //       title: 'Editar Produto',
+  //       resolve: { product: productResolver },
+  //     },
+  //     {
+  //       path: 'usuarios',
+  //       component: UsuarioListComponent,
+  //       title: 'Lista de Usuarios',
+  //     },
+  //     {
+  //       path: 'usuarios/new',
+  //       component: UsuarioFormComponent,
+  //       title: 'Novo usuario',
+  //     },
+  //     {
+  //       path: 'usuarios/edit/:id',
+  //       component: UsuarioFormComponent,
+  //       resolve: { usuario: usuarioResolver },
+  //     },
+
+
+  //     {
+  //       path: 'enderecos',
+  //       component: EnderecoListComponent,
+  //       title: 'Lista de Enderecos',
+  //     },
+  //     {
+  //       path: 'enderecos/usuario/:id',
+  //       component: EnderecoListComponent,
+  //       title: 'Lista de Enderecos',
+  //     },
+  //     {
+  //       path: 'enderecos/new',
+  //       component: EnderecoFormComponent,
+  //       title: 'Novo endereco',
+  //     },
+  //     {
+  //       path: 'enderecos/usuario/:idUsuario/new',
+  //       component: EnderecoFormComponent,
+  //       title: 'Novo endereco',
+  //     },
+  //     {
+  //       path: 'enderecos/edit/:id',
+  //       component: EnderecoFormComponent,
+  //       resolve: { endereco: enderecoResolver },
+  //     },
+  //     {
+  //       path: 'enderecos/usuario/:idUsuario/edit/:id',
+  //       component: EnderecoFormComponent,
+  //       resolve: { endereco: enderecoResolver },
+  //     },
+
+
+  //     {
+  //       path: 'telefones',
+  //       component: TelefoneListComponent,
+  //       title: 'Lista de telefones',
+  //     },
+  //     {
+  //       path: 'telefones/usuario/:id',
+  //       component: TelefoneListComponent,
+  //       title: 'Lista de telefones',
+  //     },
+  //     {
+  //       path: 'telefones/usuario/:idUsuario/new',
+  //       component: TelefoneFormComponent,
+  //       title: 'Novo Telefone',
+  //     },
+  //     {
+  //       path: 'telefones/new',
+  //       component: TelefoneFormComponent,
+  //       title: 'Novo Telefone',
+  //     },
+  //     {
+  //       path: 'telefones/edit/:id',
+  //       component: TelefoneFormComponent,
+  //       resolve: { telefone: telefoneResolver },
+  //     },
+
+  //     {
+  //       path: 'telefones/usuario/:idUsuario/edit/:id',
+  //       component: TelefoneFormComponent,
+  //       resolve: { telefone: telefoneResolver },
+  //     },
+  //   ],
   // },
-  // {
-  //   path: 'dadostecnicoss/edit/:id',
-  //   component: DadostecnicosFormComponent,
-  //   title: 'Cadastrar Dados Tecnicos da Peças',
-  //   resolve: { dadosTecnicos: dadosTecnicosResolver },
-  // },
-  // {
-  //   path: 'dadostecnicos/new',
-  //   component: DadostecnicosFormComponent,
-  //   title: 'Novos dados tecnicos',
-  // },
+
+  { path: 'login', component: LoginComponent, title: 'Login' },
+
+  {
+    path: '',
+    component: UserTemplateComponent,
+    title: 'e-commerce',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'produtos' },
+      { path: 'produtos', component: ProductCardListComponent, title: 'Produtos à Venda' },
+      { path: 'perfil', component: UsuarioPerfilComponent },
+      { path: 'perfil/edit', component: UsuarioFormComponent },
+      { path: 'perfil/pedidos', component: UsuarioOrdersComponent },
+      { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
+      { path: 'checkout', component: CheckoutComponent, title: 'Finalizar Compra' },
+      { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario' },
+      { path: 'usuarios/edit/:id',component: UsuarioFormComponent,resolve: { usuario: usuarioResolver },},
+      { path: 'enderecos', component: EnderecoListComponent, title: 'Lista de Enderecos' },
+      { path: 'enderecos/new', component: EnderecoFormComponent, title: 'Novo endereco' },
+      { path: 'enderecos/edit/:id', component: EnderecoFormComponent },
+      { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones' },
+      { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone' },
+      { path: 'telefones/edit/:id', component: TelefoneFormComponent },
+    ],
+  },
+
+  {
+    path: 'admin',
+    component: AdminTemplateComponent,
+    title: 'e-commerce',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'categories' },
+      { path: 'categories', component: CategoryListComponent, title: 'Lista de Suspensoes' },
+      { path: 'categories/new', component: CategoryFormComponent, title: 'Nova Suspensao' },
+      { path: 'categories/edit/:id', component: CategoryFormComponent, title: 'Editar Suspensao' },
+
+      { path: 'produtos', component: ProductListComponent, title: 'Lista de Produtos' },
+      { path: 'produtos/new', component: ProductFormComponent, title: 'Novo Produto' },
+      { path: 'produtos/edit/:id', component: ProductFormComponent, title: 'Editar Produto' },
+
+      { path: 'usuarios', component: UsuarioListComponent, title: 'Lista de Usuarios' },
+      { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario' },
+      { path: 'usuarios/edit/:id', component: UsuarioFormComponent },
+
+      { path: 'enderecos', component: EnderecoListComponent, title: 'Lista de Enderecos' },
+      { path: 'enderecos/new', component: EnderecoFormComponent, title: 'Novo endereco' },
+      { path: 'enderecos/edit/:id', component: EnderecoFormComponent },
+
+      { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones' },
+      { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone' },
+      { path: 'telefones/edit/:id', component: TelefoneFormComponent },
+    ],
+  },
+
 ];
