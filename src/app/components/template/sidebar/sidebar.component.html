@@ -1,10 +1,10 @@
-<mat-drawer-container class="container" style="height: 100%">
+<!-- <mat-drawer-container class="container" style="height: 100%">
   <mat-drawer #drawer mode="side" opened>
     <mat-toolbar>
       <span>Menu</span>
     </mat-toolbar>
     <mat-nav-list>
-      <!-- <mat-list-item>Home</mat-list-item> -->
+
       <mat-list-item routerLink="/admin/produtos"
         >Controle de Peças</mat-list-item
       >
@@ -14,6 +14,25 @@
       <mat-list-item routerLink="/admin/usuarios"
         >Controle de Usuarios</mat-list-item
       >
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container> -->
+
+<mat-drawer-container class="container" style="height: 100%">
+  <mat-drawer #drawer mode="side" opened>
+    <mat-toolbar>
+      <span>Menu</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item routerLink="/admin/usuario-admincontrol">Admin Control</mat-list-item>
+      <mat-list-item routerLink="/admin/usuarios">Controle de Usuários</mat-list-item>
+      <mat-list-item routerLink="/admin/produtos">Controle de Peças</mat-list-item>
+      <mat-list-item routerLink="/admin/categories">Controle de Suspensões</mat-list-item>
+      <mat-list-item routerLink="/admin/orders">Controle de Pedidos</mat-list-item>
     </mat-nav-list>
   </mat-drawer>
 

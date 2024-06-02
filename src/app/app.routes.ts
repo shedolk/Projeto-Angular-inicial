@@ -35,6 +35,8 @@ import { CheckoutComponent } from './components/checkout/checkout/checkout.compo
 import { UsuarioPerfilComponent } from './components/usuario/usuario-perfil/usuario-perfil.component';
 import { UsuarioOrdersComponent } from './components/usuario/usuario-orders/usuario-orders.component';
 import { UsuarioOrdersDetalhesComponent } from './components/usuario/usuario-orders-detalhes/usuario-orders-detalhes.component';
+import { UsuarioAdminControlComponent } from './components/usuario/usuario-admincontrol/usuario-admincontrol.component';
+import { OrderListAdminComponent } from './components/order/order-list-admin/order-list-admin.component';
 
 export const routes: Routes = [
 
@@ -327,7 +329,8 @@ export const routes: Routes = [
     component: AdminTemplateComponent,
     title: 'e-commerce',
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'categories' },
+      { path: '', pathMatch: 'full', redirectTo: 'usuario-admincontrol' },
+      { path: 'usuario-admincontrol', component: UsuarioAdminControlComponent, title: 'Admin Controle' },
       { path: 'categories', component: CategoryListComponent, title: 'Lista de Suspensoes' },
       { path: 'categories/new', component: CategoryFormComponent, title: 'Nova Suspensao' },
       { path: 'categories/edit/:id', component: CategoryFormComponent, title: 'Editar Suspensao' },
@@ -347,6 +350,8 @@ export const routes: Routes = [
       { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones' },
       { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone' },
       { path: 'telefones/edit/:id', component: TelefoneFormComponent },
+
+      { path: 'orders', component: OrderListAdminComponent, title: 'Lista de Pedidos' },
     ],
   },
 

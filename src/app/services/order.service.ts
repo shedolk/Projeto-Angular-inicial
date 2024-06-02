@@ -29,6 +29,10 @@ export class OrderService {
   //   return this.http.post<any>(`${this.baseURL}/orders`, produtos);
   // }
 
+  findAll(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseURL}`);
+  }
+
   save(carrinho: ItemCarrinho[]): Observable<Order> {
     const itens = carrinho.map(item => ({
       quantidade: item.quantidade,
