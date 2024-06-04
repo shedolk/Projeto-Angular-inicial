@@ -70,9 +70,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   obterUsuarioLogado() {
     this.subscription.add(
-      this.authService
-        .getUsuarioLogado()
-        .subscribe((usuario) => (this.usuarioLogado = usuario))
+      this.authService.getUsuarioLogado().subscribe((usuario) =>
+        (this.usuarioLogado = usuario))
     );
   }
 

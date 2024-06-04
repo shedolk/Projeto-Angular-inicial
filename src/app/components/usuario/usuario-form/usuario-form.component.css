@@ -39,3 +39,18 @@ button[mat-raised-button] {
 button[mat-raised-button]:not(:last-child) {
   margin-right: 1rem;
 }
+
+.full-width-input {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mat-expansion-panel {
+  margin-bottom: 16px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}

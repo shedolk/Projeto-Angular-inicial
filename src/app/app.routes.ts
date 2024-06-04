@@ -37,6 +37,7 @@ import { UsuarioOrdersComponent } from './components/usuario/usuario-orders/usua
 import { UsuarioOrdersDetalhesComponent } from './components/usuario/usuario-orders-detalhes/usuario-orders-detalhes.component';
 import { UsuarioAdminControlComponent } from './components/usuario/usuario-admincontrol/usuario-admincontrol.component';
 import { OrderListAdminComponent } from './components/order/order-list-admin/order-list-admin.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
 
@@ -57,69 +58,69 @@ export const routes: Routes = [
   // },
 
 
-  // {
-  //   path: 'enderecos',
-  //   component: EnderecoListComponent,
-  //   title: 'Lista de Enderecos',
-  // },
-  // {
-  //   path: 'enderecos/usuario/:id',
-  //   component: EnderecoListComponent,
-  //   title: 'Lista de Enderecos',
-  // },
-  // {
-  //   path: 'enderecos/new',
-  //   component: EnderecoFormComponent,
-  //   title: 'Novo endereco',
-  // },
-  // {
-  //   path: 'enderecos/usuario/:idUsuario/new',
-  //   component: EnderecoFormComponent,
-  //   title: 'Novo endereco',
-  // },
-  // {
-  //   path: 'enderecos/edit/:id',
-  //   component: EnderecoFormComponent,
-  //   resolve: { endereco: enderecoResolver },
-  // },
-  // {
-  //   path: 'enderecos/usuario/:idUsuario/edit/:id',
-  //   component: EnderecoFormComponent,
-  //   resolve: { endereco: enderecoResolver },
-  // },
+  {
+    path: 'enderecos',
+    component: EnderecoListComponent,
+    title: 'Lista de Enderecos',
+  },
+  {
+    path: 'enderecos/usuario/:id',
+    component: EnderecoListComponent,
+    title: 'Lista de Enderecos',
+  },
+  {
+    path: 'enderecos/new',
+    component: EnderecoFormComponent,
+    title: 'Novo endereco',
+  },
+  {
+    path: 'enderecos/usuario/:idUsuario/new',
+    component: EnderecoFormComponent,
+    title: 'Novo endereco',
+  },
+  {
+    path: 'enderecos/edit/:id',
+    component: EnderecoFormComponent,
+    resolve: { endereco: enderecoResolver },
+  },
+  {
+    path: 'enderecos/usuario/:idUsuario/edit/:id',
+    component: EnderecoFormComponent,
+    resolve: { endereco: enderecoResolver },
+  },
 
 
-  // {
-  //   path: 'telefones',
-  //   component: TelefoneListComponent,
-  //   title: 'Lista de telefones',
-  // },
-  // {
-  //   path: 'telefones/usuario/:id',
-  //   component: TelefoneListComponent,
-  //   title: 'Lista de telefones',
-  // },
-  // {
-  //   path: 'telefones/usuario/:idUsuario/new',
-  //   component: TelefoneFormComponent,
-  //   title: 'Novo Telefone',
-  // },
-  // {
-  //   path: 'telefones/new',
-  //   component: TelefoneFormComponent,
-  //   title: 'Novo Telefone',
-  // },
-  // {
-  //   path: 'telefones/edit/:id',
-  //   component: TelefoneFormComponent,
-  //   resolve: { telefone: telefoneResolver },
-  // },
+  {
+    path: 'telefones',
+    component: TelefoneListComponent,
+    title: 'Lista de telefones',
+  },
+  {
+    path: 'telefones/usuario/:id',
+    component: TelefoneListComponent,
+    title: 'Lista de telefones',
+  },
+  {
+    path: 'telefones/usuario/:idUsuario/new',
+    component: TelefoneFormComponent,
+    title: 'Novo Telefone',
+  },
+  {
+    path: 'telefones/new',
+    component: TelefoneFormComponent,
+    title: 'Novo Telefone',
+  },
+  {
+    path: 'telefones/edit/:id',
+    component: TelefoneFormComponent,
+    resolve: { telefone: telefoneResolver },
+  },
 
-  // {
-  //   path: 'telefones/usuario/:idUsuario/edit/:id',
-  //   component: TelefoneFormComponent,
-  //   resolve: { telefone: telefoneResolver },
-  // },
+  {
+    path: 'telefones/usuario/:idUsuario/edit/:id',
+    component: TelefoneFormComponent,
+    resolve: { telefone: telefoneResolver },
+  },
 
   // { path: 'login', component: LoginComponent, title: 'Login' },
   // {
@@ -305,6 +306,8 @@ export const routes: Routes = [
     path: '',
     component: UserTemplateComponent,
     title: 'e-commerce',
+    // canActivate: [authGuard],
+    // data: { authorizedProfiles: ['User', 'Admin'] },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'produtos' },
       { path: 'produtos', component: ProductCardListComponent, title: 'Produtos à Venda' },
@@ -314,13 +317,29 @@ export const routes: Routes = [
       { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
       { path: 'checkout', component: CheckoutComponent, title: 'Finalizar Compra' },
       { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario' },
-      { path: 'usuarios/edit/:id',component: UsuarioFormComponent,resolve: { usuario: usuarioResolver },},
+      { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: { usuario: usuarioResolver }, },
       { path: 'enderecos', component: EnderecoListComponent, title: 'Lista de Enderecos' },
       { path: 'enderecos/new', component: EnderecoFormComponent, title: 'Novo endereco' },
       { path: 'enderecos/edit/:id', component: EnderecoFormComponent },
       { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones' },
       { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone' },
       { path: 'telefones/edit/:id', component: TelefoneFormComponent },
+      { path: 'enderecos', component: EnderecoListComponent, title: 'Lista de Enderecos' },
+      { path: 'enderecos/usuario/:id', component: EnderecoListComponent, title: 'Lista de Enderecos' },
+      { path: 'enderecos/new', component: EnderecoFormComponent, title: 'Novo endereco', },
+      {
+        path: 'enderecos/usuario/:idUsuario/new', component: EnderecoFormComponent, title: 'Novo endereco'
+      },
+      { path: 'enderecos/edit/:id', component: EnderecoFormComponent, resolve: { endereco: enderecoResolver }, },
+      { path: 'enderecos/usuario/:idUsuario/edit/:id', component: EnderecoFormComponent, resolve: { endereco: enderecoResolver } },
+      { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones', },
+      { path: 'telefones/usuario/:id', component: TelefoneListComponent, title: 'Lista de telefones', },
+      { path: 'telefones/usuario/:idUsuario/new', component: TelefoneFormComponent, title: 'Novo Telefone', },
+      { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone', },
+      { path: 'telefones/edit/:id', component: TelefoneFormComponent, resolve: { telefone: telefoneResolver }, },
+      {
+        path: 'telefones/usuario/:idUsuario/edit/:id', component: TelefoneFormComponent, resolve: { telefone: telefoneResolver },
+      },
     ],
   },
 
@@ -328,6 +347,8 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminTemplateComponent,
     title: 'e-commerce',
+    canActivate: [authGuard],
+    data: { authorizedProfiles: ['Admin'] },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'usuario-admincontrol' },
       { path: 'usuario-admincontrol', component: UsuarioAdminControlComponent, title: 'Admin Controle' },

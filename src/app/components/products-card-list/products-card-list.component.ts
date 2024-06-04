@@ -47,7 +47,7 @@ export class ProductCardListComponent implements OnInit {
 
     carregarProducts() {
       // buscando todos as products
-      this.productService.findAll(0, 10).subscribe(data => {
+      this.productService.findAll(0, 11).subscribe(data => {
         this.products = data;
         this.carregarCards();
       });

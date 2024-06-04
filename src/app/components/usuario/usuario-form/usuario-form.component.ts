@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -24,6 +25,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Perfil } from '../../../models/perfil.models';
 import { PerfilService } from '../../../services/perfil.service';
+import { Endereco } from '../../../models/endereco.models';
+import { Telefone } from '../../../models/telefone.models';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-usuario-form',
@@ -43,6 +48,7 @@ import { PerfilService } from '../../../services/perfil.service';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    MatExpansionModule
   ],
   templateUrl: './usuario-form.component.html',
   styleUrls: ['./usuario-form.component.css'],
@@ -57,25 +63,50 @@ export class UsuarioFormComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private PerfilService: PerfilService
-  ) {
-    const usuario: Usuario = this.activatedRoute.snapshot.data['usuario'];
+    private PerfilService: PerfilService,
+    private authService: AuthService,
+  ){
+
+    //const usuario: Usuario = this.activatedRoute.snapshot.data['usuario'];
+
+    const id: string = this.activatedRoute.snapshot.params['id'];
+    if (id) {
+      this.usuarioService.findById(id).subscribe((usuario) => {
+        this.formGroup.patchValue(usuario);
+      });
+    }
 
     this.formGroup = this.formBuilder.group({
-      id: [usuario && usuario.id ? usuario.id : null],
-      nome: [usuario && usuario.nome ? usuario.nome : '', Validators.required],
-      login: [
-        usuario && usuario.login ? usuario.login : '',
-        Validators.required,
+      id: [null],
+      nome: ['', Validators.required],
+      login: ['', Validators.required],
+      senha: ['', Validators.required],
+      cpf: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)],
       ],
-      senha: [
-        usuario && usuario.senha ? usuario.senha : '',
-        Validators.required,
-      ],
-      cpf: [usuario && usuario.cpf ? usuario.cpf : '', Validators.required],
-      idPerfil: [usuario && usuario.perfil.id ? usuario.perfil.id : ''],
+      idPerfil: ['', Validators.required],
     });
   }
+
+  //   this.formGroup = this.formBuilder.group({
+  //     id: [usuario && usuario.id ? usuario.id : null],
+  //     nome: [usuario && usuario.nome ? usuario.nome : '', Validators.required],
+  //     login: [
+  //       usuario && usuario.login ? usuario.login : '',
+  //       Validators.required,
+  //     ],
+  //     senha: [
+  //       usuario && usuario.senha ? usuario.senha : '',
+  //       Validators.required,
+  //     ],
+  //     cpf: [
+  //       usuario && usuario.cpf ? usuario.cpf : '',
+  //     [ Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)],
+  //     ],
+  //     idPerfil: [usuario && usuario.perfil.id ? usuario.perfil.id : '', Validators.required],
+  //   });
+  // }
 
   ngOnInit(): void {
     this.PerfilService.findAll().subscribe((data) => {
@@ -83,15 +114,25 @@ export class UsuarioFormComponent {
     });
   }
 
+
   salvarUsuario() {
     this.formGroup.markAllAsTouched();
 
     if (this.formGroup.valid) {
-      const usuario = this.formGroup.value;
+      //const usuario = this.formGroup.value;
+
+      const usuario = {
+        ...this.formGroup.value,
+        perfil: this.perfils.find(p => p.id === this.formGroup.value.idPerfil)
+      };
+      console.log('Usuário para cadastro:', usuario);
+
       if (usuario.id == null) {
         this.usuarioService.insert(usuario).subscribe({
           next: (usuarioCadastrado) => {
-            this.router.navigateByUrl('/usuarios');
+            //this.router.navigateByUrl('/usuarios');
+            this.router.navigateByUrl('/login');
+
             this.snackBar.open('Usuário cadastrado com sucesso!', 'Fechar', {
               duration: 3000,
             });
@@ -104,7 +145,10 @@ export class UsuarioFormComponent {
       } else {
         this.usuarioService.update(usuario).subscribe({
           next: (usuarioAlterado) => {
-            this.router.navigateByUrl('/usuarios');
+            //this.router.navigateByUrl('/usuarios');
+            this.authService.updateUsuarioLogado(usuarioAlterado);
+            this.router.navigateByUrl('/produtos');
+
             this.snackBar.open('Usuário atualizado com sucesso!', 'Fechar', {
               duration: 3000,
             });
@@ -183,6 +227,7 @@ export class UsuarioFormComponent {
     },
     cpf: {
       required: 'O CPF deve ser informado.',
+      pattern: 'O CPF deve estar no formato xxx.xxx.xxx-xx.',
     },
     perfil: {
       required: 'O perfil deve ser informado.',

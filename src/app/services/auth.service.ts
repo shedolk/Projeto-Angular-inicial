@@ -27,12 +27,16 @@ export class AuthService {
   }
 
   private initUsuarioLogado() {
-    const usuario = localStorage.getItem(this.usuarioLogadoKey);
+    const usuario = this.localStorageService.getItem(this.usuarioLogadoKey);
+    console.log('Inicializando usuário logado do localStorage:', usuario);
     if (usuario) {
-      const usuarioLogado = JSON.parse(usuario);
+      //const usuarioLogado = JSON.parse(usuario);
 
-      this.setUsuarioLogado(usuarioLogado);
-      this.usuarioLogadoSubject.next(usuarioLogado);
+      // this.setUsuarioLogado(usuarioLogado);
+      //this.usuarioLogadoSubject.next(usuarioLogado);
+
+      this.setUsuarioLogado(usuario);
+      this.usuarioLogadoSubject.next(usuario);
     }
   }
 
@@ -41,7 +45,7 @@ export class AuthService {
     const params = {
       login: login,
       senha: senha,
-      perfil: 2, // user normal
+      //perfil: 2, // user normal
     };
 
     //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
@@ -64,8 +68,13 @@ export class AuthService {
   }
 
   setUsuarioLogado(usuario: Usuario): void {
+    console.log('Armazenando usuário logado no localStorage:', usuario);
     this.localStorageService.setItem(this.usuarioLogadoKey, usuario);
   }
+
+  // setUsuarioLogado(usuario: Usuario): void {
+  //   this.localStorageService.setItem(this.usuarioLogadoKey, JSON.stringify(usuario));
+  // }
 
   setToken(token: string): void {
     this.localStorageService.setItem(this.tokenKey, token);
@@ -93,5 +102,16 @@ export class AuthService {
     // Verifica se o token é nulo ou está expirado
     return !token || this.jwtHelper.isTokenExpired(token);
     // npm install @auth0/angular-jwt
+  }
+
+  getPerfilUsuario(): string {
+    const usuario = this.localStorageService.getItem(this.usuarioLogadoKey);
+    console.log('Recuperando perfil do usuário logado do localStorage:', usuario);
+    //return usuario ? JSON.parse(usuario).perfil.label : '';
+    return usuario ? usuario.perfil.label : '';
+  }
+
+  updateUsuarioLogado(usuario: Usuario): void {
+    this.setUsuarioLogado(usuario);
   }
 }

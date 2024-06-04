@@ -1,4 +1,4 @@
-<mat-toolbar>
+<!-- <mat-toolbar>
   <button
     [ngClass]="{ 'hidden': tipo !== 2 }"
     (click)="clickMenu()"
@@ -12,11 +12,6 @@
   <button routerLink="/" class="toolbar-title-button">
     <span class="toolbar-title">Johnny Boy - Suspensões Automotivas</span>
   </button>
-
-  <!-- <button routerLink="/" class="toolbar-title-button">
-    <img src="assets/logo/logo.png" class="logo">
-    <span class="toolbar-title">Johnny Boy</span>
-  </button> -->
 
   <span class="example-spacer"></span>
 
@@ -72,6 +67,83 @@
   </button>
 
   <button
+    mat-icon-button
+    (click)="deslogar()"
+    matTooltip="Sair">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar> -->
+
+<mat-toolbar>
+  <button
+    [ngClass]="{ 'hidden': tipo !== 2 }"
+    (click)="clickMenu()"
+    mat-icon-button
+    matTooltip="Menu"
+    class="example-icon"
+    aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <button routerLink="/" class="toolbar-title-button">
+    <span class="toolbar-title">Johnny Boy - Suspensões Automotivas</span>
+  </button>
+
+  <span class="example-spacer"></span>
+
+  <button
+    *ngIf="!usuarioLogado"
+    routerLink="/login"
+    mat-icon-button
+    matTooltip="Login"
+    aria-label="Example icon-button com ícone de login">
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <span>{{ usuarioLogado?.nome }}</span>
+
+  <button
+    *ngIf="usuarioLogado"
+    mat-icon-button
+    [matMenuTriggerFor]="perfilMenu"
+    matTooltip="Perfil"
+    aria-label="Example icon-button com ícone de perfil">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <mat-menu #perfilMenu="matMenu">
+    <button mat-menu-item [routerLink]="'/perfil'">
+      <mat-icon>person</mat-icon>
+      <span>Perfil</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/perfil/edit'">
+      <mat-icon>edit</mat-icon>
+      <span>Editar Dados</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/perfil/pedidos'">
+      <mat-icon>list_alt</mat-icon>
+      <span>Pedidos Realizados</span>
+    </button>
+  </mat-menu>
+
+  <button
+    routerLink="/carrinho"
+    mat-icon-button
+    matTooltip="Carrinho"
+    class="demo-section example-icon favorite-icon"
+    aria-label="Example icon-button com ícone de carrinho">
+    <mat-icon
+      [matBadge]="qtdItensCarrinho"
+      matBadgeColor="warn"
+      matBadgePosition="after"
+      matBadgeOverlap="false"
+      aria-hidden="false">
+      shopping_cart
+    </mat-icon>
+  </button>
+
+  <button
+    *ngIf="usuarioLogado"
     mat-icon-button
     (click)="deslogar()"
     matTooltip="Sair">

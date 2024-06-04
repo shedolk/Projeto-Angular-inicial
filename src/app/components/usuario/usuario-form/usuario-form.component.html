@@ -78,14 +78,14 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width-input">
+            <!-- <mat-form-field appearance="outline" class="full-width-input">
               <mat-label>Perfil</mat-label>
               <mat-select formControlName="idPerfil">
                 @for (perfil of perfils; track perfil) {
                 <mat-option [value]="perfil.id">{{ perfil.label }}</mat-option>
                 }
               </mat-select>
-              <!-- Validação para o campo de login -->
+
               <mat-error
                 *ngIf="
                   formGroup.get('perfil')?.errors &&
@@ -93,16 +93,114 @@
                 "
               >
                 @if (formGroup.get('perfil')?.errors?.['required']) {
-                <span>a data do pedido deve ser informado.</span>
+                <span>o perfil deve ser informado.</span>
                 } @if (formGroup.get('perfil')?.errors?.['minlength']) {
                 <span>a data pedido deve possuir ao menos 4 caracteres.</span>
                 } @if (formGroup.get('perfil')?.hasError('apiError')) {
                 <span>{{ formGroup.get("perfil")?.getError("apiError") }}</span>
                 }
               </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <!-- Seleção de Perfil -->
+          <mat-form-field appearance="outline" class="full-width-input">
+            <mat-label>Perfil</mat-label>
+            <mat-select formControlName="idPerfil">
+              <mat-option *ngFor="let perfil of perfils" [value]="perfil.id">
+                {{ perfil.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formGroup.get('idPerfil')?.errors && formGroup.get('idPerfil')?.touched">
+              <span>O perfil deve ser informado.</span>
+            </mat-error>
+          </mat-form-field>
+
+            <!-- Campos de telefone -->
+<!-- <div formArrayName="listaTelefone">
+  <div *ngFor="let telefone of telefones.controls; let i = index" [formGroupName]="i">
+    <h3>Telefone {{ i + 1 }}</h3>
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>Código de Área</mat-label>
+      <input matInput type="text" formControlName="codigoArea" />
+      <mat-error *ngIf="telefone.get('codigoArea')?.errors && telefone.get('codigoArea')?.touched">
+        {{ getErrorMessage('codigoArea', telefone.get('codigoArea')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>Número</mat-label>
+      <input matInput type="text" formControlName="numero" />
+      <mat-error *ngIf="telefone.get('numero')?.errors && telefone.get('numero')?.touched">
+        {{ getErrorMessage('numero', telefone.get('numero')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button color="warn" (click)="removeTelefone(i)">Remover Telefone</button>
+  </div>
+  <button mat-button color="primary" (click)="addTelefone()">Adicionar Telefone</button>
+</div> -->
+
+<!-- Campos de endereço -->
+<!-- <div formArrayName="listaEndereco">
+  <div *ngFor="let endereco of enderecos.controls; let i = index" [formGroupName]="i">
+    <h3>Endereço {{ i + 1 }}</h3>
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>Rua</mat-label>
+      <input matInput type="text" formControlName="rua" />
+      <mat-error *ngIf="endereco.get('rua')?.errors && endereco.get('rua')?.touched">
+        {{ getErrorMessage('rua', endereco.get('rua')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>Número</mat-label>
+      <input matInput type="text" formControlName="numero" />
+      <mat-error *ngIf="endereco.get('numero')?.errors && endereco.get('numero')?.touched">
+        {{ getErrorMessage('numeroEndereco', endereco.get('numero')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>Cidade</mat-label>
+      <input matInput type="text" formControlName="cidade" />
+      <mat-error *ngIf="endereco.get('cidade')?.errors && endereco.get('cidade')?.touched">
+        {{ getErrorMessage('cidade', endereco.get('cidade')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>Estado</mat-label>
+      <input matInput type="text" formControlName="estado" />
+      <mat-error *ngIf="endereco.get('estado')?.errors && endereco.get('estado')?.touched">
+        {{ getErrorMessage('estado', endereco.get('estado')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-input">
+      <mat-label>CEP</mat-label>
+      <input matInput type="text" formControlName="cep" />
+      <mat-error *ngIf="endereco.get('cep')?.errors && endereco.get('cep')?.touched">
+        {{ getErrorMessage('cep', endereco.get('cep')?.errors) }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button color="warn" (click)="removeEndereco(i)">Remover Endereço</button>
+  </div>
+  <button mat-button color="primary" (click)="addEndereco()">Adicionar Endereço</button>
+</div> -->
+
+          <!-- Navegação para Telefones -->
+          <!-- <button mat-raised-button color="primary" [routerLink]="['/telefones/usuario', formGroup.get('id')?.value, 'new']">
+            Gerenciar Telefones
+          </button> -->
+
+          <!-- Navegação para Endereços -->
+          <!-- <button mat-raised-button color="primary" [routerLink]="['/enderecos/usuario', formGroup.get('id')?.value, 'new']">
+            Gerenciar Endereços
+          </button> -->
 
             <!-- Botões de ação -->
+            <div class="action-buttons">
             <button
               mat-raised-button
               color="primary"
@@ -122,6 +220,7 @@
             </button>
             <!-- <button mat-raised-button routerLink="/login">Cancelar</button> -->
             <button mat-raised-button routerLink="/produtos">Cancelar</button>
+            </div>
           </form>
         </mat-card-content>
       </mat-card>

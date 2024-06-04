@@ -7,7 +7,12 @@ import { OrderService } from '../../../services/order.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { Endereco } from '../../../models/endereco.models';
+import { Telefone } from '../../../models/telefone.models';
+import { UsuarioService } from '../../../services/usuario.service';
+import { EnderecoService } from '../../../services/endereco.service';
+import { TelefoneService } from '../../../services/telefone.service';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -17,7 +22,8 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatButtonModule,
     RouterModule,
     MatIconModule,
-    MatTooltip],
+    MatTooltip,
+    MatTooltipModule],
   templateUrl: './usuario-perfil.component.html',
   styleUrl: './usuario-perfil.component.css'
 })
@@ -28,6 +34,7 @@ export class UsuarioPerfilComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
+    private usuarioService: UsuarioService,
     private router: Router
   ) { }
 
@@ -41,14 +48,26 @@ export class UsuarioPerfilComponent implements OnInit {
   }
 
   carregarPedidos(login: string): void {
-    this.orderService.getPedidosPorUsuario(login).subscribe(pedidos => {
+    this.orderService.getPedidosPorUsuario(login).subscribe((pedidos) => {
       this.pedidos = pedidos;
     });
   }
 
   editarDados(): void {
-    this.router.navigate(['/usuarios/edit', this.usuario?.id]);
+    if (this.usuario && this.usuario.login) {
+      this.usuarioService.findByLogin(this.usuario.login).subscribe((usuario) => {
+        if (usuario && usuario.id) {
+          this.router.navigate(['/usuarios/edit', usuario.id]);
+        }
+      });
+    }
   }
+
+  // editarDados(): void {
+  //   if (this.usuario && this.usuario.id) {
+  //     this.router.navigate(['/usuarios/edit', this.usuario.id]);
+  //   }
+  // }
 
   verDetalhes(pedidoId: number): void {
     this.router.navigate(['/pedidos', pedidoId]);

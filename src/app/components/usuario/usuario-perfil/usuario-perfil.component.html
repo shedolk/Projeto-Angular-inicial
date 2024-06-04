@@ -19,6 +19,40 @@
   </div>
 </div> -->
 
+<!-- <div class="perfil-container">
+  <div class="perfil-header">
+    <h1>Perfil do Usuário</h1>
+    <button mat-icon-button color="primary" (click)="voltarParaPrincipal()" matTooltip="Voltar para a página principal">
+      <mat-icon>home</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="usuario">
+    <h2>Dados Pessoais</h2>
+    <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+    <p><strong>Login:</strong> {{ usuario.login }}</p>
+    <p><strong>CPF:</strong> {{ usuario.cpf }}</p>
+
+
+    <button mat-button (click)="editarDados()">Editar Dados</button>
+  </div> -->
+
+  <!-- <button mat-raised-button color="primary" (click)="gerenciarTelefones()">
+    Gerenciar Telefones
+  </button>
+
+  <button mat-raised-button color="primary" (click)="gerenciarEnderecos()">
+    Gerenciar Endereços
+  </button> -->
+
+  <!-- <h2>Meus Pedidos</h2>
+  <div *ngFor="let pedido of pedidos" class="pedido-item">
+    <p><strong>Pedido #{{ pedido.id }}</strong></p>
+    <p><strong>Data:</strong> {{ pedido.dataHora | date }}</p>
+    <p><strong>Total:</strong> {{ pedido.totalPedido | currency:'BRL' }}</p>
+    <button mat-button (click)="verDetalhes(pedido.id)">Ver Detalhes</button>
+  </div>
+</div> -->
+
 <div class="perfil-container">
   <div class="perfil-header">
     <h1>Perfil do Usuário</h1>
@@ -30,9 +64,24 @@
     <h2>Dados Pessoais</h2>
     <p><strong>Nome:</strong> {{ usuario.nome }}</p>
     <p><strong>Login:</strong> {{ usuario.login }}</p>
-    <!-- Adicione mais campos conforme necessário -->
+    <p><strong>CPF:</strong> {{ usuario.cpf }}</p>
     <button mat-button (click)="editarDados()">Editar Dados</button>
   </div>
+
+  <!-- <h2>Telefones</h2>
+  <div *ngFor="let telefone of telefones" class="telefone-item">
+    <p><strong>Código de Área:</strong> {{ telefone.codigoArea }}</p>
+    <p><strong>Número:</strong> {{ telefone.numero }}</p>
+  </div>
+
+  <h2>Endereços</h2>
+  <div *ngFor="let endereco of enderecos" class="endereco-item">
+    <p><strong>Rua:</strong> {{ endereco.rua }}</p>
+    <p><strong>Número:</strong> {{ endereco.numero }}</p>
+    <p><strong>Cidade:</strong> {{ endereco.cidade }}</p>
+    <p><strong>Estado:</strong> {{ endereco.estado }}</p>
+    <p><strong>CEP:</strong> {{ endereco.cep }}</p>
+  </div> -->
 
   <h2>Meus Pedidos</h2>
   <div *ngFor="let pedido of pedidos" class="pedido-item">
