@@ -25,8 +25,12 @@ export class EnderecoService {
     );
   }
 
-  insert(endereco: Endereco): Observable<Endereco> {
-    return this.httpClient.post<Endereco>(this.baseUrl, endereco);
+  // insert(endereco: Endereco): Observable<Endereco> {
+  //   return this.httpClient.post<Endereco>(`${this.baseUrl}/usuario/${endereco}`, endereco);
+  // }
+
+  insert(endereco: Endereco, idUsuario: string): Observable<Endereco> {
+    return this.httpClient.post<Endereco>(`${this.baseUrl}/usuario/${idUsuario}`, endereco);
   }
 
   update(endereco: Endereco): Observable<Endereco> {

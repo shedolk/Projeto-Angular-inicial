@@ -11,9 +11,14 @@
   </ng-container>
 
   <!-- Cliente Column -->
-  <ng-container matColumnDef="cliente">
+  <!-- <ng-container matColumnDef="cliente">
     <th mat-header-cell *matHeaderCellDef> Cliente </th>
     <td mat-cell *matCellDef="let order"> {{order.usuario.nome}} </td>
+  </ng-container> -->
+
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef> Cliente </th>
+    <td mat-cell *matCellDef="let order"> {{ order.usuario?.nome || 'N/A' }} </td>
   </ng-container>
 
   <!-- Total Column -->

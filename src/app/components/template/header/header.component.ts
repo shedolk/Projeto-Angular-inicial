@@ -75,6 +75,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
+  editarDados(): void {
+    if (this.usuarioLogado && this.usuarioLogado.login) {
+      this.authService.getUsuarioLogado().subscribe((usuario) => {
+        if (usuario && usuario.id) {
+          this.router.navigate(['/usuarios/edit', usuario.id]);
+        }
+      });
+    }
+  }
+
   deslogar() {
     this.authService.removeToken();
     this.authService.removeUsuarioLogado();

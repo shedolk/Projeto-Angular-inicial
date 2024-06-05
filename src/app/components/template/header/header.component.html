@@ -116,10 +116,17 @@
       <mat-icon>person</mat-icon>
       <span>Perfil</span>
     </button>
-    <button mat-menu-item [routerLink]="'/perfil/edit'">
+
+    <button mat-menu-item (click)="editarDados()">
       <mat-icon>edit</mat-icon>
       <span>Editar Dados</span>
     </button>
+
+    <!-- <button mat-menu-item [routerLink]="'/perfil/edit'">
+      <mat-icon>edit</mat-icon>
+      <span>Editar Dados</span>
+    </button> -->
+
     <button mat-menu-item [routerLink]="'/perfil/pedidos'">
       <mat-icon>list_alt</mat-icon>
       <span>Pedidos Realizados</span>

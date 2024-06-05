@@ -13,6 +13,7 @@ import { Telefone } from '../../../models/telefone.models';
 import { UsuarioService } from '../../../services/usuario.service';
 import { EnderecoService } from '../../../services/endereco.service';
 import { TelefoneService } from '../../../services/telefone.service';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -23,7 +24,8 @@ import { TelefoneService } from '../../../services/telefone.service';
     RouterModule,
     MatIconModule,
     MatTooltip,
-    MatTooltipModule],
+    MatTooltipModule,
+  ],
   templateUrl: './usuario-perfil.component.html',
   styleUrl: './usuario-perfil.component.css'
 })
@@ -36,22 +38,34 @@ export class UsuarioPerfilComponent implements OnInit {
     private orderService: OrderService,
     private usuarioService: UsuarioService,
     private router: Router
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.authService.getUsuarioLogado().subscribe(usuario => {
       this.usuario = usuario;
       if (usuario) {
-        this.carregarPedidos(usuario.login);
+        this.carregarPedidos(usuario.id);
+        this.carregarUsuario(usuario.login);
       }
     });
   }
 
-  carregarPedidos(login: string): void {
-    this.orderService.getPedidosPorUsuario(login).subscribe((pedidos) => {
+  carregarUsuario(login: string): void {
+    this.usuarioService.findByLogin(login).subscribe(usuario => {
+      this.usuario = usuario;
+    });
+  }
+
+  carregarPedidos(idUsuario: number): void {
+    this.orderService.getPedidosPorUsuario(idUsuario).subscribe((pedidos) => {
       this.pedidos = pedidos;
     });
   }
+
+  
+
 
   editarDados(): void {
     if (this.usuario && this.usuario.login) {
@@ -76,4 +90,5 @@ export class UsuarioPerfilComponent implements OnInit {
   voltarParaPrincipal(): void {
     this.router.navigate(['/']);
   }
+
 }

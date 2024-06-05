@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container" style="height: 100%">
+<!-- <mat-sidenav-container class="sidenav-container" style="height: 100%">
   <mat-sidenav #sidenav mode="over" opened="false">
     <mat-nav-list>
       <a mat-list-item routerLink="/home">Inicio</a>
@@ -7,16 +7,14 @@
       <a mat-list-item routerLink="/telefones">Telefones</a>
       <a mat-list-item routerLink="/pedidos">Pedidos</a>
       <a mat-list-item routerLink="/usuarios">Meu usuário</a>
-      <!-- Adicione mais links conforme necessário -->
+
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar class="mat-toolbar-black">
-   
-      <!-- <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button> -->
+
+
       <span class="toolbar-title">Cadastro de telefones</span>
     </mat-toolbar>
     <p></p>
@@ -24,7 +22,7 @@
       <mat-card>
         <mat-card-content>
           <form [formGroup]="formGroup">
-            <!-- espaço -->
+
             <mat-form-field appearance="fill" class="full-width-input">
               <mat-label>Codigo de area</mat-label>
               <input matInput type="text" formControlName="codigoArea" />
@@ -45,12 +43,12 @@
                 }</mat-error
               >
             </mat-form-field>
-            <!-- espaço -->
+
 
             <mat-form-field appearance="outline" class="full-width-input">
               <mat-label>Numero</mat-label>
               <input matInput type="text" formControlName="numero" />
-              <!-- Validação para o campo de login -->
+
               <mat-error
                 *ngIf="
                   formGroup.get('numero')?.errors &&
@@ -67,7 +65,7 @@
               >
             </mat-form-field>
 
-            <!-- espaço -->
+
           </form>
         </mat-card-content>
         <mat-card-actions>
@@ -98,4 +96,68 @@
       </mat-card>
     </div>
   </mat-sidenav-content></mat-sidenav-container
->
+> -->
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="isMenuOpen">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/perfil">Perfil</a>
+      <a mat-list-item routerLink="/perfil/edit">Editar Dados</a>
+      <a mat-list-item routerLink="/perfil/pedidos">Pedidos Realizados</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Cadastro de Telefone</span>
+    </mat-toolbar>
+    <div class="form-container">
+
+      <!-- <mat-card>
+        <mat-card-content>
+          <form [formGroup]="formGroup">
+            <mat-form-field appearance="outline">
+              <mat-label>Código de Área</mat-label>
+              <input matInput formControlName="codigoArea" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Número</mat-label>
+              <input matInput formControlName="numero" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="salvarTelefone()">
+              Salvar
+            </button>
+            <button mat-raised-button color="warn" (click)="excluirTelefone()">
+              Excluir
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card> -->
+
+      <mat-card>
+        <mat-card-title>Adicionar Telefone</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="formGroup" (ngSubmit)="salvarTelefone()">
+            <mat-form-field appearance="fill">
+              <mat-label>Código de Área</mat-label>
+              <input matInput formControlName="codigoArea" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Número</mat-label>
+              <input matInput formControlName="numero" required>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Salvar</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

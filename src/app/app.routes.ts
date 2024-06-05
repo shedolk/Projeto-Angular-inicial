@@ -314,6 +314,22 @@ export const routes: Routes = [
       { path: 'perfil', component: UsuarioPerfilComponent },
       { path: 'perfil/edit', component: UsuarioFormComponent },
       { path: 'perfil/pedidos', component: UsuarioOrdersComponent },
+
+      { path: 'perfil/enderecos/new/:idUsuario', component: EnderecoFormComponent },
+      { path: 'perfil/enderecos/edit/:id', component: EnderecoFormComponent },
+
+      { path: 'perfil/telefones/new/:idUsuario', component: TelefoneFormComponent },
+      { path: 'perfil/telefones/edit/:id', component: TelefoneFormComponent },
+
+      // { path: 'perfil/endereco/new', component: EnderecoFormComponent },
+      // { path: 'perfil/endereco/edit/:id', component: EnderecoFormComponent },
+
+      // { path: 'perfil/telefone/new', component: TelefoneFormComponent },
+      // { path: 'perfil/telefone/edit/:id', component: TelefoneFormComponent },
+
+      // { path: 'perfil/enderecos/new/:idUsuario', component: EnderecoFormComponent },
+      // { path: 'perfil/telefones/new/:idUsuario', component: TelefoneFormComponent },
+
       { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de pedidos' },
       { path: 'checkout', component: CheckoutComponent, title: 'Finalizar Compra' },
       { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario' },
@@ -364,13 +380,13 @@ export const routes: Routes = [
       { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario' },
       { path: 'usuarios/edit/:id', component: UsuarioFormComponent },
 
-      { path: 'enderecos', component: EnderecoListComponent, title: 'Lista de Enderecos' },
-      { path: 'enderecos/new', component: EnderecoFormComponent, title: 'Novo endereco' },
-      { path: 'enderecos/edit/:id', component: EnderecoFormComponent },
+      // { path: 'enderecos', component: EnderecoListComponent, title: 'Lista de Enderecos' },
+      // { path: 'enderecos/new', component: EnderecoFormComponent, title: 'Novo endereco' },
+      // { path: 'enderecos/edit/:id', component: EnderecoFormComponent },
 
-      { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones' },
-      { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone' },
-      { path: 'telefones/edit/:id', component: TelefoneFormComponent },
+      // { path: 'telefones', component: TelefoneListComponent, title: 'Lista de telefones' },
+      // { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone' },
+      // { path: 'telefones/edit/:id', component: TelefoneFormComponent },
 
       { path: 'orders', component: OrderListAdminComponent, title: 'Lista de Pedidos' },
     ],

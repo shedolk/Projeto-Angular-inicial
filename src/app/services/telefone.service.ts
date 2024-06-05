@@ -25,8 +25,12 @@ export class TelefoneService {
     );
   }
 
-  insert(telefone: Telefone): Observable<Telefone> {
-    return this.httpClient.post<Telefone>(this.baseUrl, telefone);
+  // insert(telefone: Telefone): Observable<Telefone> {
+  //   return this.httpClient.post<Telefone>(`${this.baseUrl}/usuario`, telefone);
+  // }
+
+  insert(telefone: Telefone, idUsuario: string): Observable<Telefone> {
+    return this.httpClient.post<Telefone>(`${this.baseUrl}/usuario/${idUsuario}`, telefone);
   }
 
   update(telefone: Telefone): Observable<Telefone> {

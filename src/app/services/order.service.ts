@@ -47,8 +47,12 @@ export class OrderService {
     return this.http.post<Order>(`${this.baseURL}`, produtos);
   }
 
-  getPedidosPorUsuario(login: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.baseURL}/user/${login}`);
+  // getPedidosPorUsuario(login: string): Observable<Order[]> {
+  //   return this.http.get<Order[]>(`${this.baseURL}/user/${login}`);
+  // }
+
+  getPedidosPorUsuario(idUsuario: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseURL}/user/${idUsuario}`);
   }
 
   // getPedidosPorUsuario(login: string): Observable<Order[]> {

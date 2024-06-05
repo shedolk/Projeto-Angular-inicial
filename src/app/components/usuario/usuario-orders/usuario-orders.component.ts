@@ -40,22 +40,34 @@ export class UsuarioOrdersComponent implements OnInit {
   obterUsuarioLogado(): void {
     this.authService.getUsuarioLogado().subscribe(usuario => {
       this.usuario = usuario;
-      if (usuario && usuario.login) {
-        this.carregarPedidos(usuario.login);
+      if (usuario && usuario.id) {
+        this.carregarPedidos(usuario.id);
       }
     });
   }
 
-  carregarPedidos(login: string): void {
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuario_logado') || '{}');
-    if (usuarioLogado && usuarioLogado.login) {
-      this.orderService.getPedidosPorUsuario(usuarioLogado.login).subscribe(pedidos => {
+  carregarPedidos(idUsuario: number): void {
+    if (idUsuario) {
+      this.orderService.getPedidosPorUsuario(idUsuario).subscribe(pedidos => {
         this.pedidos = pedidos;
       });
     } else {
-      console.error("Usuário não está logado ou login não encontrado.");
+      console.error("ID do usuário não encontrado.");
     }
   }
+
+  // carregarPedidos(login: string): void {
+  //   const usuarioLogado = JSON.parse(localStorage.getItem('usuario_logado') || '{}');
+  //   if (usuarioLogado && usuarioLogado.login) {
+  //     this.orderService.getPedidosPorUsuario(usuarioLogado.login).subscribe(pedidos => {
+  //       this.pedidos = pedidos;
+  //     });
+  //   } else {
+  //     console.error("Usuário não está logado ou login não encontrado.");
+  //   }
+  // }
+
+
 
   voltarParaPrincipal(): void {
     this.router.navigate(['/']);
