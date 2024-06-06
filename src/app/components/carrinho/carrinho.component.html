@@ -35,7 +35,15 @@
       </div>
     </mat-card>
     <div class="carrinho-total">
+      <mat-form-field appearance="outline" class="full-width-input">
+        <mat-label>Insira o cupom de desconto</mat-label>
+        <input matInput [(ngModel)]="cupom" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="aplicarCupom()">Aplicar Cupom</button>
+
       <p>Total do Carrinho: {{ calcularTotal() | currency : 'BRL' }}</p>
+      <p *ngIf="desconto > 0">Desconto: -{{ desconto | currency : 'BRL' }}</p>
+      <p>Total com Desconto: {{ calcularTotalComDesconto() | currency : 'BRL' }}</p>
       <div class="carrinho-actions">
         <button mat-raised-button (click)="continuarComprando()" class="custom-button">
           Continuar Comprando

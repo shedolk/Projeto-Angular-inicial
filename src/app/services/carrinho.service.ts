@@ -10,10 +10,16 @@ export class CarrinhoService {
   private carrinhoSubject = new BehaviorSubject<ItemCarrinho[]>([]);
   carrinho$ = this.carrinhoSubject.asObservable();
 
+  private totalComDescontoSubject = new BehaviorSubject<number>(0);
+  totalComDesconto$ = this.totalComDescontoSubject.asObservable();
+
+  private desconto = 0;
+
   constructor(private localStorageService: LocalStorageService) {
     const carrinhoArmazenado =
       this.localStorageService.getItem('carrinho') || [];
     this.carrinhoSubject.next(carrinhoArmazenado);
+    this.atualizarTotalComDesconto();
   }
 
   adicionar(item: ItemCarrinho): void {
@@ -28,6 +34,7 @@ export class CarrinhoService {
 
     this.carrinhoSubject.next(carrinhoAtual);
     this.atualizarArmazenamentoLocal();
+    this.atualizarTotalComDesconto();
   }
 
   remover(item: ItemCarrinho): void {
@@ -36,11 +43,14 @@ export class CarrinhoService {
 
     this.carrinhoSubject.next(carrinhoAtualizado);
     this.atualizarArmazenamentoLocal();
+    this.atualizarTotalComDesconto();
   }
 
   limparCarrinho(): void {
     this.carrinhoSubject.next([]);
     this.localStorageService.removeItem('carrinho');
+    this.totalComDescontoSubject.next(0);
+    this.desconto = 0; // Limpar desconto
   }
 
   private atualizarArmazenamentoLocal(): void {
@@ -55,6 +65,22 @@ export class CarrinhoService {
       carrinhoAtual[itemIndex] = item;
       this.carrinhoSubject.next(carrinhoAtual);
       this.atualizarArmazenamentoLocal();
+      this.atualizarTotalComDesconto();
     }
+  }
+
+  aplicarDesconto(desconto: number): void {
+    this.desconto = desconto;
+    this.atualizarTotalComDesconto();
+  }
+
+  private atualizarTotalComDesconto(): void {
+    const total = this.carrinhoSubject.value.reduce((sum, item) => sum + item.preco * item.quantidade, 0);
+    const totalComDesconto = total - this.desconto;
+    this.totalComDescontoSubject.next(totalComDesconto);
+  }
+
+  getDesconto(): number {
+    return this.desconto;
   }
 }

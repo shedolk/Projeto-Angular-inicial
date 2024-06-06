@@ -29,3 +29,17 @@
   align-items: center;
   gap: 5px;
 }
+
+.custom-button {
+  background-color: #6200ea ;
+  color: rgb(79, 34, 182) ;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.custom-button:hover {
+  background-color: #4b00b6 !important; /* Cor mais escura para hover */
+}
+
+

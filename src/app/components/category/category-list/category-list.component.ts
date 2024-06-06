@@ -42,7 +42,7 @@ export class CategoryListComponent implements OnInit {
   // filtro: string = "";
 
   totalRecords = 0;
-  pageSize = 2;
+  pageSize = 5;
   page = 0;
 
   filterValue = '';

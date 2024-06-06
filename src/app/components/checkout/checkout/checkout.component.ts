@@ -51,6 +51,10 @@ export class CheckoutComponent implements OnInit {
       this.carrinhoItems = items;
       this.calcularTotalCarrinho();
     });
+      //this.calcularTotalCarrinho();
+    //   this.carrinhoService.totalComDesconto$.subscribe(total => {
+    //     this.totalCarrinho = total;
+    // });
 
     this.paymentForm = this.formBuilder.group({
       paymentMethod: ['card', Validators.required],
@@ -88,6 +92,8 @@ export class CheckoutComponent implements OnInit {
 
   calcularTotalCarrinho() {
     this.totalCarrinho = this.carrinhoItems.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+    const desconto = this.carrinhoService.getDesconto();
+    this.totalCarrinho -= desconto;
   }
 
   onCheckout() {
@@ -101,11 +107,27 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    this.orderService.save(this.carrinhoItems).subscribe({
+    // Atualizar o preço de cada item no carrinho para refletir o desconto
+    const desconto = this.carrinhoService.getDesconto();
+    const totalOriginal = this.carrinhoItems.reduce((total, item) => total + item.preco * item.quantidade, 0);
+    const fatorDesconto = totalOriginal / (totalOriginal - desconto);
+
+    const itensComDesconto = this.carrinhoItems.map(item => ({
+      ...item,
+      preco: item.preco / fatorDesconto
+    }));
+
+    this.orderService.save(itensComDesconto).subscribe({
       next: (order: Order) => {
         this.showSnackbar('Pedido realizado com sucesso!', 'Fechar');
         this.carrinhoService.limparCarrinho();
         this.router.navigate(['/produtos']); // ou outra rota, conforme necessário
+
+    // this.orderService.save(this.carrinhoItems).subscribe({
+    //   next: (order: Order) => {
+    //     this.showSnackbar('Pedido realizado com sucesso!', 'Fechar');
+    //     this.carrinhoService.limparCarrinho();
+    //     this.router.navigate(['/produtos']); // ou outra rota, conforme necessário
       },
       error: (err) => {
         console.error(err);

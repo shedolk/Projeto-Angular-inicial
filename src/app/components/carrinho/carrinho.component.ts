@@ -11,6 +11,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AuthService } from '../../services/auth.service';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-carrinho',
@@ -23,7 +25,10 @@ import { AuthService } from '../../services/auth.service';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormField,
+    MatLabel,
+    FormsModule
   ],
   templateUrl: './carrinho.component.html',
   styleUrl: './carrinho.component.css',
@@ -32,6 +37,9 @@ export class CarrinhoComponent {
   carrinhoItens: ItemCarrinho[] = [];
   usuarioLogado: boolean = false;
   showLoginPanel: boolean = false;
+
+  cupom: string = '';
+  desconto: number = 0;
 
   constructor(private carrinhoService: CarrinhoService, private authService: AuthService, private router: Router) { }
 
@@ -62,6 +70,27 @@ export class CarrinhoComponent {
       (total, item) => total + item.preco * item.quantidade,
       0
     );
+  }
+
+  calcularTotalComDesconto(): number {
+    const total = this.calcularTotal();
+    return total - this.desconto;
+  }
+
+  aplicarCupom(): void {
+    // Lógica para verificar os cupons
+    if (this.cupom === 'desconto10') {
+      this.desconto = this.calcularTotal() * 0.10; // 10% de desconto
+    } else if (this.cupom === 'diadospais') {
+      this.desconto = this.carrinhoItens.reduce(
+      (total, item) => total + (item.preco * item.quantidade * 0.15), // 15% de desconto
+      0
+    );
+    } else {
+      this.desconto = 0;
+      alert('Cupom inválido');
+    }
+    this.carrinhoService.aplicarDesconto(this.desconto);
   }
 
   aumentarQuantidade(item: ItemCarrinho): void {

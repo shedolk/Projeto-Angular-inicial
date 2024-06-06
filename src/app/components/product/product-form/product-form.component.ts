@@ -20,6 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryService } from '../../../services/categoria.service';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-form',
@@ -34,7 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     RouterModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css',
@@ -45,6 +47,7 @@ export class ProductFormComponent {
 
   selectedFile: File | null = null;
   imageUrl: string | null = null;
+  snackBar: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -86,26 +89,6 @@ export class ProductFormComponent {
     });
   }
 
-  // initializeForm() {
-
-  //   const product: Product = this.activatedRoute.snapshot.data['product'];
-
-  //   // selecionando a suspensao
-  //   const category = this.categories
-  //     .find(category => category.id === (product?.category?.id || null));
-
-  //   this.formGroup = this.formBuilder.group({
-  //     id: [(product && product.id) ? product.id : null],
-  //     nome: [(product && product.nome) ? product.nome : '', Validators.required],
-  //     descricao: [(product && product.descricao) ? product.descricao : '', Validators.required],
-  //     preco: [(product && product.preco) ? product.preco : '', Validators.required],
-  //     estoque: [(product && product.estoque) ? product.estoque: '', Validators.required],
-  //     nomeImagem: [(product && product.nomeImagem) ? product.nomeImagem : '', Validators.required],
-  //     category: [category]
-  //   });
-  // }
-
-
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -114,15 +97,36 @@ export class ProductFormComponent {
     }
   }
 
-  onUpload() {
+  // onUpload() {
+  //   const productId = this.formGroup.get('id')?.value;
+  //   if (this.selectedFile && productId) {
+  //     this.productService.uploadImagem(productId, this.selectedFile).subscribe(
+  //       (response) => {
+  //         console.log('Upload successful', response);
+  //         this.imageUrl = this.productService.getUrlImagem(this.selectedFile!.name);
+  //       },
+  //       (error) => console.error('Upload error', error)
+  //     );
+  //   }
+  // }
+
+  onUpload(): void {
     const productId = this.formGroup.get('id')?.value;
     if (this.selectedFile && productId) {
       this.productService.uploadImagem(productId, this.selectedFile).subscribe(
         (response) => {
           console.log('Upload successful', response);
           this.imageUrl = this.productService.getUrlImagem(this.selectedFile!.name);
+          this.snackBar.open('Imagem enviada com sucesso!', 'Fechar', {
+            duration: 3000,
+          });
         },
-        (error) => console.error('Upload error', error)
+        (error) => {
+          console.error('Upload error', error);
+          this.snackBar.open('Erro ao enviar imagem. Tente novamente.', 'Fechar', {
+            duration: 3000,
+          });
+        }
       );
     }
   }
