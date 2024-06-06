@@ -64,7 +64,7 @@ export class UsuarioPerfilComponent implements OnInit {
     });
   }
 
-  
+
 
 
   editarDados(): void {
@@ -84,7 +84,7 @@ export class UsuarioPerfilComponent implements OnInit {
   // }
 
   verDetalhes(pedidoId: number): void {
-    this.router.navigate(['/pedidos', pedidoId]);
+    this.router.navigate(['/orders', pedidoId]);
   }
 
   voltarParaPrincipal(): void {

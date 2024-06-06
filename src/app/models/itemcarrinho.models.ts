@@ -1,4 +1,5 @@
 import { Category } from "./category.models";
+import { Product } from "./product.models";
 
 export class ItemCarrinho {
   id!: number;
@@ -6,5 +7,7 @@ export class ItemCarrinho {
   quantidade!: number;
   preco!: number;
   imagemUrl!: string;
-  category!: Category; // Adicionando a categoria
+  //product!: Product;
+  category!: Category;
+
 }

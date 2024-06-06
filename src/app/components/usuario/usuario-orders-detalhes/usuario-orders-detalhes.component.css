@@ -1,36 +1,93 @@
-.pedido-detalhes-container {
-  max-width: 800px;
-  margin: 0 auto;
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.pedido-card {
+  margin: 20px auto;
   padding: 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Define a largura máxima do card */
+  text-align: left; /* Alinhamento do texto à esquerda */
+  background-color: #fff;
 }
 
-h1, h2 {
-  text-align: center;
+.pedido-info, .usuario-info, .itens-info {
   margin-bottom: 20px;
-  color: #444;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
 }
 
-p {
-  font-size: 16px;
-  color: #666;
-  margin: 10px 0;
-  font-family: 'Roboto', sans-serif;
+.usuario-info h3, .itens-info h3 {
+  margin-top: 0;
+  color: #007185; /* Cor azul similar à Amazon */
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.category-info {
+  background-color: #ccc6c6;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
-ul li {
-  font-size: 16px;
-  color: #666;
+.category-info p {
   margin: 5px 0;
-  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #555; /* Cor de texto cinza */
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #111; /* Cor de texto preto */
+}
+
+mat-card-content p, mat-card-content h4 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+mat-card-content h3 {
+  font-size: 20px;
+  margin-top: 20px;
+  color: #007185; /* Cor azul similar à Amazon */
+}
+
+mat-list-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+mat-list-item:last-child {
+  border-bottom: none;
+}
+
+mat-list-item h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+mat-list-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #555; /* Cor de texto cinza */
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+  background-color: #ffa41c;
+  color: #111;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #cc8b00;
 }

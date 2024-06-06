@@ -353,9 +353,10 @@ export const routes: Routes = [
       { path: 'telefones/usuario/:idUsuario/new', component: TelefoneFormComponent, title: 'Novo Telefone', },
       { path: 'telefones/new', component: TelefoneFormComponent, title: 'Novo Telefone', },
       { path: 'telefones/edit/:id', component: TelefoneFormComponent, resolve: { telefone: telefoneResolver }, },
-      {
-        path: 'telefones/usuario/:idUsuario/edit/:id', component: TelefoneFormComponent, resolve: { telefone: telefoneResolver },
-      },
+      {path: 'telefones/usuario/:idUsuario/edit/:id', component: TelefoneFormComponent, resolve: { telefone: telefoneResolver },},
+      { path: 'usuario/orders', component: UsuarioOrdersComponent },
+      { path: 'orders/:id', component: UsuarioOrdersDetalhesComponent },
+      
     ],
   },
 
@@ -389,6 +390,7 @@ export const routes: Routes = [
       // { path: 'telefones/edit/:id', component: TelefoneFormComponent },
 
       { path: 'orders', component: OrderListAdminComponent, title: 'Lista de Pedidos' },
+
     ],
   },
 

@@ -1,4 +1,4 @@
-<div *ngIf="pedido" class="pedido-detalhes-container">
+<!-- <div *ngIf="pedido" class="pedido-detalhes-container">
   <h1>Detalhes do Pedido #{{ pedido.id }}</h1>
   <p><strong>Data:</strong> {{ pedido.dataHora | date }}</p>
   <p><strong>Total:</strong> {{ pedido.totalPedido | currency:'BRL' }}</p>
@@ -9,4 +9,69 @@
       {{ item.nome }} - {{ item.quantidade }} x {{ item.preco | currency:'BRL' }}
     </li>
   </ul>
+</div> -->
+
+<!-- <div *ngIf="pedido">
+  <mat-card>
+    <mat-card-title>Detalhes do Pedido</mat-card-title>
+    <mat-card-content>
+      <p><strong>ID:</strong> {{ pedido.id }}</p>
+      <p><strong>Data e Hora:</strong> {{ pedido.dataHora }}</p>
+      <p><strong>Total:</strong> {{ pedido.totalPedido | currency:'BRL' }}</p>
+
+      <h3>Usuário</h3>
+      <p><strong>Nome:</strong> {{ pedido.usuario.nome }}</p>
+      <p><strong>Email:</strong> {{ pedido.usuario.login }}</p>
+
+      <h3>Itens</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let item of pedido.itens">
+          <h4 mat-line>{{ item.nome }}</h4>
+          <p mat-line>{{ item.quantidade }} x {{ item.preco | currency:'BRL' }} (Categoria: {{ item.category.category }})</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+
+<div *ngIf="pedido">
+  <mat-card class="pedido-card">
+    <mat-card-title>
+      <button mat-icon-button (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      Detalhes do Pedido
+    </mat-card-title>
+    <mat-card-content>
+      <div class="pedido-info">
+        <p><strong>ID:</strong> {{ pedido.id }}</p>
+        <p><strong>Data e Hora:</strong> {{ pedido.dataHora | date: 'short' }}</p>
+        <p><strong>Total:</strong> {{ pedido.totalPedido | currency:'BRL' }}</p>
+      </div>
+
+      <div class="usuario-info">
+        <h3>Usuário</h3>
+        <p><strong>Nome:</strong> {{ pedido.usuario.nome }}</p>
+        <p><strong>Email:</strong> {{ pedido.usuario.login }}</p>
+      </div>
+
+      <div class="itens-info">
+        <h3>Itens</h3>
+        <mat-list>
+
+          <mat-list-item *ngFor="let item of pedido.itens">
+            <h4 mat-line>{{ item.nome }}</h4>
+            <p mat-line>{{ item.quantidade }} x {{ item.preco | currency:'BRL' }}</p>
+            <!-- <div *ngIf="item.category" class="category-info">
+              <p><strong>Categoria:</strong> {{ item.category.category }}</p>
+              <p><strong>Compatibilidade:</strong> {{ item.category.compatibilidade }}</p>
+              <p><strong>Tipo de Mola:</strong> {{ item.category.tipoMola }}</p>
+              <p><strong>Tipo de Amortecedor:</strong> {{ item.category.tipoAmortecedor }}</p>
+            </div> -->
+
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

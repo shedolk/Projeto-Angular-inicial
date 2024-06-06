@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Product } from '../models/product.models';
 
 @Injectable({
@@ -23,6 +23,10 @@ export class ProductService {
     }
 
     return this.httpClient.get<Product[]>(`${this.baseUrl}`, { params });
+  }
+
+  getTotalProdutos(): Observable<number> {
+    return this.findAll().pipe(map(produtos => produtos.length));
   }
 
   count(): Observable<number> {

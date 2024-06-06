@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
   <mat-card-title>Admin Control</mat-card-title>
   <mat-card-content>
     <div class="button-group">
@@ -10,6 +10,67 @@
       </button>
       <button mat-raised-button color="primary" routerLink="/admin/categories">
         Gerenciar Suspensões
+      </button>
+      <button mat-raised-button color="primary" routerLink="/admin/orders">
+        Gerenciar Pedidos
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card> -->
+
+<mat-card>
+  <mat-card-title>Admin Control</mat-card-title>
+  <mat-card-content>
+    <div class="stats-group">
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon>group</mat-icon>
+          <mat-card-title>Total de Clientes</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ totalUsuarios }}</h2>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon>build</mat-icon>
+          <mat-card-title>Total de Produtos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ totalProdutos }}</h2>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon>category</mat-icon>
+          <mat-card-title>Total de Categorias</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ totalCategorias }}</h2>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon>shopping_cart</mat-icon>
+          <mat-card-title>Total de Pedidos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ totalPedidos }}</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="button-group">
+      <button mat-raised-button color="primary" routerLink="/admin/usuarios">
+        <mat-icon>group</mat-icon> Gerenciar Usuários
+      </button>
+      <button mat-raised-button color="primary" routerLink="/admin/produtos">
+        <mat-icon>build</mat-icon> Gerenciar Peças
+      </button>
+      <button mat-raised-button color="primary" routerLink="/admin/categories">
+        <mat-icon>category</mat-icon> Gerenciar Suspensões
+      </button>
+      <button mat-raised-button color="primary" routerLink="/admin/orders">
+        <mat-icon>shopping_cart</mat-icon> Gerenciar Pedidos
       </button>
     </div>
   </mat-card-content>

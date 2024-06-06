@@ -5,3 +5,27 @@
   align-items: center;
   justify-content: center;
 }
+
+.stats-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  width: 200px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.button-group button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

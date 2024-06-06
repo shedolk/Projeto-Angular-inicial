@@ -1,7 +1,7 @@
 import { Usuario } from './../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Endereco } from '../models/endereco.models';
 import { Telefone } from '../models/telefone.models';
 
@@ -15,6 +15,10 @@ export class UsuarioService {
 
   findAll(): Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(this.baseUrl);
+  }
+
+  getTotalUsuarios(): Observable<number> {
+    return this.findAll().pipe(map(usuarios => usuarios.length));
   }
 
   findById(id: String): Observable<Usuario> {

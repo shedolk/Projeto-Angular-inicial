@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ItemCarrinho } from '../models/itemcarrinho.models';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
 import { Order } from '../models/order.models';
 import { AuthService } from './auth.service';
@@ -33,6 +33,10 @@ export class OrderService {
     return this.http.get<Order[]>(`${this.baseURL}`);
   }
 
+  getTotalPedidos(): Observable<number> {
+    return this.findAll().pipe(map(pedidos => pedidos.length));
+  }
+
   save(carrinho: ItemCarrinho[]): Observable<Order> {
     const itens = carrinho.map(item => ({
       quantidade: item.quantidade,
@@ -40,9 +44,7 @@ export class OrderService {
       idProduct: item.id
     }));
 
-    const produtos = {
-      itens: itens
-    };
+    const produtos = {itens: itens};
 
     return this.http.post<Order>(`${this.baseURL}`, produtos);
   }

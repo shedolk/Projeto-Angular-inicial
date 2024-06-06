@@ -67,7 +67,9 @@ export class UsuarioOrdersComponent implements OnInit {
   //   }
   // }
 
-
+  visualizarPedido(orderId: number): void {
+    this.router.navigate([`/orders/${orderId}`]);
+  }
 
   voltarParaPrincipal(): void {
     this.router.navigate(['/']);

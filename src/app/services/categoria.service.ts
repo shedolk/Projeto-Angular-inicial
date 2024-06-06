@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Category } from '../models/category.models';
 
 @Injectable({
@@ -22,6 +22,10 @@ export class CategoryService {
 
   count(): Observable<number> {
     return this.httpClient.get<number>(`${this.baseUrl}/count`);
+  }
+
+  getTotalCategorias(): Observable<number> {
+    return this.findAll().pipe(map(categorias => categorias.length));
   }
 
   // teste tambem
