@@ -14,6 +14,17 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { EnderecoService } from '../../../services/endereco.service';
 import { TelefoneService } from '../../../services/telefone.service';
 import { FormGroup, Validators } from '@angular/forms';
+import { Address } from '../../../models/adress.models';
+import { Phone } from '../../../models/phone.models';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddressService } from '../../../services/address.service';
+import { PhoneService } from '../../../services/phone.service';
+import { AddressModalComponent } from '../../addressmodal/addressmodal.component';
+import { PhoneModalComponent } from '../../phonemodal/phonemodal.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -25,6 +36,11 @@ import { FormGroup, Validators } from '@angular/forms';
     MatIconModule,
     MatTooltip,
     MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   templateUrl: './usuario-perfil.component.html',
   styleUrl: './usuario-perfil.component.css'
@@ -33,11 +49,17 @@ export class UsuarioPerfilComponent implements OnInit {
   usuario: Usuario | null = null;
   pedidos: Order[] = [];
 
+  selectedAddress: Address | null = null;
+  selectedPhone: Phone | null = null;
+
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private addressService: AddressService,
+    private phoneService: PhoneService,
+    public dialog: MatDialog,
   ) {
 
   }
@@ -89,6 +111,32 @@ export class UsuarioPerfilComponent implements OnInit {
 
   voltarParaPrincipal(): void {
     this.router.navigate(['/']);
+  }
+
+  selectAddress(): void {
+    const dialogRef = this.dialog.open(AddressModalComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectedAddress = result;
+      }
+    });
+  }
+
+  selectPhone(): void {
+    const dialogRef = this.dialog.open(PhoneModalComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectedPhone = result;
+      }
+    });
   }
 
 }

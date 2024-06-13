@@ -97,6 +97,22 @@
       <p class="total-label">Total:</p>
       <p class="total-value">{{ totalCarrinho | currency:'BRL' }}</p>
     </div>
+
+    <div class="address-phone-section">
+      <h2>Informações de Entrega</h2>
+      <button mat-raised-button color="primary" (click)="selectAddress()">Selecionar Endereço</button>
+      <div *ngIf="selectedAddress" class="selected-info">
+        <h3>Endereço Selecionado</h3>
+        <p>{{ selectedAddress.rua }}, {{ selectedAddress.cidade }}, {{ selectedAddress.estado }} - {{ selectedAddress.cep }}</p>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="selectPhone()">Selecionar Telefone</button>
+      <div *ngIf="selectedPhone" class="selected-info">
+        <h3>Telefone Selecionado</h3>
+        <p>{{ selectedPhone.numero }}</p>
+      </div>
+    </div>
+
     <form [formGroup]="paymentForm" (ngSubmit)="onCheckout()" class="payment-form">
       <div class="payment-section">
         <h2>Informações de Pagamento</h2>

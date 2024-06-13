@@ -11,8 +11,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AuthService } from '../../services/auth.service';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { MatFormField, MatFormFieldControl, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-carrinho',
@@ -28,7 +29,10 @@ import { FormsModule } from '@angular/forms';
     MatExpansionModule,
     MatFormField,
     MatLabel,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   templateUrl: './carrinho.component.html',
   styleUrl: './carrinho.component.css',
@@ -78,12 +82,12 @@ export class CarrinhoComponent {
   }
 
   aplicarCupom(): void {
-    // Lógica para verificar os cupons
+
     if (this.cupom === 'desconto10') {
-      this.desconto = this.calcularTotal() * 0.10; // 10% de desconto
+      this.desconto = this.calcularTotal() * 0.10;
     } else if (this.cupom === 'diadospais') {
       this.desconto = this.carrinhoItens.reduce(
-      (total, item) => total + (item.preco * item.quantidade * 0.15), // 15% de desconto
+      (total, item) => total + (item.preco * item.quantidade * 0.15),
       0
     );
     } else {

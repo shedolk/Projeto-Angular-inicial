@@ -14,7 +14,7 @@
     <button mat-button (click)="editarDados()">Editar Dados</button>
   </div>
 
-  <div *ngIf="usuario">
+  <!-- <div *ngIf="usuario">
     <h2>Perfil de {{ usuario.nome }}</h2>
     <button mat-raised-button color="primary" [routerLink]="['/perfil/enderecos/new', usuario.id]">Adicionar Endereço</button>
     <button mat-raised-button color="primary" [routerLink]="['/perfil/telefones/new', usuario.id]">Adicionar Telefone</button>
@@ -33,6 +33,22 @@
           {{ endereco.rua }} - {{ endereco.numero }} - {{ endereco.cidade }} - {{ endereco.estado }} - {{ endereco.cep }}
         </li>
       </ul>
+    </div>
+  </div> -->
+
+  <div *ngIf="usuario">
+    <h2>Endereços e Telefones de {{ usuario.nome }}</h2>
+    <button mat-raised-button color="primary" (click)="selectAddress()">Selecionar Endereço</button>
+    <button mat-raised-button color="primary" (click)="selectPhone()">Selecionar Telefone</button>
+
+    <div *ngIf="selectedAddress">
+      <h3>Endereço Selecionado</h3>
+      <p>{{ selectedAddress.rua }}, {{ selectedAddress.cidade }}, {{ selectedAddress.estado }} - {{ selectedAddress.cep }}</p>
+    </div>
+
+    <div *ngIf="selectedPhone">
+      <h3>Telefone Selecionado</h3>
+      <p>{{ selectedPhone.numero }}</p>
     </div>
   </div>
 

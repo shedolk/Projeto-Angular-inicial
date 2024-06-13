@@ -9,11 +9,20 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormField, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Usuario } from '../../../models/usuario.model';
 import { AuthService } from '../../../services/auth.service';
 import { MatRadioModule } from '@angular/material/radio';
+import { Address } from '../../../models/adress.models';
+import { Phone } from '../../../models/phone.models';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddressService } from '../../../services/address.service';
+import { PhoneService } from '../../../services/phone.service';
+import { AddressModalComponent } from '../../addressmodal/addressmodal.component';
+import { PhoneModalComponent } from '../../phonemodal/phonemodal.component';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @Component({
   selector: 'app-checkout',
@@ -25,7 +34,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
@@ -37,13 +48,19 @@ export class CheckoutComponent implements OnInit {
   usuarioLogado: Usuario | null = null;
   totalCarrinho: number = 0;
 
+  selectedAddress: Address | null = null;
+  selectedPhone: Phone | null = null;
+
   constructor(
     private carrinhoService: CarrinhoService,
     private orderService: OrderService,
     private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private addressService: AddressService,
+    private phoneService: PhoneService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -141,6 +158,32 @@ export class CheckoutComponent implements OnInit {
       duration: 2000,
       verticalPosition: 'top',
       horizontalPosition: 'center'
+    });
+  }
+
+  selectAddress(): void {
+    const dialogRef = this.dialog.open(AddressModalComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectedAddress = result;
+      }
+    });
+  }
+
+  selectPhone(): void {
+    const dialogRef = this.dialog.open(PhoneModalComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectedPhone = result;
+      }
     });
   }
 }

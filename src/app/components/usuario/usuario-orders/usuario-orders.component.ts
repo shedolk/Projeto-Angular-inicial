@@ -56,16 +56,7 @@ export class UsuarioOrdersComponent implements OnInit {
     }
   }
 
-  // carregarPedidos(login: string): void {
-  //   const usuarioLogado = JSON.parse(localStorage.getItem('usuario_logado') || '{}');
-  //   if (usuarioLogado && usuarioLogado.login) {
-  //     this.orderService.getPedidosPorUsuario(usuarioLogado.login).subscribe(pedidos => {
-  //       this.pedidos = pedidos;
-  //     });
-  //   } else {
-  //     console.error("Usuário não está logado ou login não encontrado.");
-  //   }
-  // }
+  
 
   visualizarPedido(orderId: number): void {
     this.router.navigate([`/orders/${orderId}`]);
